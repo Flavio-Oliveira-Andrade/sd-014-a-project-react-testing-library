@@ -1,8 +1,9 @@
 // feito com ajuda do Notion da BeeDev https://www.notion.so/beedeveloper/BeeDev-b3284d4907f8420eb3bd6021e7baeaf9;
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
 import renderWithRouter from './helpers/renderWithRouter';
 import { FavoritePokemons } from '../components';
+import App from '../App';
 
 describe('FavoritePokemons.js - Verificação de funcionalidade', () => {
   renderWithRouter(<FavoritePokemons />);
@@ -16,12 +17,14 @@ describe('FavoritePokemons.js - Verificação de funcionalidade', () => {
   // essa parte do requisito está mal implementada,
   // ela passa se você apenas renderizar o <FavoritePokemons /> como feito na linha 8;
   it('Verifica se os cards dos pokémons favoritados aparecem', () => {
-    fireEvent.click(screen.getByText('All')); // clica botão com o texto "All";
+    renderWithRouter(<App />);
+
+    fireEvent.click(screen.getByText('Fire')); // clica botão com o texto "Fire";
     fireEvent.click(screen.getByText('More details')); // clica botão com o texto "More details";
     fireEvent.click(screen.getByText('Pokémon favoritado?')); // clica botão com o texto "Pokémon favoritado?";
     fireEvent.click(screen.getByText('Favorite Pokémons')); // clica botão com o texto "Favorite Pokémons";
 
-    const favMon = screen.getAllByText('Pikachu');
-    expect(favMon).toBeInTheDocument(); // espera que o Pikachu esteja na tela;
+    const favMon = screen.getByText('Charmander');
+    expect(favMon).toBeInTheDocument(); // espera que o Charmander esteja na tela;
   });
 });

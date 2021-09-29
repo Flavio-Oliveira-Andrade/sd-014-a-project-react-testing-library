@@ -30,17 +30,19 @@ const pokemon = {
 
 describe('Verifica se é renderizado um card com as informações de determinado pokémon',
   () => {
-    const { history } = renderWithRouter(<Pokemon pokemon={ pokemon } isFavorite />);
-    const { averageWeight: { value, measurementUnit } } = pokemon;
-    const linkMoreDetails = screen.getByText(/more details/i);
-    expect(screen.getByText(pokemon.name)).toBeInTheDocument();
-    expect(screen.getByText(pokemon.type)).toBeInTheDocument();
-    expect(screen.getByText(`Average weight: ${value} ${measurementUnit}`))
-      .toBeInTheDocument();
-    expect(screen.getByAltText('Dragonair sprite')).toHaveAttribute('src', pokemon.image);
-    userEvent.click(linkMoreDetails);
-    expect(history.location.pathname).toBe(`/pokemons/${pokemon.id}`);
-    expect(screen.getByAltText(`${pokemon.name} is marked as favorite`))
-      .toHaveAttribute('src', '/star-icon.svg');
+    test('Deve ser renderizado um card com as informações do pokémon', () => {
+      const { history } = renderWithRouter(<Pokemon pokemon={ pokemon } isFavorite />);
+      const { averageWeight: { value, measurementUnit } } = pokemon;
+      const linkMoreDetails = screen.getByText(/more details/i);
+      expect(screen.getByText(pokemon.name)).toBeInTheDocument();
+      expect(screen.getByText(pokemon.type)).toBeInTheDocument();
+      expect(screen.getByText(`Average weight: ${value} ${measurementUnit}`))
+        .toBeInTheDocument();
+      expect(screen.getByAltText('Dragonair sprite'))
+        .toHaveAttribute('src', pokemon.image);
+      userEvent.click(linkMoreDetails);
+      expect(history.location.pathname).toBe(`/pokemons/${pokemon.id}`);
+      expect(screen.getByAltText(`${pokemon.name} is marked as favorite`))
+        .toHaveAttribute('src', '/star-icon.svg');
+    });
   });
-test('Deve ser renderizado um card com as informações do pokémon', () => {});

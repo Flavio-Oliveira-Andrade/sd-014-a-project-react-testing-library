@@ -18,4 +18,3 @@ describe('Tests the APP component', () => {
     expect(screen.getByText(/Favorite Pokémon/)).toBeInTheDocument();
   });
 });
-

@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen, render} from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
 import NotFound from '../components/NotFound';
 
 describe('Requirement - 4 : NotFound', () => {

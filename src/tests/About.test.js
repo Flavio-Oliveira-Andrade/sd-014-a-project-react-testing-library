@@ -28,6 +28,6 @@ describe('Teste o componente About.js.', () => {
     const { history } = historyFunction(<App />);
     history.push('/about');
     const imgAbout = screen.getByAltText('Pokédex');
-    expect(imgAbout).toBeInTheDocument();
+    expect(imgAbout).toHaveProperty('src', 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
   });
 });

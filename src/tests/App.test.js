@@ -4,7 +4,7 @@ import { screen } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
-describe('Verifica se o topo do app contem um conjunto de links de navegação', () => {
+describe('2º Verifica se o topo do app contem um conjunto de links de navegação', () => {
   it('verifica se os links estão com seus respesctivos textos, e ordens.', () => {
     renderWithRouter(<App />);
     const links = screen.getAllByRole('link');

@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import About from '../components/About';
 
-describe('verifica se contem as informações sobre a Pokédex', () => {
+describe('1º verifica se contem as informações sobre a Pokédex', () => {
   it('verifica se o title da pagina tem o texto About Pokédex', () => {
     render(<About />);
     const title = screen.getByRole('heading', { level: 2 });

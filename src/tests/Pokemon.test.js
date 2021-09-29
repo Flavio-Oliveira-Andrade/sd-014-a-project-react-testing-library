@@ -9,7 +9,7 @@ import { Pokemon } from '../components';
 describe('É renderizado um card com as informações de determinado pokémon.', () => {
   test('O nome correto do Pokémon deve ser mostrado na tela', () => {
     const firstPokemon = pokemons[0];
-    const { averageWeight: { value, measurementUnit }, image } = firstPokemon;
+    const { averageWeight: { value, measurementUnit }, image, name } = firstPokemon;
     renderWithRouter(
       <Pokemon
         pokemon={ firstPokemon }
@@ -17,12 +17,14 @@ describe('É renderizado um card com as informações de determinado pokémon.',
       />,
     );
     const nameTestID = screen.getByTestId('pokemon-name');
+    const nameText = screen.getByText(name);
     const typeTestID = screen.getByTestId('pokemon-type');
     const weightTestID = screen.getByTestId('pokemon-weight');
     const weightText = screen.getByText(`Average weight: ${value} ${measurementUnit}`);
     const SRC = screen.getByRole('img').src;
 
     expect(nameTestID).toBeInTheDocument();
+    expect(nameText).toBeInTheDocument();
     expect(typeTestID.textContent).toBe('Electric');
     expect(weightTestID).toBeInTheDocument();
     expect(weightText).toBeInTheDocument();

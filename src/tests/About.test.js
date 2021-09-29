@@ -3,10 +3,6 @@ import { render, screen } from '@testing-library/react';
 import About from '../components/About';
 
 describe('Testa o componente About', () => {
-  // it('verifica se a página contém as informações sobre a pokedex', () =>  {
-
-  // });
-
   it('verifica se a página contém um h2 com o texto "About Pokedex"', () => {
     render(<About />);
     const heading = screen.getByRole('heading', {
@@ -19,11 +15,12 @@ describe('Testa o componente About', () => {
 
   it('testa se a paǵina contém dois parágrafos com texto sobre a Pokedex', () => {
     render(<About />);
-    const paragraph1 = screen.getByText(/This application simulates a Pokédex/);
-    const paragraph2 = screen.getByText(/One can filter Pokémons by type/);
+    const texts = [
+      /This application simulates a Pokédex/, /One can filter Pokémons by type/
+    ];
+    const paragraphs = texts.map((text) => screen.getByText(text));
 
-    expect(paragraph1).toBeInTheDocument();
-    expect(paragraph2).toBeInTheDocument();
+    expect(paragraphs).toHaveLength(2);
   });
 
   it('verifica se a pagina contém a imagem da pokedex', () => {

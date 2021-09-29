@@ -28,9 +28,10 @@ describe('Teste do componente <About.js />', () => {
     expect(secondParagraph).toBeInTheDocument();
   });
   it('Verifica se a página contém a imagem de uma Pokédexx', () => {
+    const pokedexImageUrl = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
     const { history } = renderWithRouter(<App />);
     history.push('/about');
     const pokedexImage = screen.getByAltText(/pokédex/i);
-    expect(pokedexImage).toBeInTheDocument();
+    expect(pokedexImage.src).toBe(pokedexImageUrl);
   });
 });

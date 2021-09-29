@@ -1,7 +1,9 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import { Router } from 'react-router';
 import { MemoryRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
+import { createMemoryHistory } from 'history';
 import App from '../App';
 
 const customTest = (name, text) => {
@@ -48,5 +50,23 @@ describe('Testa o componente App', () => {
   test('Testa se o link "Favorites" está funcionando corretamente', () => {
     render(<MemoryRouter><App /></MemoryRouter>);
     customTest('Favorite Pokémons', /favorite/i);
+  });
+
+  test('Testa se ao entrar num caminho inválido,'
+  + 'redireciona para a página de não encontrado', () => {
+    const customHistory = createMemoryHistory();
+    render(
+      <Router history={ customHistory }>
+        <App />
+      </Router>,
+    );
+
+    customHistory.push('/bananas');
+
+    const notFoundText = screen.getByRole('heading', {
+      level: 2,
+      name: 'Page requested not found Crying emoji',
+    });
+    expect(notFoundText).toBeInTheDocument();
   });
 });

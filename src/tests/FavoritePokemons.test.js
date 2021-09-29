@@ -59,7 +59,8 @@ const objectFavoritesPokemon = [
         map: 'https://cdn2.bulbagarden.net/upload/6/6f/Kanto_Rock_Tunnel_Map.png',
       },
     ],
-    summary: 'The flame on its tail shows the strength of its life force. If it is weak, the flame also burns weakly.',
+    summary: 'The flame on its tail shows the strength of its life force.'
+    + 'If it is weak, the flame also burns weakly.',
   },
   {
     id: 23,
@@ -77,7 +78,8 @@ const objectFavoritesPokemon = [
         map: 'https://cdn2.bulbagarden.net/upload/e/ec/Johto_Goldenrod_City_Map.png',
       },
     ],
-    summary: 'It can freely detach its jaw to swallow large prey whole. It can become too heavy to move, however.',
+    summary: 'It can freely detach its jaw to swallow large prey whole.'
+    + 'It can become too heavy to move, however.',
   },
 ];
 

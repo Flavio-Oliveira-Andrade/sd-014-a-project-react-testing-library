@@ -17,9 +17,9 @@ describe('Testa o componente NotFound', () => {
   test('Testa se página mostra a imagem', () => {
     renderWithRouter(<NotFound />);
 
-    const imgNotFound = screen.getByAltText(
-      'Pikachu crying because the page requested was not found',
-    );
-    expect(imgNotFound).toBeInTheDocument();
+    const imgNotFound = screen.getAllByRole('img');
+    const pikacuCrying = imgNotFound[1];
+    expect(pikacuCrying).toHaveAttribute('src', 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
+    expect(pikacuCrying).toHaveAttribute('alt', 'Pikachu crying because the page requested was not found');
   });
 });

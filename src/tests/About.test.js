@@ -16,7 +16,7 @@ describe('Testa o componente About', () => {
   it('testa se a paǵina contém dois parágrafos com texto sobre a Pokedex', () => {
     render(<About />);
     const texts = [
-      /This application simulates a Pokédex/, /One can filter Pokémons by type/
+      /This application simulates a Pokédex/, /One can filter Pokémons by type/,
     ];
     const paragraphs = texts.map((text) => screen.getByText(text));
 

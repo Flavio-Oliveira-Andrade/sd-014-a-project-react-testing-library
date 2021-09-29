@@ -73,11 +73,6 @@ class App extends Component {
     return (
       <Switch>
         <Route
-          exact
-          path="/"
-          render={ ({ match }) => this.renderPokedex(match) }
-        />
-        <Route
           path="/pokemons/:id"
           render={ ({ match }) => this.renderPokemonDetails(match) }
         />
@@ -86,6 +81,11 @@ class App extends Component {
           render={ () => <FavoritePokemons pokemons={ favoritePokemons } /> }
         />
         <Route path="/about" component={ About } />
+        <Route
+          exact
+          path="/"
+          render={ ({ match }) => this.renderPokedex(match) }
+        />
         <Route component={ NotFound } />
       </Switch>
     );
@@ -93,7 +93,6 @@ class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
         <div className="App">
           <h1>Pokédex</h1>
           <nav>
@@ -103,7 +102,6 @@ class App extends Component {
           </nav>
           {this.renderRoutes()}
         </div>
-      </BrowserRouter>
     );
   }
 }

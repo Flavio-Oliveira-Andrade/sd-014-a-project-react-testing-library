@@ -39,7 +39,6 @@ describe('Testes do render App', () => {
       level: 2,
       name: /Encountered pokémons/i,
     })).toBeInTheDocument();
-    userEvent.click(about);
     userEvent.click(favorite);
     expect(screen.getByRole('heading', {
       level: 2,

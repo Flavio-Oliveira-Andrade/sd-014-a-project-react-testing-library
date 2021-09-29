@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'; // comentario para comitar
 import { Switch, Route, Link } from 'react-router-dom';
 
 import {

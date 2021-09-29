@@ -4,7 +4,6 @@
 // import userEvent from '@testing-library/user-event';
 
 // describe('test Pokedex', () => {
-
 //   it('should contain h2 with text', () => {
 //     const { screen } = renderWithRouter(<Pokedex />);
 //     const heading = screen.getByRole('heading', {
@@ -14,7 +13,7 @@
 //     expect(heading).toBeInTheDocument();
 //   });
 
-//   it('should ', () => {
+//   it('should show next pokemon from the list', () => {
 
 //   });
 //   it('', () => { });

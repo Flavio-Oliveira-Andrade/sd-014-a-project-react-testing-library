@@ -1,0 +1,542 @@
+15:26:21 (4672) INFO ConfigReader Using stryker.conf.json
+15:26:21 (4672) DEBUG BroadcastReporter Broadcasting to reporters ["progress","clear-text","html"]
+15:26:21 (4672) DEBUG ConfigReader Loading config C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\stryker.conf.json
+15:26:21 (4672) DEBUG ConfigReader Loaded config: {
+  "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+  "mutate": [
+    "src/components/About.js",
+    "src/App.js",
+    "src/components/FavoritePokemons.js",
+    "src/components/NotFound.js",
+    "src/components/Pokedex.js",
+    "src/components/Pokemon.js",
+    "src/components/PokemonDetails.js"
+  ],
+  "mutator": {
+    "name": "javascript",
+    "excludedMutations": [
+      "ArithmeticOperator",
+      "ArrayDeclaration",
+      "ArrowFunction",
+      "BlockStatement",
+      "BooleanLiteral",
+      "ConditionalExpression",
+      "EqualityOperator",
+      "LogicalOperator",
+      "ObjectLiteral",
+      "UnaryOperator",
+      "UpdateOperator"
+    ]
+  },
+  "testRunner": "jest",
+  "reporters": [
+    "progress",
+    "clear-text",
+    "html"
+  ],
+  "coverageAnalysis": "off",
+  "jest": {
+    "projectType": "create-react-app"
+  },
+  "allowConsoleColors": true,
+  "commandRunner": {
+    "command": "npm test"
+  },
+  "clearTextReporter": {
+    "allowColor": true,
+    "logTests": true,
+    "maxTestsToLog": 3
+  },
+  "dashboard": {
+    "baseUrl": "https://dashboard.stryker-mutator.io/api/reports",
+    "reportType": "full"
+  },
+  "eventReporter": {
+    "baseDir": "reports/mutation/events"
+  },
+  "fileLogLevel": "trace",
+  "logLevel": "debug",
+  "maxConcurrentTestRunners": 9007199254740991,
+  "plugins": [
+    "@stryker-mutator/*"
+  ],
+  "symlinkNodeModules": true,
+  "tempDirName": ".stryker-tmp",
+  "thresholds": {
+    "high": 80,
+    "low": 60,
+    "break": null
+  },
+  "timeoutFactor": 1.5,
+  "timeoutMS": 5000,
+  "transpilers": [],
+  "warnings": true,
+  "configFile": "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\stryker.conf.json"
+}
+15:26:21 (4672) DEBUG PluginLoader Loading @stryker-mutator/* from C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator
+15:26:21 (4672) DEBUG PluginLoader Loading plugin "C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator\javascript-mutator" (matched with expression @stryker-mutator/*)
+15:26:21 (4672) DEBUG PluginLoader Loading plugin "C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator\jest-runner" (matched with expression @stryker-mutator/*)
+15:26:21 (4672) DEBUG PluginLoader Loading plugins C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator\javascript-mutator
+15:26:21 (4672) DEBUG PluginLoader Loading plugins C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator\jest-runner
+15:26:21 (4672) DEBUG PluginLoader Loading plugins C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator\core\src\reporters\index.js
+15:26:21 (4672) DEBUG buildSchemaWithPluginContributions Contributing 1 schemas from plugins to options validation.
+15:26:21 (4672) INFO InputFileResolver Found 7 of 63 file(s) to be mutated.
+15:26:21 (4672) DEBUG InputFileResolver All input files: [
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\helper\\renderWithRouter.js",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\stryker.log",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\.babelrc.json",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\.eslintignore",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\.eslintrc.json",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\.github\\CODEOWNERS",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\.github\\workflows\\main.yml",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\.gitignore",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\.stylelintignore",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\.stylelintrc.json",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\.trybe\\requirements.json",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\README.md",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\package-lock.json",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\package.json",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\public\\favicon.ico",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\public\\index.html",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\public\\logo192.png",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\public\\logo512.png",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\public\\manifest.json",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\public\\robots.txt",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\public\\star-icon.svg",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\App.css",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\App.js",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\components\\About.js",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\components\\Button.js",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\components\\FavoritePokemons.js",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\components\\NotFound.js",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\components\\Pokedex.js",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\components\\Pokemon.js",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\components\\PokemonDetails.js",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\components\\about.css",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\components\\button.css",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\components\\favorite-pokemons.css",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\components\\index.js",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\components\\not-found.css",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\components\\pokedex.css",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\components\\pokemon-details.css",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\components\\pokemon.css",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\data.js",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\index.css",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\index.js",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\logo.svg",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\serviceWorker.js",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\services\\pokedexService.js",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\setupTests.js",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\tests\\About.test.js",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\tests\\App.test.js",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\tests\\FavoritePokemons.test.js",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\tests\\NotFound.test.js",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\tests\\Pokedex.test.js",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\tests\\Pokemon.test.js",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\tests\\PokemonDetails.test.js",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\types\\index.js",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\stryker.conf.json",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\stryker\\About.conf.json",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\stryker\\App.conf.json",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\stryker\\FavoritePokemons.conf.json",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\stryker\\NotFound.conf.json",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\stryker\\Pokedex.conf.json",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\stryker\\Pokemon.conf.json",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\stryker\\PokemonDetails.conf.json",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\testefalhando.png",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\testepassando.png"
+]
+15:26:21 (4672) DEBUG InputFileResolver Files to mutate: [
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\App.js",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\components\\About.js",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\components\\FavoritePokemons.js",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\components\\NotFound.js",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\components\\Pokedex.js",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\components\\Pokemon.js",
+  "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\src\\components\\PokemonDetails.js"
+]
+15:26:21 (4672) DEBUG TemporaryDirectory Using temp directory "C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\.stryker-tmp"
+15:26:21 (4672) DEBUG TestFrameworkOrchestrator The `coverageAnalysis` setting is "off", not hooking into the test framework to achieve performance benefits.
+15:26:21 (4672) INFO InitialTestExecutor Starting initial test run. This may take a while.
+15:26:21 (4672) DEBUG Sandbox Creating a sandbox for files in C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\.stryker-tmp\sandbox2461313
+15:26:21 (4672) DEBUG Sandbox Creating test runner 0
+15:26:21 (4672) DEBUG ChildProcessProxy Starting C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator\core\src\test-runner\ChildProcessTestRunnerWorker.js in child process 6956
+15:26:22 (6956) DEBUG ChildProcessProxyWorker Changing current working directory for this process to C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\.stryker-tmp\sandbox2461313
+15:26:22 (6956) DEBUG PluginLoader Loading @stryker-mutator/* from C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator
+15:26:22 (6956) DEBUG PluginLoader Loading plugin "C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator\javascript-mutator" (matched with expression @stryker-mutator/*)
+15:26:22 (6956) DEBUG PluginLoader Loading plugin "C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator\jest-runner" (matched with expression @stryker-mutator/*)
+15:26:22 (6956) DEBUG PluginLoader Loading plugins C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator\javascript-mutator
+15:26:22 (6956) DEBUG PluginLoader Loading plugins C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator\jest-runner
+15:26:22 (6956) DEBUG PluginLoader Loading plugins C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator\core\src\reporters\index.js
+15:26:22 (6956) TRACE JestTestRunner Merging file-based config {
+  "roots": [
+    "<rootDir>/src"
+  ],
+  "collectCoverageFrom": [
+    "**/*.{js,jsx}",
+    "!src/index.js",
+    "!src/serviceWorker.js"
+  ],
+  "setupFiles": [
+    "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\node_modules\\react-app-polyfill\\jsdom.js"
+  ],
+  "setupFilesAfterEnv": [
+    "<rootDir>/src/setupTests.js"
+  ],
+  "testMatch": [
+    "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+    "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
+  ],
+  "testEnvironment": "jest-environment-jsdom-fourteen",
+  "transform": {
+    "^.+\\.(js|jsx|ts|tsx)$": "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\node_modules\\react-scripts\\config\\jest\\babelTransform.js",
+    "^.+\\.css$": "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\node_modules\\react-scripts\\config\\jest\\cssTransform.js",
+    "^(?!.*\\.(js|jsx|ts|tsx|css|json)$)": "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\node_modules\\react-scripts\\config\\jest\\fileTransform.js"
+  },
+  "transformIgnorePatterns": [
+    "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$",
+    "^.+\\.module\\.(css|sass|scss)$"
+  ],
+  "modulePaths": [],
+  "moduleNameMapper": {
+    "^react-native$": "react-native-web",
+    "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+  },
+  "moduleFileExtensions": [
+    "web.js",
+    "js",
+    "web.ts",
+    "ts",
+    "web.tsx",
+    "tsx",
+    "json",
+    "web.jsx",
+    "jsx",
+    "node"
+  ],
+  "watchPlugins": [
+    "jest-watch-typeahead/filename",
+    "jest-watch-typeahead/testname"
+  ],
+  "rootDir": "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\.stryker-tmp\\sandbox2461313"
+} 
+      with custom config {}
+      and default (internal) stryker config [object Object]
+15:26:22 (6956) DEBUG JestTestRunner Running jest with --findRelatedTests flag. Set jest.enableFindRelatedTests to false to run all tests on every mutant.
+15:26:22 (6956) DEBUG JestTestRunner Project root is C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\.stryker-tmp\sandbox2461313
+15:26:22 (4672) DEBUG TimeoutDecorator Starting timeout timer (300000 ms) for a test run
+15:26:22 (6956) TRACE JestLessThan25TestAdapter Invoking Jest with config {"roots":["<rootDir>/src"],"collectCoverageFrom":["**/*.{js,jsx}","!src/index.js","!src/serviceWorker.js"],"setupFiles":["C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\node_modules\\react-app-polyfill\\jsdom.js"],"setupFilesAfterEnv":["<rootDir>/src/setupTests.js"],"testMatch":["<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}","<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"],"testEnvironment":"jest-environment-jsdom-fourteen","transform":{"^.+\\.(js|jsx|ts|tsx)$":"C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\node_modules\\react-scripts\\config\\jest\\babelTransform.js","^.+\\.css$":"C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\node_modules\\react-scripts\\config\\jest\\cssTransform.js","^(?!.*\\.(js|jsx|ts|tsx|css|json)$)":"C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\node_modules\\react-scripts\\config\\jest\\fileTransform.js"},"transformIgnorePatterns":["[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$","^.+\\.module\\.(css|sass|scss)$"],"modulePaths":[],"moduleNameMapper":{"^react-native$":"react-native-web","^.+\\.module\\.(css|sass|scss)$":"identity-obj-proxy"},"moduleFileExtensions":["web.js","js","web.ts","ts","web.tsx","tsx","json","web.jsx","jsx","node"],"watchPlugins":["jest-watch-typeahead/filename","jest-watch-typeahead/testname"],"rootDir":"C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\.stryker-tmp\\sandbox2461313","collectCoverage":false,"verbose":false,"bail":false,"notify":false,"reporters":[]}
+15:26:23 (4672) TRACE ChildProcessProxy No tests found, exiting with code 1
+Run with `--passWithNoTests` to exit with code 0
+In C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\.stryker-tmp\sandbox2461313
+  23 files checked.
+  testMatch: C:/Users/exodi/Documents/trybe/projetos/sd-014-a-project-react-testing-library\.stryker-tmp/sandbox2461313/src/**/__tests__/**/*.{js,jsx,ts,tsx}, C:/Users/exodi/Documents/trybe/projetos/sd-014-a-project-react-testing-library\.stryker-tmp/sandbox2461313/src/**/*.{spec,test}.{js,jsx,ts,tsx} - 0 matches
+  testPathIgnorePatterns: \\node_modules\\ - 23 matches
+  testRegex:  - 0 matches
+Pattern:  - 0 matches
+
+15:26:23 (4672) ERROR log4js A worker log process hung up unexpectedly Error: read ECONNRESET
+    at TCP.onStreamRead (internal/stream_base_commons.js:209:20) {
+  errno: -4077,
+  code: 'ECONNRESET',
+  syscall: 'read'
+}
+15:26:23 (4672) WARN ChildProcessProxy Child process [pid 6956] exited unexpectedly with exit code 1 (without signal). Last part of stdout and stderr was:
+	No tests found, exiting with code 1
+	Run with `--passWithNoTests` to exit with code 0
+	In C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\.stryker-tmp\sandbox2461313
+	  23 files checked.
+	  testMatch: C:/Users/exodi/Documents/trybe/projetos/sd-014-a-project-react-testing-library\.stryker-tmp/sandbox2461313/src/**/__tests__/**/*.{js,jsx,ts,tsx}, C:/Users/exodi/Documents/trybe/projetos/sd-014-a-project-react-testing-library\.stryker-tmp/sandbox2461313/src/**/*.{spec,test}.{js,jsx,ts,tsx} - 0 matches
+	  testPathIgnorePatterns: \\node_modules\\ - 23 matches
+	  testRegex:  - 0 matches
+	Pattern:  - 0 matches
+	 ChildProcessCrashedError: Child process [pid 6956] exited unexpectedly with exit code 1 (without signal). Last part of stdout and stderr was:
+	No tests found, exiting with code 1
+	Run with `--passWithNoTests` to exit with code 0
+	In C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\.stryker-tmp\sandbox2461313
+	  23 files checked.
+	  testMatch: C:/Users/exodi/Documents/trybe/projetos/sd-014-a-project-react-testing-library\.stryker-tmp/sandbox2461313/src/**/__tests__/**/*.{js,jsx,ts,tsx}, C:/Users/exodi/Documents/trybe/projetos/sd-014-a-project-react-testing-library\.stryker-tmp/sandbox2461313/src/**/*.{spec,test}.{js,jsx,ts,tsx} - 0 matches
+	  testPathIgnorePatterns: \\node_modules\\ - 23 matches
+	  testRegex:  - 0 matches
+	Pattern:  - 0 matches
+	
+    at ChildProcessProxy.handleUnexpectedExit (C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator\core\src\child-proxy\ChildProcessProxy.js:33:37)
+    at ChildProcess.emit (events.js:400:28)
+    at maybeClose (internal/child_process.js:1055:16)
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:288:5) {
+  innerError: undefined,
+  pid: 6956,
+  exitCode: 1,
+  signal: null
+}
+15:26:23 (4672) DEBUG ChildProcessProxy Starting C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator\core\src\test-runner\ChildProcessTestRunnerWorker.js in child process 10420
+15:26:23 (4672) DEBUG TimeoutDecorator Starting timeout timer (300000 ms) for a test run
+15:26:23 (10420) DEBUG ChildProcessProxyWorker Changing current working directory for this process to C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\.stryker-tmp\sandbox2461313
+15:26:23 (10420) DEBUG PluginLoader Loading @stryker-mutator/* from C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator
+15:26:23 (10420) DEBUG PluginLoader Loading plugin "C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator\javascript-mutator" (matched with expression @stryker-mutator/*)
+15:26:23 (10420) DEBUG PluginLoader Loading plugin "C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator\jest-runner" (matched with expression @stryker-mutator/*)
+15:26:23 (10420) DEBUG PluginLoader Loading plugins C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator\javascript-mutator
+15:26:23 (10420) DEBUG PluginLoader Loading plugins C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator\jest-runner
+15:26:23 (10420) DEBUG PluginLoader Loading plugins C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator\core\src\reporters\index.js
+15:26:23 (10420) TRACE JestTestRunner Merging file-based config {
+  "roots": [
+    "<rootDir>/src"
+  ],
+  "collectCoverageFrom": [
+    "**/*.{js,jsx}",
+    "!src/index.js",
+    "!src/serviceWorker.js"
+  ],
+  "setupFiles": [
+    "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\node_modules\\react-app-polyfill\\jsdom.js"
+  ],
+  "setupFilesAfterEnv": [
+    "<rootDir>/src/setupTests.js"
+  ],
+  "testMatch": [
+    "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+    "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
+  ],
+  "testEnvironment": "jest-environment-jsdom-fourteen",
+  "transform": {
+    "^.+\\.(js|jsx|ts|tsx)$": "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\node_modules\\react-scripts\\config\\jest\\babelTransform.js",
+    "^.+\\.css$": "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\node_modules\\react-scripts\\config\\jest\\cssTransform.js",
+    "^(?!.*\\.(js|jsx|ts|tsx|css|json)$)": "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\node_modules\\react-scripts\\config\\jest\\fileTransform.js"
+  },
+  "transformIgnorePatterns": [
+    "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$",
+    "^.+\\.module\\.(css|sass|scss)$"
+  ],
+  "modulePaths": [],
+  "moduleNameMapper": {
+    "^react-native$": "react-native-web",
+    "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+  },
+  "moduleFileExtensions": [
+    "web.js",
+    "js",
+    "web.ts",
+    "ts",
+    "web.tsx",
+    "tsx",
+    "json",
+    "web.jsx",
+    "jsx",
+    "node"
+  ],
+  "watchPlugins": [
+    "jest-watch-typeahead/filename",
+    "jest-watch-typeahead/testname"
+  ],
+  "rootDir": "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\.stryker-tmp\\sandbox2461313"
+} 
+      with custom config {}
+      and default (internal) stryker config [object Object]
+15:26:23 (10420) DEBUG JestTestRunner Running jest with --findRelatedTests flag. Set jest.enableFindRelatedTests to false to run all tests on every mutant.
+15:26:23 (10420) DEBUG JestTestRunner Project root is C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\.stryker-tmp\sandbox2461313
+15:26:23 (10420) TRACE JestLessThan25TestAdapter Invoking Jest with config {"roots":["<rootDir>/src"],"collectCoverageFrom":["**/*.{js,jsx}","!src/index.js","!src/serviceWorker.js"],"setupFiles":["C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\node_modules\\react-app-polyfill\\jsdom.js"],"setupFilesAfterEnv":["<rootDir>/src/setupTests.js"],"testMatch":["<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}","<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"],"testEnvironment":"jest-environment-jsdom-fourteen","transform":{"^.+\\.(js|jsx|ts|tsx)$":"C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\node_modules\\react-scripts\\config\\jest\\babelTransform.js","^.+\\.css$":"C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\node_modules\\react-scripts\\config\\jest\\cssTransform.js","^(?!.*\\.(js|jsx|ts|tsx|css|json)$)":"C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\node_modules\\react-scripts\\config\\jest\\fileTransform.js"},"transformIgnorePatterns":["[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$","^.+\\.module\\.(css|sass|scss)$"],"modulePaths":[],"moduleNameMapper":{"^react-native$":"react-native-web","^.+\\.module\\.(css|sass|scss)$":"identity-obj-proxy"},"moduleFileExtensions":["web.js","js","web.ts","ts","web.tsx","tsx","json","web.jsx","jsx","node"],"watchPlugins":["jest-watch-typeahead/filename","jest-watch-typeahead/testname"],"rootDir":"C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\.stryker-tmp\\sandbox2461313","collectCoverage":false,"verbose":false,"bail":false,"notify":false,"reporters":[]}
+15:26:24 (4672) TRACE ChildProcessProxy No tests found, exiting with code 1
+Run with `--passWithNoTests` to exit with code 0
+In C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\.stryker-tmp\sandbox2461313
+  23 files checked.
+  testMatch: C:/Users/exodi/Documents/trybe/projetos/sd-014-a-project-react-testing-library\.stryker-tmp/sandbox2461313/src/**/__tests__/**/*.{js,jsx,ts,tsx}, C:/Users/exodi/Documents/trybe/projetos/sd-014-a-project-react-testing-library\.stryker-tmp/sandbox2461313/src/**/*.{spec,test}.{js,jsx,ts,tsx} - 0 matches
+  testPathIgnorePatterns: \\node_modules\\ - 23 matches
+  testRegex:  - 0 matches
+Pattern:  - 0 matches
+
+15:26:24 (4672) ERROR log4js A worker log process hung up unexpectedly Error: read ECONNRESET
+    at TCP.onStreamRead (internal/stream_base_commons.js:209:20) {
+  errno: -4077,
+  code: 'ECONNRESET',
+  syscall: 'read'
+}
+15:26:24 (4672) WARN ChildProcessProxy Child process [pid 10420] exited unexpectedly with exit code 1 (without signal). Last part of stdout and stderr was:
+	No tests found, exiting with code 1
+	Run with `--passWithNoTests` to exit with code 0
+	In C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\.stryker-tmp\sandbox2461313
+	  23 files checked.
+	  testMatch: C:/Users/exodi/Documents/trybe/projetos/sd-014-a-project-react-testing-library\.stryker-tmp/sandbox2461313/src/**/__tests__/**/*.{js,jsx,ts,tsx}, C:/Users/exodi/Documents/trybe/projetos/sd-014-a-project-react-testing-library\.stryker-tmp/sandbox2461313/src/**/*.{spec,test}.{js,jsx,ts,tsx} - 0 matches
+	  testPathIgnorePatterns: \\node_modules\\ - 23 matches
+	  testRegex:  - 0 matches
+	Pattern:  - 0 matches
+	 ChildProcessCrashedError: Child process [pid 10420] exited unexpectedly with exit code 1 (without signal). Last part of stdout and stderr was:
+	No tests found, exiting with code 1
+	Run with `--passWithNoTests` to exit with code 0
+	In C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\.stryker-tmp\sandbox2461313
+	  23 files checked.
+	  testMatch: C:/Users/exodi/Documents/trybe/projetos/sd-014-a-project-react-testing-library\.stryker-tmp/sandbox2461313/src/**/__tests__/**/*.{js,jsx,ts,tsx}, C:/Users/exodi/Documents/trybe/projetos/sd-014-a-project-react-testing-library\.stryker-tmp/sandbox2461313/src/**/*.{spec,test}.{js,jsx,ts,tsx} - 0 matches
+	  testPathIgnorePatterns: \\node_modules\\ - 23 matches
+	  testRegex:  - 0 matches
+	Pattern:  - 0 matches
+	
+    at ChildProcessProxy.handleUnexpectedExit (C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator\core\src\child-proxy\ChildProcessProxy.js:33:37)
+    at ChildProcess.emit (events.js:400:28)
+    at maybeClose (internal/child_process.js:1055:16)
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:288:5) {
+  innerError: undefined,
+  pid: 10420,
+  exitCode: 1,
+  signal: null
+}
+15:26:24 (4672) DEBUG ChildProcessProxy Starting C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator\core\src\test-runner\ChildProcessTestRunnerWorker.js in child process 9368
+15:26:24 (9368) DEBUG ChildProcessProxyWorker Changing current working directory for this process to C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\.stryker-tmp\sandbox2461313
+15:26:24 (9368) DEBUG PluginLoader Loading @stryker-mutator/* from C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator
+15:26:24 (9368) DEBUG PluginLoader Loading plugin "C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator\javascript-mutator" (matched with expression @stryker-mutator/*)
+15:26:24 (9368) DEBUG PluginLoader Loading plugin "C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator\jest-runner" (matched with expression @stryker-mutator/*)
+15:26:24 (9368) DEBUG PluginLoader Loading plugins C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator\javascript-mutator
+15:26:24 (9368) DEBUG PluginLoader Loading plugins C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator\jest-runner
+15:26:25 (9368) DEBUG PluginLoader Loading plugins C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator\core\src\reporters\index.js
+15:26:25 (9368) TRACE JestTestRunner Merging file-based config {
+  "roots": [
+    "<rootDir>/src"
+  ],
+  "collectCoverageFrom": [
+    "**/*.{js,jsx}",
+    "!src/index.js",
+    "!src/serviceWorker.js"
+  ],
+  "setupFiles": [
+    "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\node_modules\\react-app-polyfill\\jsdom.js"
+  ],
+  "setupFilesAfterEnv": [
+    "<rootDir>/src/setupTests.js"
+  ],
+  "testMatch": [
+    "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+    "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
+  ],
+  "testEnvironment": "jest-environment-jsdom-fourteen",
+  "transform": {
+    "^.+\\.(js|jsx|ts|tsx)$": "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\node_modules\\react-scripts\\config\\jest\\babelTransform.js",
+    "^.+\\.css$": "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\node_modules\\react-scripts\\config\\jest\\cssTransform.js",
+    "^(?!.*\\.(js|jsx|ts|tsx|css|json)$)": "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\node_modules\\react-scripts\\config\\jest\\fileTransform.js"
+  },
+  "transformIgnorePatterns": [
+    "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$",
+    "^.+\\.module\\.(css|sass|scss)$"
+  ],
+  "modulePaths": [],
+  "moduleNameMapper": {
+    "^react-native$": "react-native-web",
+    "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+  },
+  "moduleFileExtensions": [
+    "web.js",
+    "js",
+    "web.ts",
+    "ts",
+    "web.tsx",
+    "tsx",
+    "json",
+    "web.jsx",
+    "jsx",
+    "node"
+  ],
+  "watchPlugins": [
+    "jest-watch-typeahead/filename",
+    "jest-watch-typeahead/testname"
+  ],
+  "rootDir": "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\.stryker-tmp\\sandbox2461313"
+} 
+      with custom config {}
+      and default (internal) stryker config [object Object]
+15:26:25 (9368) DEBUG JestTestRunner Running jest with --findRelatedTests flag. Set jest.enableFindRelatedTests to false to run all tests on every mutant.
+15:26:25 (9368) DEBUG JestTestRunner Project root is C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\.stryker-tmp\sandbox2461313
+15:26:25 (4672) DEBUG ChildProcessProxy Disposing of worker process 9368
+15:26:25 (4672) DEBUG ChildProcessProxy Kill 9368
+15:26:25 (4672) DEBUG ChildProcessProxy Starting C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator\core\src\test-runner\ChildProcessTestRunnerWorker.js in child process 3464
+15:26:25 (3464) DEBUG ChildProcessProxyWorker Changing current working directory for this process to C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\.stryker-tmp\sandbox2461313
+15:26:25 (3464) DEBUG PluginLoader Loading @stryker-mutator/* from C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator
+15:26:25 (3464) DEBUG PluginLoader Loading plugin "C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator\javascript-mutator" (matched with expression @stryker-mutator/*)
+15:26:25 (3464) DEBUG PluginLoader Loading plugin "C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator\jest-runner" (matched with expression @stryker-mutator/*)
+15:26:25 (3464) DEBUG PluginLoader Loading plugins C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator\javascript-mutator
+15:26:25 (3464) DEBUG PluginLoader Loading plugins C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator\jest-runner
+15:26:25 (3464) DEBUG PluginLoader Loading plugins C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator\core\src\reporters\index.js
+15:26:25 (3464) TRACE JestTestRunner Merging file-based config {
+  "roots": [
+    "<rootDir>/src"
+  ],
+  "collectCoverageFrom": [
+    "**/*.{js,jsx}",
+    "!src/index.js",
+    "!src/serviceWorker.js"
+  ],
+  "setupFiles": [
+    "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\node_modules\\react-app-polyfill\\jsdom.js"
+  ],
+  "setupFilesAfterEnv": [
+    "<rootDir>/src/setupTests.js"
+  ],
+  "testMatch": [
+    "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+    "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
+  ],
+  "testEnvironment": "jest-environment-jsdom-fourteen",
+  "transform": {
+    "^.+\\.(js|jsx|ts|tsx)$": "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\node_modules\\react-scripts\\config\\jest\\babelTransform.js",
+    "^.+\\.css$": "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\node_modules\\react-scripts\\config\\jest\\cssTransform.js",
+    "^(?!.*\\.(js|jsx|ts|tsx|css|json)$)": "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\node_modules\\react-scripts\\config\\jest\\fileTransform.js"
+  },
+  "transformIgnorePatterns": [
+    "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$",
+    "^.+\\.module\\.(css|sass|scss)$"
+  ],
+  "modulePaths": [],
+  "moduleNameMapper": {
+    "^react-native$": "react-native-web",
+    "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+  },
+  "moduleFileExtensions": [
+    "web.js",
+    "js",
+    "web.ts",
+    "ts",
+    "web.tsx",
+    "tsx",
+    "json",
+    "web.jsx",
+    "jsx",
+    "node"
+  ],
+  "watchPlugins": [
+    "jest-watch-typeahead/filename",
+    "jest-watch-typeahead/testname"
+  ],
+  "rootDir": "C:\\Users\\exodi\\Documents\\trybe\\projetos\\sd-014-a-project-react-testing-library\\.stryker-tmp\\sandbox2461313"
+} 
+      with custom config {}
+      and default (internal) stryker config [object Object]
+15:26:25 (3464) DEBUG JestTestRunner Running jest with --findRelatedTests flag. Set jest.enableFindRelatedTests to false to run all tests on every mutant.
+15:26:25 (3464) DEBUG JestTestRunner Project root is C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\.stryker-tmp\sandbox2461313
+15:26:25 (4672) DEBUG ChildProcessProxy Disposing of worker process 3464
+15:26:25 (4672) DEBUG ChildProcessProxy Kill 3464
+15:26:25 (4672) ERROR InitialTestExecutor One or more tests resulted in an error:
+	Test runner crashed. Tried twice to restart it without any luck. Last time the error message was: Error: Child process [pid 10420] exited unexpectedly with exit code 1 (without signal). Last part of stdout and stderr was:
+	No tests found, exiting with code 1
+	Run with `--passWithNoTests` to exit with code 0
+	In C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\.stryker-tmp\sandbox2461313
+	  23 files checked.
+	  testMatch: C:/Users/exodi/Documents/trybe/projetos/sd-014-a-project-react-testing-library\.stryker-tmp/sandbox2461313/src/**/__tests__/**/*.{js,jsx,ts,tsx}, C:/Users/exodi/Documents/trybe/projetos/sd-014-a-project-react-testing-library\.stryker-tmp/sandbox2461313/src/**/*.{spec,test}.{js,jsx,ts,tsx} - 0 matches
+	  testPathIgnorePatterns: \\node_modules\\ - 23 matches
+	  testRegex:  - 0 matches
+	Pattern:  - 0 matches
+	
+Error: Child process [pid 10420] exited unexpectedly with exit code 1 (without signal). Last part of stdout and stderr was:
+	No tests found, exiting with code 1
+	Run with `--passWithNoTests` to exit with code 0
+	In C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\.stryker-tmp\sandbox2461313
+	  23 files checked.
+	  testMatch: C:/Users/exodi/Documents/trybe/projetos/sd-014-a-project-react-testing-library\.stryker-tmp/sandbox2461313/src/**/__tests__/**/*.{js,jsx,ts,tsx}, C:/Users/exodi/Documents/trybe/projetos/sd-014-a-project-react-testing-library\.stryker-tmp/sandbox2461313/src/**/*.{spec,test}.{js,jsx,ts,tsx} - 0 matches
+	  testPathIgnorePatterns: \\node_modules\\ - 23 matches
+	  testRegex:  - 0 matches
+	Pattern:  - 0 matches
+	
+    at ChildProcessProxy.handleUnexpectedExit (C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator\core\src\child-proxy\ChildProcessProxy.js:33:37)
+    at ChildProcess.emit (events.js:400:28)
+    at maybeClose (internal/child_process.js:1055:16)
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:288:5)
+15:26:25 (4672) ERROR StrykerCli an error occurred Error: Something went wrong in the initial test run
+    at InitialTestExecutor.validateResult (C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator\core\src\process\InitialTestExecutor.js:86:15)
+    at InitialTestExecutor.run (C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator\core\src\process\InitialTestExecutor.js:41:14)
+    at processTicksAndRejections (internal/process/task_queues.js:95:5)
+    at async Stryker.runMutationTest (C:\Users\exodi\Documents\trybe\projetos\sd-014-a-project-react-testing-library\node_modules\@stryker-mutator\core\src\Stryker.js:53:38)

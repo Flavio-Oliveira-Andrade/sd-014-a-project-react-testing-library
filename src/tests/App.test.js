@@ -14,16 +14,16 @@ describe('Requirement 1 - App.js', () => {
     );
     expect(screen.getByText(/home/i)).toBeInTheDocument();
 
-    const linkHome = screen.getByRole('link', {
+    const navigatesToHome = screen.getByRole('link', {
       name: /home/i,
     });
-    userEvent.click(linkHome);
+    userEvent.click(navigatesToHome);
 
-    const strHeadingHome = screen.getByRole('heading', {
+    const goesToHomePage = screen.getByRole('heading', {
       name: /pokédex/i,
       level: 1,
     });
-    expect(strHeadingHome).toBeInTheDocument();
+    expect(goesToHomePage).toBeInTheDocument();
   });
 
   test('Checks if About section is rendered in "/about" ', () => {
@@ -35,17 +35,17 @@ describe('Requirement 1 - App.js', () => {
 
     expect(screen.getByText(/about/i)).toBeInTheDocument();
 
-    const linkAbout = screen.getByRole('link', {
+    const navigatesToAbout = screen.getByRole('link', {
       name: /about/i,
     });
-    userEvent.click(linkAbout);
+    userEvent.click(navigatesToAbout);
 
-    const strHeadingAbout = screen.getByRole('heading', {
+    const ChecksForAbout = screen.getByRole('heading', {
       name: /about/i,
       level: 2,
       exact: false,
     });
-    expect(strHeadingAbout).toBeInTheDocument();
+    expect(ChecksForAbout).toBeInTheDocument();
   });
 
   test('checks if the favorite pokemon page is rendered in "/favorites"', () => {
@@ -57,18 +57,18 @@ describe('Requirement 1 - App.js', () => {
 
     expect(screen.getByText(/favorite/i)).toBeInTheDocument();
 
-    const linkFavPokemons = screen.getByRole('link', {
+    const navigatesToFavorites = screen.getByRole('link', {
       name: /favorite/i,
       exact: false,
     });
-    userEvent.click(linkFavPokemons);
+    userEvent.click(navigatesToFavorites);
 
-    const strHeadingFavPokemons = screen.getByRole('heading', {
+    const checkForFavoritePokemonHeading = screen.getByRole('heading', {
       name: /favorite/i,
       level: 2,
       exact: false,
     });
-    expect(strHeadingFavPokemons).toBeInTheDocument();
+    expect(checkForFavoritePokemonHeading).toBeInTheDocument();
   });
 
   test('checks if not found page is rendered when route is invalid', () => {
@@ -81,11 +81,11 @@ describe('Requirement 1 - App.js', () => {
 
     historyMock.push('/invalid-route');
 
-    const strHeadingNotFound = screen.getByRole('heading', {
+    const invalidHeading = screen.getByRole('heading', {
       name: /not found/i,
       level: 2,
       exact: false,
     });
-    expect(strHeadingNotFound).toBeInTheDocument();
+    expect(invalidHeading).toBeInTheDocument();
   });
 });

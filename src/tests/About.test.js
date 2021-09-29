@@ -3,7 +3,7 @@ import React from 'react';
 import App from '../App';
 import renderWithRouter from './util/renderWithRouter';
 
-describe('Teste o componente <About.js />', () => {
+describe('Teste do componente <About.js />', () => {
   it('Verifica se a página contém as informações sobre a Pokédex', () => {
     const { history } = renderWithRouter(<App />);
     history.push('/about');

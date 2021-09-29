@@ -4,7 +4,7 @@ import React from 'react';
 import App from '../App';
 import renderWithRouter from './util/renderWithRouter';
 
-describe('Teste o componente <App.js />', () => {
+describe('Teste do componente <App.js />', () => {
   it('Verifica se o topo da aplicação contém'
     + ' um conjunto fixo de links de navegação', () => {
     renderWithRouter(<App />);

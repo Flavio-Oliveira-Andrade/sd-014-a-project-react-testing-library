@@ -16,8 +16,10 @@ describe('Testa o componente App.js', () => {
 
     const pageHome = screen.getByText(/Home/i);
     expect(pageHome).toBeInTheDocument();
+
     const pageAbout = screen.getByText(/About/i);
     expect(pageAbout).toBeInTheDocument();
+
     const pageFavorite = screen.getByText(/Favorite Pokémons/i);
     expect(pageFavorite).toBeInTheDocument();
   });

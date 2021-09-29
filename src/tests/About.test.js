@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React from 'react';
 import { screen } from '@testing-library/react';
 import About from '../components/About';
@@ -15,10 +14,12 @@ describe('Testes para o About.js', () => {
   });
 
   test('Existe 2 parágrafos falando sobre Pokemons', () => {
-    const firstParagraph = 'This application simulates a Pokédex, a digital encyclopedia containing all Pokémons';
-    const secondParagraph = 'One can filter Pokémons by type, and see more details for each one of them';
+    const firstParagraph = 'This application simulates a Pokédex,'
+     + ' a digital encyclopedia containing all Pokémons';
+    const secParagraph = 'One can filter Pokémons by type,'
+     + ' and see more details for each one of them';
     RenderWithRouter(<About />);
-    expect(screen.getByText(firstParagraph, secondParagraph)).toBeInTheDocument();
+    expect(screen.getByText(firstParagraph, secParagraph)).toBeInTheDocument();
   });
 
   test('Testa se a página contém imagem de uma Podédex', () => {

@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from './utils/renderWithRouter';
 import App from '../App';
 
-describe('Testando componente App', () => {
+describe('Testes do componente App', () => {
   test('Teste se o topo da aplicação contem um conjunto de links', () => {
     renderWithRouter(<App />);
 
@@ -71,7 +71,7 @@ describe('Testando componente App', () => {
   página Not Found ao entrar em uma URL desconhecida.`, () => {
     const { history } = renderWithRouter(<App />);
 
-    history.push('not-found');
+    history.push('/not-found');
 
     const notExist = screen.getByText(/not found/i);
     expect(notExist).toBeInTheDocument();

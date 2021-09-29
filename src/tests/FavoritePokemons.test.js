@@ -12,8 +12,7 @@ describe('Testa favoritePokemons', () => {
   it('should have the text No favorite pokemon found', () => {
     const { history } = renderWithRouter(<FavoritePokemons />);
     history.push('/favorites');
-    const renderText = screen.getByText('No favorite pokemon found');
-    expect(renderText).toBeInTheDocument();
+    expect(screen.getByText('No favorite pokemon found')).toBeInTheDocument();
   });
 
   it('should have all favorite pokemon cards', () => {
@@ -37,7 +36,6 @@ describe('Testa favoritePokemons', () => {
     fireEvent.click(screen.getByText(FAVORITE));
     fireEvent.click(screen.getByText(PAGE_HOME));
     fireEvent.click(screen.getByText(PAGE_FAVORITES));
-    const pokemonsFavorites = screen.getAllByText(/More details/i);
-    expect(pokemonsFavorites).toHaveLength(TOTAL_FAVORITES);
+    expect((screen.getAllByText(/More details/i))).toHaveLength(TOTAL_FAVORITES);
   });
 });

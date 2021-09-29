@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import { About } from '../components';
 
-describe('teste oo componente About', () => {
+describe('teste o componente About', () => {
   test('se a página contém as informações sobre a Pokédex', () => {
     render(
       <MemoryRouter>

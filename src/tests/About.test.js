@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+
 import About from '../components/About';
 
 describe('Requisito 2, testa o About.js', () => {

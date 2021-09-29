@@ -8,15 +8,15 @@ import pokemons from '../data';
 const nextPokemon = 'next-pokemon';
 
 const fav = {
-  25: false,
   4: false,
   10: false,
   23: false,
+  25: false,
   65: false,
-  151: false,
   78: false,
   143: false,
   148: false,
+  151: false,
 };
 
 describe('test Pokedex', () => {
@@ -27,7 +27,7 @@ describe('test Pokedex', () => {
     />);
     const heading = screen.getByRole('heading', {
       level: 2,
-      nam: /Encountered pokémons/i,
+      name: /Encountered pokémons/i,
     });
     expect(heading).toBeInTheDocument();
   });

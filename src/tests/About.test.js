@@ -33,6 +33,7 @@ test('Teste se a página contém a seguinte imagem de uma Pokédex:'
 + ' https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png.', () => {
   renderAboutPage();
   const URL = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
-  const imagem = screen.getByRole('img', { src: URL });
+  const imagem = screen.getByRole('img');
   expect(imagem).toBeInTheDocument();
+  expect(imagem).toHaveAttribute('src', URL);
 });

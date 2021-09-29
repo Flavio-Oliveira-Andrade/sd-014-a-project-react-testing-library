@@ -25,7 +25,9 @@ const pokemon = {
     },
   ],
 };
-
+// https://github.com/tryber/sd-014-a-project-react-testing-library/pull/23/commits
+// /6f5e80816de3633d164beec2654dbc1ec5b9c2bc
+// Referencia ao Fernando pelo conhecimento disponibilizado
 describe('Pokemon.js test', () => {
   test('Teste se é renderizado um card com as informações de determinado pokémon', () => {
     render(<MemoryRouter><Pokemon pokemon={ pokemon } isFavorite /></MemoryRouter>);

@@ -8,7 +8,7 @@ import App from '../App';
 describe('FavoritePokemons.js - Verificação de funcionalidade', () => {
   renderWithRouter(<FavoritePokemons />);
 
-  it('Verifica se mensagemm mostrada é a esperada' // linha ficou com mais de 90 caracteres;
+  it('Verifica se mensagemm mostrada é a esperada' // linha com mais de 90 caracteres;
   + 'caso não haja Pokémons Favoritados', () => {
     const noFav = screen.getByText('No favorite pokemon found'); // procura na tela o texto "No favorite pokemon found";
     expect(noFav).toBeInTheDocument(); // verifica se o texto está presente no documento;

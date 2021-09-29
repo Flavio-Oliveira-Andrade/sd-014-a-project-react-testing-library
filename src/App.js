@@ -95,6 +95,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Pokédex</h1>
+        <p>Início projeto</p>
         <nav>
           <Link className="link" to="/">{`Home`}</Link>
           <Link className="link" to="/about">{`About`}</Link>

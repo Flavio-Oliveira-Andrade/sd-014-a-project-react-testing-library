@@ -30,8 +30,8 @@ describe('Topmost part of the App has 3 functioning links for navigation', () =>
   test('3rd link should say \'Favorite Pokémons\' and take you there', () => {
     const { history } = renderWithRouter(<App />);
     const favLink = screen.getByRole('link', { name: /Favorite Pokémon/i });
-
     userEvent.click(favLink);
+
     expect(favLink).toBeInTheDocument();
 
     const { pathname } = history.location;

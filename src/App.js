@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
 
+// só pra dar git add
+
 import {
   About,
   FavoritePokemons,

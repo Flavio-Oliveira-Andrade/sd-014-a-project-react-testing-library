@@ -1,3 +1,4 @@
+// feito com ajuda do Notion da BeeDev https://www.notion.so/beedeveloper/BeeDev-b3284d4907f8420eb3bd6021e7baeaf9
 import React from 'react';
 import { fireEvent, screen } from '@testing-library/react';
 import renderWithRouter from './helpers/renderWithRouter';
@@ -32,8 +33,8 @@ describe('App.js - Verificando comportamento dos links', () => {
     expect(linkHome).toBeInTheDocument(); // identifica o link na tela;
 
     fireEvent.click(linkHome); // gatilha o link identificado;
-    const homeUrl = navHistory.location.pathname; // indentifica a rota gatilhada pelo fireEvent atráves do history;
-    expect(homeUrl).toStrictEqual('/'); // identifica se a url da rota está correta;
+    const homeUrl = navHistory.location.pathname; // constante que representa a rota gatilhada pelo fireEvent atráves do history;
+    expect(homeUrl).toStrictEqual('/'); // identifica se a url da rota é a esperada;
   });
 
   it('Verifica se "About" está funcionando corretamente', () => {
@@ -41,8 +42,8 @@ describe('App.js - Verificando comportamento dos links', () => {
     expect(linkAbout).toBeInTheDocument(); // identifica o link na tela;
 
     fireEvent.click(linkAbout); // gatilha o link identificado;
-    const aboutUrl = navHistory.location.pathname; // indentifica a rota gatilhada pelo fireEvent atráves do history;
-    expect(aboutUrl).toStrictEqual('/about'); // identifica se a url da rota está correta;
+    const aboutUrl = navHistory.location.pathname; // constante que representa a rota gatilhada pelo fireEvent atráves do history;
+    expect(aboutUrl).toStrictEqual('/about'); // identifica se a url da rota é a esperada;
   });
 
   it('Verifica se "Favorite Pokémons" está funcionando corretamente', () => {
@@ -50,8 +51,8 @@ describe('App.js - Verificando comportamento dos links', () => {
     expect(linkFav).toBeInTheDocument(); // identifica o link na tela;
 
     fireEvent.click(linkFav); // gatilha o link identificado;
-    const favUrl = navHistory.location.pathname; // indentifica a rota gatilhada pelo fireEvent atráves do history;
-    expect(favUrl).toStrictEqual('/favorites'); // identifica se a url da rota está correta;
+    const favUrl = navHistory.location.pathname; // constante que representa a rota gatilhada pelo fireEvent atráves do history;
+    expect(favUrl).toStrictEqual('/favorites'); // identifica se a url da rota é a esperada;
   });
 
   it('Verifica se entrar numa URL desconhecida redireciona para "Not Found"', () => {

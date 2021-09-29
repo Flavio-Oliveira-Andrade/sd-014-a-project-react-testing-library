@@ -27,12 +27,13 @@ describe('Requisito 1', () => {
     const { history } = renderWithRouter(<App />);
     const pokedexText = screen.getByRole('heading', { name: 'Encountered pokémons' });
     expect(pokedexText).toBeInTheDocument();
-    const aboutLink = screen.getByRole('link', { name: 'About' });   
+    const aboutLink = screen.getByRole('link', { name: 'About' });
     fireEvent.click(aboutLink);
     const atualUrl = history.location.pathname;
     expect(atualUrl).toBe('/about');
   });
-  test('A aplicação é redirecionada para a página de Pokémons Favoritados, na URL /favorites, ao clicar no link Favorite Pokémons da barra de navegação.', () => {
+  test('A aplicação é redirecionada para a página de Pokémons Favoritados, na URL'
+  + '/favorites, ao clicar no link Favorite Pokémons da barra de navegação.', () => {
     const { history } = renderWithRouter(<App />);
     const favoriteLink = screen.getByRole('link', { name: 'Favorite Pokémons' });
     fireEvent.click(favoriteLink);
@@ -43,7 +44,8 @@ describe('Requisito 1', () => {
   + 'ao entrar em uma URL desconhecida.', () => {
     const { history } = renderWithRouter(<App />);
     history.push('/naruto');
-    const notFoundText = screen.getByAltText('Pikachu crying because the page requested was not found');
+    const altText = 'Pikachu crying because the page requested was not found';
+    const notFoundText = screen.getByAltText(altText);
     expect(notFoundText).toBeInTheDocument();
   });
 });

@@ -65,6 +65,8 @@ describe('seção com os mapas contendo as localizações do pokémon', () => {
 describe('Teste se o usuário pode favoritar um pokémon', () => {
   test('A página deve exibir um checkbox que permite favoritar o Pokémon', () => {
     const checkboxButton = screen.getByRole('checkbox');
+    const labelCheckbox = screen.getByLabelText('Pokémon favoritado?');
+    expect(labelCheckbox).toBeInTheDocument();
     expect(checkboxButton).toBeInTheDocument();
   });
   test('Cliques alternados no checkbox devem adicionar e remover', () => {

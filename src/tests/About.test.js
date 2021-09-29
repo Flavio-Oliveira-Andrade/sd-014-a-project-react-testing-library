@@ -18,8 +18,8 @@ describe('Testa o componente About.js', () => {
   + ' com texto sobre a Pokédex', () => {
     renderWithRouter(<About />);
 
-    const aboutPokedex1 = screen.getByTestId('paragraph-1');
-    const aboutPokedex2 = screen.getByTestId('paragraph-2');
+    const aboutPokedex1 = screen.getByText(/This application simulates a Pokédex/i);
+    const aboutPokedex2 = screen.getByText(/One can filter Pokémons by type/i);
     expect(aboutPokedex1).toBeInTheDocument();
     expect(aboutPokedex2).toBeInTheDocument();
   });
@@ -28,5 +28,6 @@ describe('Testa o componente About.js', () => {
 
     const imgPokedex = screen.getByRole('img');
     expect(imgPokedex).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
+    expect(imgPokedex).toHaveAttribute('alt', 'Pokédex');
   });
 });

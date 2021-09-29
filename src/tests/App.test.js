@@ -8,9 +8,9 @@ describe('Testa o component <App />:', () => {
   it('se o topo da aplicação contém um conjunto fixo de links de navegação', () => {
     const arrOfNames = ['Home', 'About', 'Favorite Pokémons'];
     renderWithRouter(<App />);
-    arrOfNames.forEach((n4me) => {
+    arrOfNames.forEach((nome) => {
       const link = screen.getByRole('link', {
-        name: n4me,
+        name: nome,
       });
       expect(link).toBeInTheDocument();
     });

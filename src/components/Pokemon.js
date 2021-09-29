@@ -43,5 +43,3 @@ Pokemon.defaultProps = {
 };
 
 export default Pokemon;
-
-

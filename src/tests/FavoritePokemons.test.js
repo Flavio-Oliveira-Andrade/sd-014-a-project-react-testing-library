@@ -1,7 +1,6 @@
 import React from 'react';
 import { screen, fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
-import FavoritePokemons from '../components/FavoritePokemons';
 import App from '../App';
 
 test('Teste o componente <FavoritePokemons.js />', () => {

@@ -28,6 +28,4 @@ test('Teste o componente <PokemonDetails.js />', () => {
   expect(
     screen.getByText(`${pokemon.summary}`),
   ).toBeInTheDocument();
-
-
 });

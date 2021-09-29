@@ -10,4 +10,11 @@ describe('Verifica se a pagina NotFound contem title e imagem', () => {
     expect(header).toBeInTheDocument();
     expect(header).toHaveTextContent(/Page requested not found 😭/i);
   });
+  it('verifica se renderiza a imagen correta', () => {
+    const imgCorrect = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif';
+    render(<NotFound />);
+    const imgElement = screen.getByRole('img', { name: /Pikachu/i });
+    expect(imgElement).toBeInTheDocument();
+    expect(imgElement.src).toBe(imgCorrect);
+  });
 });

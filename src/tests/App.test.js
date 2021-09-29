@@ -19,7 +19,7 @@ const renderWithRouter = (component) => {
   };
 };
 
-describe('tests App.js component', () => {
+describe('tests App.js', () => {
   it('renders "Home" text on the first link'
   + 'clicks on and renders the Home page', () => {
     const { history } = renderWithRouter(<App />);

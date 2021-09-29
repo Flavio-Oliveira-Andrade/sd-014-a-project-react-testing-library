@@ -15,7 +15,6 @@ import {
 } from './services/pokedexService';
 
 import pokemons from './data';
-
 import './App.css';
 
 class App extends Component {

@@ -1,30 +1,58 @@
 import React from 'react';
-import { createMemoryHistory } from 'history';
-import { Router } from 'react-router-dom';
-import { render, fireEvent } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+import { render, screen } from '@testing-library/react';
 
+import userEvent from '@testing-library/user-event';
 import App from '../App';
-
-function renderWithRouter(
-  ui,
-  { route = '/', history = createMemoryHistory({ initialEntries: [route] }) } = {},
-) {
-  return {
-    ...render(<Router history={ history }>{ui}</Router>),
-    history,
-  };
-}
 
 describe('Teste se o topo da aplicaçãocontémumconjunto fixo de links denavegação', () => {
   test('O primeiro link deve possuir o texto Home', () => {
-    const { getByText } = renderWithRouter(<App />);
-    const home = getByText(/Home/i);
+    render(
+      <MemoryRouter><App /></MemoryRouter>,
+    );
+    // <MemoryRouter><App /></MemoryRouter>,
+    const tituloHome = screen.getByRole('heading', {
+      level: 1,
+      name: /pokédex/i,
+    });
+    expect(tituloHome).toBeInTheDocument();
 
-    expect(home).toBeInTheDocument();
+    const aboutLink = screen.getByRole('link', {
+      name: /about/i,
+    });
+    expect(aboutLink).toBeInTheDocument();
 
-    fireEvent.click(getByText(/Projetos/i));
+    userEvent.click(aboutLink);
 
-    const project = getByText(/Projeto 1/i);
-    expect(project).toBeInTheDocument();
+    const tituloAbout = screen.getByRole('heading', {
+      level: 2,
+      name: /about/i,
+    });
+    expect(tituloAbout).toBeInTheDocument();
+  });
+
+  test('O primeiro link deve possuir o texto Favorite', () => {
+    render(
+      <MemoryRouter><App /></MemoryRouter>,
+    );
+    // <MemoryRouter><App /></MemoryRouter>,
+    const tituloHome = screen.getByRole('heading', {
+      level: 1,
+      name: /pokédex/i,
+    });
+    expect(tituloHome).toBeInTheDocument();
+
+    const favoriteLink = screen.getByRole('link', {
+      name: /Favorite Pokémons/i,
+    });
+    expect(favoriteLink).toBeInTheDocument();
+
+    userEvent.click(favoriteLink);
+
+    const tituloFavorite = screen.getByRole('heading', {
+      level: 2,
+      name: /Favorite pokémons/i,
+    });
+    expect(tituloFavorite).toBeInTheDocument();
   });
 });

@@ -8,7 +8,7 @@ describe('Teste o componente About.js.', () => {
   test('Teste se a página contém um heading ', () => {
     const { history } = historyFunction(<App />);
     history.push('/about');
-    const textTitle = screen.getByRole('heading', { level: 2 });
+    const textTitle = screen.getByRole('heading', { level: 2, name: 'About Pokédex' });
     expect(textTitle).toBeInTheDocument();
   });
 

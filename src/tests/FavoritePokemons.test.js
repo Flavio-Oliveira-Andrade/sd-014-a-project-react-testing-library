@@ -4,15 +4,15 @@ import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 import FavoritePokemons from '../components/FavoritePokemons';
 
-const testMons = {
-  id: 0,
-  name: 'test',
+// const testMons = {
+//   id: 0,
+//   name: 'test',
 
-}
+// }
 
-const renderFavoritePage = (pokemons) => render(
+const renderFavoritePage = () => render(
   <Router history={ createMemoryHistory() }>
-    <FavoritePokemons favoritePokemons={pokemons} />
+    <FavoritePokemons />
   </Router>,
 );
 

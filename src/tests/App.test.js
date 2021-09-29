@@ -3,7 +3,7 @@ import { screen, fireEvent } from '@testing-library/react';
 import renderWithRouter from './utils/renderWithRouter';
 import App from '../App';
 
-describe('Requirement - 1', () => {
+describe('Requirement - 1 : App', () => {
   it('have fixed navigation links in top of page', () => {
     renderWithRouter(<App />);
     expect(screen.getByRole('link', { name: 'Home' })).toBeInTheDocument();

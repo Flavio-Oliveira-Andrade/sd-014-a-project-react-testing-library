@@ -24,7 +24,7 @@ test('if theres a heading with "About Pokédex" text', () => {
 
 test('there are 2 paragraphs with Pokémon includes in their text', () => {
   renderWithRouter(<About />);
-  const aboutParagraphs = screen.getAllByRole('paragraph', { name: /Pokémons/i });
+  const aboutParagraphs = screen.getAllByText(/Pokémons/i);
   expect(aboutParagraphs).toBeDefined();
   expect(aboutParagraphs.length).toBe(2);
 });
@@ -32,5 +32,5 @@ test('there are 2 paragraphs with Pokémon includes in their text', () => {
 test('there are image of pokedex', () => {
   renderWithRouter(<About />);
   const pokedexImage = screen.getByRole('img');
-  expect(pokedexImage.src).toBe('https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
+  expect(pokedexImage.src).toBe('https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
 });

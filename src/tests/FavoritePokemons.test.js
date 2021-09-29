@@ -1,13 +1,13 @@
 import React from 'react';
+import { screen } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import FavoritePokemons from '../components/FavoritePokemons';
 
-
 describe('test favoritePokemons', () => {
   it('should be no pokemons in the page', () => {
-    const { getByText} = renderWithRouter(<FavoritePokemons />);
-    const textFavorites = getByText('No favorite pokemon found');
-    expect(textFavorites).toBeInTheDocument;
+    renderWithRouter(<FavoritePokemons />);
+    const textFavorites = screen.getByText('No favorite pokemon found');
+    expect(textFavorites).toBeInTheDocument();
   });
 
   it('should appear a pokemon', () => {
@@ -32,11 +32,13 @@ describe('test favoritePokemons', () => {
             map: 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
           },
         ],
-        summary: 'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.',
-      }]
+        summary: `This intelligent Pokémon roasts 
+        hard berries with electricity to make them
+        tender enough to eat.`,
+      }];
 
-    const { getByText } = renderWithRouter(<FavoritePokemons pokemons={pokemons} />);
-    const textPokemon = getByText('Pikachu');
-    expect(textPokemon).toBeInTheDocument;
+    renderWithRouter(<FavoritePokemons pokemons={ pokemons } />);
+    const textPokemon = screen.getByText('Pikachu');
+    expect(textPokemon).toBeInTheDocument();
   });
-})
+});

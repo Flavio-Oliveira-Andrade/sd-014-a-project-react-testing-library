@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
+import userEvent from '@testing-library/user-event';
 import App from '../App';
 
 const renderApp = () => render(
@@ -28,5 +29,37 @@ describe('Testes do render App', () => {
     renderApp();
     const favorite = screen.getByRole('link', { name: /Favorite Pokémons/i });
     expect(favorite).toBeInTheDocument();
+  });
+  test('verifica se os links estão funcionando', () => {
+    renderApp();
+    const home = screen.getByRole('link', { name: /home/i });
+    const favorite = screen.getByRole('link', { name: /Favorite Pokémons/i });
+    userEvent.click(home);
+    expect(screen.getByRole('heading', {
+      level: 2,
+      name: /Encountered pokémons/i,
+    })).toBeInTheDocument();
+    userEvent.click(about);
+    userEvent.click(favorite);
+    expect(screen.getByRole('heading', {
+      level: 2,
+      name: /Favorite pokémons/i,
+    })).toBeInTheDocument();
+  });
+  test('Verifica se caso não houver link válido,'
+  + ' redirecione para página não encontrada', () => {
+    const history = createMemoryHistory();
+    const rotaAleatória = '/rotaAleatória';
+    history.push(rotaAleatória);
+    render(
+      <Router history={ history }>
+        <App />
+      </Router>,
+    );
+    const naoEncontrado = screen.getByRole('heading', {
+      level: 2,
+      name: /Page requested not found/i,
+    });
+    expect(naoEncontrado).toBeInTheDocument();
   });
 });

@@ -16,28 +16,28 @@ describe('Test of App', () => {
     expect(favorite).toBeInTheDocument();
   });
 
-  it('should have in page home', () => {
+  it('should be in page home', () => {
     const { history } = renderWithRouter(<App />);
-    const { pathname } = history.location;
     userEvent.click(screen.getByText(/home/i));
+    const { pathname } = history.location;
     expect(pathname).toBe('/');
   });
 
-  it('should have in page about', () => {
+  it('should be in page about', () => {
     const { history } = renderWithRouter(<App />);
-    const { pathname } = history.location;
     userEvent.click(screen.getByText(/about/i));
+    const { pathname } = history.location;
     expect(pathname).toBe('/about');
   });
 
-  it('should have in page favorites', () => {
+  it('should be in page favorites', () => {
     const { history } = renderWithRouter(<App />);
-    const { pathname } = history.location;
     userEvent.click(screen.getByText(/favorite/i));
+    const { pathname } = history.location;
     expect(pathname).toBe('/favorites');
   });
 
-  it('should have in page not Found', () => {
+  it('should be in page not Found', () => {
     const { history } = renderWithRouter(<App />);
     history.push('/page/notfound');
     const notFoundText = screen.getByText(/not found/i);

@@ -5,7 +5,7 @@ import App from '../App';
 import RenderWithRouter from '../RenderWithRouter';
 
 describe('Testes para o NotFound.js', () => {
-  test('Primeiro link deve possuir texto Home', () => {
+  test('Testa se existe um geadinh h2 com o texxto "Page requested not found Crying emoji"', () => {
     const { history } = RenderWithRouter(<App />);
     history.push('/pagina-que-nao-existe');
     const notFound = screen.getByRole('heading', {
@@ -15,7 +15,7 @@ describe('Testes para o NotFound.js', () => {
     expect(notFound).toBeInTheDocument();
   });
 
-  test('Testa se a página contém imagem de uma Podédex', () => {
+  test('Testa se a página contém um Gif do Pikachu', () => {
     const { history } = RenderWithRouter(<App />);
     history.push('/pagina-que-nao-existe');
     const gif = screen.getByAltText('Pikachu crying because the page requested was not found');

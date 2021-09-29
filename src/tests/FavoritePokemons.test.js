@@ -18,7 +18,7 @@ describe('Testa o componente <FavoritePokemons.js />', () => {
     expect(notFound).toBeInTheDocument();
   });
 
-  test('Teste se é exibido todos os cards de pokémons favoritados.', () => {
+  test('Testa se é exibido todos os cards de pokémons favoritados.', () => {
     renderWithRouter(<App />);
     const moreDetails = screen.getByRole('link', {
       name: /more details/i,

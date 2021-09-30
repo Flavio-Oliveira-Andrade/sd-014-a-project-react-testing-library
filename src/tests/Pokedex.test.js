@@ -11,6 +11,8 @@ const types = pokemons.map((pokemon) => pokemon.type)
     return [...acc, type];
   }, []);
 
+const DATA_TEST_NAME = 'pokemon-name';
+
 describe('tests Pokedex.js component', () => {
   beforeEach(() => renderWithRouter(<App />));
   it('renders the "Encountered pokémons" heading text', () => {
@@ -28,10 +30,10 @@ describe('tests Pokedex.js component', () => {
     });
     expect(nextBtn).toBeInTheDocument();
 
-    const currentPkm = screen.getAllByTestId('pokemon-name');
+    const currentPkm = screen.getAllByTestId(DATA_TEST_NAME);
     expect(currentPkm).toHaveLength(1);
     userEvent.click(nextBtn);
-    const nextPkm = screen.getAllByTestId('pokemon-name');
+    const nextPkm = screen.getAllByTestId(DATA_TEST_NAME);
     expect(currentPkm).not.toBe(nextPkm);
     expect(nextPkm).toHaveLength(1);
   });
@@ -62,7 +64,7 @@ describe('tests Pokedex.js component', () => {
     });
     expect(allBtn).toBeInTheDocument();
     userEvent.click(allBtn);
-    const firstPkm = screen.getByTestId('pokemon-name');
+    const firstPkm = screen.getByTestId(DATA_TEST_NAME);
     expect(firstPkm).toHaveTextContent(/pikachu/i);
   });
 });

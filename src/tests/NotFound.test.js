@@ -19,7 +19,9 @@ describe('Testa o componente NotFound', () => {
 
     const imgNotFound = screen.getAllByRole('img');
     const pikacuCrying = imgNotFound[1];
-    expect(pikacuCrying).toHaveAttribute('src', 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
+    expect(pikacuCrying).toHaveAttribute(
+      'src', 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif',
+    );
     expect(pikacuCrying).toHaveAttribute(
       'alt', 'Pikachu crying because the page requested was not found',
     );

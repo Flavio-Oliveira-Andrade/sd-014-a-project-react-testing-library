@@ -22,7 +22,7 @@ describe('Teste o componente <NotFound.js />', () => {
 
     history.push('/pagina não encontrada');
 
-    const gifPokemon = screen.getByAltText('Pikachu crying because the page requested was not found');
+    const gifPokemon = screen.getByAltText(/Pikachu crying because the page/i);
     expect(gifPokemon).toHaveAttribute('src', 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
   });
 });

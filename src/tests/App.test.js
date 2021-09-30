@@ -4,7 +4,7 @@ import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
 describe('O primeiro link deve possuir o texto Home', () => {
-  test('deve renderizar o componente App', () => {
+  test('deve renderizar o componente Home', () => {
     const { history } = renderWithRouter(<App />);
     fireEvent.click(screen.getByText(/Home/i));
     const { pathname } = history.location;

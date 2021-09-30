@@ -3,10 +3,6 @@ import { render, screen } from '@testing-library/react';
 import About from '../components/About';
 
 describe('Testes do componente About', () => {
-  it('Testando para ver se a página contém as informações sobre a Pokédex', () => {
-    render(<About />);
-  });
-
   it('Testando se a página contém um heading h2 com o texto About Pokédex', () => {
     render(<About />);
     const headingH2 = screen.getByRole('heading', {

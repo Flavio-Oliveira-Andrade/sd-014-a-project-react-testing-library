@@ -10,4 +10,14 @@ describe('Testa se o topo da aplicação contém um conjunto fixo de links de na
       const linkHome = screen.getByText('Home');
       expect(linkHome).toBeInTheDocument();
     });
+    test('O segundo link deve possuir o texto "About"', () => {
+      renderWithRouter(<App />);
+      const linkAbout = screen.getByText('About');
+      expect(linkAbout).toBeInTheDocument();
+    });
+    test('O terceiro link deve possuir o texto "Favorite Pokémons"', () => {
+      renderWithRouter(<App />);
+      const linkFavoritePokemons = screen.getByText('Favorite Pokémons');
+      expect(linkFavoritePokemons).toBeInTheDocument();
+    });
   });

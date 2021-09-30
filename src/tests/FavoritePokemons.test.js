@@ -32,6 +32,6 @@ test('Teste se é exibido na tela a mensagem "No favorite pokemon found",'
 });
 test('Teste se é exibido todos os cards de pokémons favoritados.', () => {
   renderFavoritePage(testMons);
-  const nenhumEncontrado = screen.getAllByText(/more details/i);
-  expect(nenhumEncontrado).toHaveLength(2);
+  const verificarFavoritados = screen.getAllByText(/more details/i);
+  expect(verificarFavoritados).toHaveLength(2);
 });

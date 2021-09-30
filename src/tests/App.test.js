@@ -1,16 +1,9 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { BrowserRouter } from 'react-router-dom';
 
+import renderWithRouter from './renderWithRouter';
 import App from '../App';
-
-// veja https://testing-library.com/docs/example-react-router/#reducing-boilerplate
-const renderWithRouter = (ui, { route = '/' } = {}) => {
-  window.history.pushState({}, 'Test page', route);
-
-  return render(ui, { wrapper: BrowserRouter });
-};
 
 describe('1. Teste o componente <App.js />', () => {
   test('O topo da aplicação contém um conjunto fixo de links de navegação', () => {

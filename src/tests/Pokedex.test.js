@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import App from '../App';
 
-describe('Teste o componente <Pokedex.js />', () => {
+describe('Testa o componente <Pokedex.js />', () => {
   it('Testa se página contém um heading h2 com o texto Encountered pokémons.', () => {
     render(
       <MemoryRouter>

@@ -42,4 +42,22 @@ describe('06 - Teste o componente "Pokemon.js"', () => {
     userEvent.click(linkDetails);
     expect(history.location.pathname).toBe(`/pokemons/${id}`);
   });
+
+  test('se existe um ícone de estrela nos Pokémons favoritados', () => {
+    renderWithRouter(<App />);
+    const linkDetails = screen.getByRole('link', {
+      name: /more details/i,
+    });
+    userEvent.click(linkDetails);
+
+    const checkboxFav = screen.getByRole('checkbox', {
+      name: 'Pokémon favoritado?', // RegEx reclamou
+    });
+    userEvent.click(checkboxFav);
+
+    const starIcon = screen.getByRole('img', {
+      name: `${name} is marked as favorite`,
+    });
+    expect(starIcon).toHaveAttribute('src', '/star-icon.svg');
+  });
 });

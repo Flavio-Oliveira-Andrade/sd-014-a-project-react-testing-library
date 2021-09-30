@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 
 import {
   About,
@@ -71,30 +71,32 @@ class App extends Component {
     const favoritePokemons = pokemons.filter(({ id }) => isPokemonFavoriteById[id]);
 
     return (
-      <Switch>
-        <Route
-          exact
-          path="/"
-          render={ ({ match }) => this.renderPokedex(match) }
-        />
-        <Route
-          path="/pokemons/:id"
-          render={ ({ match }) => this.renderPokemonDetails(match) }
-        />
-        <Route
-          path="/favorites"
-          render={ () => <FavoritePokemons pokemons={ favoritePokemons } /> }
-        />
-        <Route path="/about" component={ About } />
-        <Route component={ NotFound } />
-      </Switch>
+      <>
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={ ({ match }) => this.renderPokedex(match) }
+          />
+          <Route
+            path="/pokemons/:id"
+            render={ ({ match }) => this.renderPokemonDetails(match) }
+          />
+          <Route
+            path="/favorites"
+            render={ () => <FavoritePokemons pokemons={ favoritePokemons } /> }
+          />
+          <Route path="/about" component={ About } />
+          <Route component={ NotFound } />
+        </Switch>
+      </>
     );
   }
 
   render() {
     return (
       <div className="App">
-        <h1>Pokédexi</h1>
+        <h1>Pokédex</h1>
         <nav>
           <Link className="link" to="/">{`Home`}</Link>
           <Link className="link" to="/about">{`About`}</Link>

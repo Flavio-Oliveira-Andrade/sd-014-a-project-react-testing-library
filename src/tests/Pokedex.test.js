@@ -5,6 +5,12 @@ import App from '../App';
 import renderWithRouter from './services/renderWithRouter';
 import pokemons from '../data';
 
+const types = pokemons.map((pokemon) => pokemon.type)
+  .reduce((acc, type) => {
+    if (acc.includes(type)) return acc;
+    return [...acc, type];
+  }, []);
+
 describe('tests Pokedex.js component', () => {
   beforeEach(() => renderWithRouter(<App />));
   it('renders the "Encountered pokémons" heading text', () => {
@@ -30,18 +36,33 @@ describe('tests Pokedex.js component', () => {
     expect(nextPkm).toHaveLength(1);
   });
 
-  it('renders one button per pokémon type'
-  + 'on click, must select only those pokémon of the type selected', () => {
+  it('renders one button per pokémon type with the respective type as text', () => {
     const typeBtns = screen.getAllByTestId('pokemon-type-button');
-    pokemons.map((pokemon) => pokemon.type)
-      .reduce((acc, type) => {
-        if (acc.includes(type)) return acc;
-        return [...acc, type];
-      }, [])
-      .forEach((type, index) => {
-        const typeBtn = typeBtns[index];
-        expect(typeBtn).toBeInTheDocument();
-        expect(typeBtn).toHaveTextContent(type);
+    types.forEach((type, index) => {
+      const typeBtn = typeBtns[index];
+      expect(typeBtn).toBeInTheDocument();
+      expect(typeBtn).toHaveTextContent(type);
+    });
+  });
+
+  it('on click, must select only those pokémon of the type selected', () => {
+    types.forEach((type) => {
+      const typeBtn = screen.getByRole('button', {
+        name: type,
       });
+      userEvent.click(typeBtn);
+      const selectedType = screen.getByTestId('pokemon-type');
+      expect(selectedType).toHaveTextContent(type);
+    });
+  });
+
+  it('renders an "All" button that resets to default list', () => {
+    const allBtn = screen.getByRole('button', {
+      name: /all/i,
+    });
+    expect(allBtn).toBeInTheDocument();
+    userEvent.click(allBtn);
+    const firstPkm = screen.getByTestId('pokemon-name');
+    expect(firstPkm).toHaveTextContent(/pikachu/i);
   });
 });

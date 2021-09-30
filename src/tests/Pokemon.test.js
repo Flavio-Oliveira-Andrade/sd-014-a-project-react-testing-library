@@ -44,5 +44,7 @@ describe('Pokémon.js component behaves correctly', () => {
     const favStar = screen.getByAltText(/is marked as favorite/i);
     expect(favStar).toBeInTheDocument();
     expect(favStar.src).toBe('http://localhost/star-icon.svg');
+    // expect(favStar.alt).toBe(`${pokemons[1].name} is marked as favorites`);
+    expect(favStar.alt).toBe('Charmander is marked as favorite');
   });
 });

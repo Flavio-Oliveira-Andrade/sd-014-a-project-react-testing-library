@@ -19,7 +19,9 @@ describe('Verifica o component Pokedex', () => {
   it('Verifica o próximo pokémon da lista é exibido ao clicar no botão', () => {
     renderWithRouter(<App />);
 
-    const nextButton = screen.getByTestId('next-pokemon');
+    const nextButton = screen.getByRole('button', {
+      name: 'Próximo pokémon',
+    });
     expect(nextButton).toBeInTheDocument();
   });
 

@@ -12,8 +12,10 @@ describe('Página About', () => {
       { level: 2, name: 'About Pokédex' });
     expect(heading).toBeInTheDocument();
 
-    const paragraphs = screen.getAllByText(/poké/i)
-      .filter((element) => element !== heading);
+    // Valeu Joao Ferreira e Thiago Oshiro pela dica!
+    const paragraphs = screen.getAllByText(/./i, { selector: 'p' });
+
+    // .filter((element) => element !== heading);
     expect(paragraphs).toHaveLength(2);
 
     const image = screen.getByRole('img');

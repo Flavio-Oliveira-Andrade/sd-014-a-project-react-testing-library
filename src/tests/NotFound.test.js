@@ -25,7 +25,7 @@ describe('4 Requisito', () => {
 
       const h2 = screen.getByRole('heading', {
         level: 2,
-        name: /not found/i,
+        name: /page requested not found/i,
       });
 
       expect(h2).toBeInTheDocument();
@@ -38,10 +38,8 @@ describe('4 Requisito', () => {
 
     history.push('/sadpikachu');
 
-    const img = await screen.findByRole('img');
+    const img = screen.getAllByRole('img');
 
-    // expect(img).toHaveAttribute('src', 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
-
-    expect(img).toHaveAttribute('alt', /Pikachu crying/i);
+    expect(img[1]).toHaveAttribute('src', 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
   });
 });

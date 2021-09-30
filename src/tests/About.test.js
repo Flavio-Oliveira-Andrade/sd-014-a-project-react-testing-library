@@ -37,7 +37,7 @@ describe('2 Requisito', () => {
 
     const h2 = screen.getByRole('heading', {
       level: 2,
-      name: /pokédex/i,
+      name: /about pokédex/i,
     });
 
     expect(h2).toBeInTheDocument();

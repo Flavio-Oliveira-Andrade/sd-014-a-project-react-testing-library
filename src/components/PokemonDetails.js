@@ -40,8 +40,9 @@ class PokemonDetails extends React.Component {
 
   findPokemon(givenId) {
     const { pokemons } = this.props;
-
-    return pokemons.find(({ id }) => id === givenId);
+    const pkm = pokemons.find(({ id }) => id === givenId);
+    console.log(pkm);
+    return pkm;
   }
 
   renderFavoriteInput(pokemonId, isFavorite) {

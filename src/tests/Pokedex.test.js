@@ -34,4 +34,18 @@ describe('5º verifica funcionamento do componente Pokedex', () => {
     expect(nameElements[0]).toBeInTheDocument();
     expect(nameElements).toHaveLength(1);
   });
+  it('verifica se a pokedex tem botões de filtro', () => {
+    renderWithRouter(<App />);
+    const pokemonTypes = [...new Set(pokemons
+      .reduce((types, { type }) => [...types, type], []))];
+
+    const buttonsType = screen.getAllByTestId('pokemon-type-button');
+    const buttonAll = screen.getByRole('button', { name: 'All' });
+    expect(buttonAll).toBeInTheDocument();
+
+    pokemonTypes.forEach((type, index) => {
+      expect(buttonsType[index]).toBeInTheDocument();
+      expect(buttonsType[index]).toHaveTextContent(type);
+    });
+  });
 });

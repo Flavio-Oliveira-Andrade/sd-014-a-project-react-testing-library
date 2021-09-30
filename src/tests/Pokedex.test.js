@@ -47,7 +47,7 @@ describe('tests Pokedex.js component', () => {
     });
   });
 
-  it('on click, must select only those pokémon of the type selected', () => {
+  it('must select only those pokémon of the type selected on click', () => {
     types.forEach((type) => {
       const typeBtn = screen.getByRole('button', {
         name: type,

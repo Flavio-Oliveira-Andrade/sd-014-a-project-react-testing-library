@@ -51,13 +51,13 @@ describe('05-Teste o componente Pokedex.js', () => {
 
   test('se a Pokédex tem os botões de filtro', () => {
     renderWithRouter(<App />);
-    const typesPoke = ['Electric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon'];
+    const types = ['Electric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon'];
     const btnType = screen.getAllByTestId('pokemon-type-button');
-    expect(btnType.length).toBe(typesPoke.length);
+    expect(btnType.length).toBe(types.length);
 
     btnType.map((button, index) => {
       expect(button).toBeInTheDocument();
-      return expect(btnType[index]).toHaveTextContent(typesPoke[index]);
+      return expect(btnType[index]).toHaveTextContent(types[index]);
     });
     const btnAll = screen.getByRole('button', {
       name: /All/i,

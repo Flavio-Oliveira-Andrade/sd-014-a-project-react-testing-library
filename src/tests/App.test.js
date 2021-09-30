@@ -5,7 +5,7 @@ import renderWithRouter from './utils/renderWithRouter';
 import App from '../App';
 
 describe('Testes do componente App', () => {
-  test('Teste se o topo da aplicação contem um conjunto de links', () => {
+  it('Teste se o topo da aplicação contem um conjunto de links', () => {
     renderWithRouter(<App />);
 
     const btnHome = screen.getByRole('link', {
@@ -22,7 +22,7 @@ describe('Testes do componente App', () => {
     expect(btnFavorite).toBeInTheDocument();
   });
 
-  test('Teste se a aplicação é redirecionada ao clicar no link Home', () => {
+  it('Teste se a aplicação é redirecionada ao clicar no link Home', () => {
     const { history } = renderWithRouter(<App />);
 
     const btnHome = screen.getByRole('link', {
@@ -37,7 +37,7 @@ describe('Testes do componente App', () => {
     expect(textHome).toBeInTheDocument();
   });
 
-  test('Teste se a aplicação é redirecionada ao clicar no link About', () => {
+  it('Teste se a aplicação é redirecionada ao clicar no link About', () => {
     const { history } = renderWithRouter(<App />);
 
     const btnAbout = screen.getByRole('link', {
@@ -52,7 +52,7 @@ describe('Testes do componente App', () => {
     expect(textAbout).toBeInTheDocument();
   });
 
-  test('Teste se a aplicação é redirecionada ao clicar no link Favorite Pokémons', () => {
+  it('Teste se a aplicação é redirecionada ao clicar no link Favorite Pokémons', () => {
     const { history } = renderWithRouter(<App />);
 
     const btnFavorite = screen.getByRole('link', {
@@ -67,7 +67,7 @@ describe('Testes do componente App', () => {
     expect(textFavorite).toBeInTheDocument();
   });
 
-  test(`Teste se a aplicação é redirecionada para a 
+  it(`Teste se a aplicação é redirecionada para a 
   página Not Found ao entrar em uma URL desconhecida.`, () => {
     const { history } = renderWithRouter(<App />);
 

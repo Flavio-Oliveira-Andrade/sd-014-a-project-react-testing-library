@@ -62,16 +62,20 @@ describe('5º verifica funcionamento do componente Pokedex', () => {
   });
   it('verifica o funcionamento do button all, se reseta o filtro', () => {
     renderWithRouter(<App />);
+    const typePokemonElement = screen.getByTestId('pokemon-type');
+    const buttonNext = screen.getByRole('button', { name: 'Próximo pokémon' });
+    expect(buttonNext).not.toHaveAttribute('disabled');
+    expect(typePokemonElement).toHaveTextContent(/electric/i);
+
     const buttonTypeFire = screen.getByRole('button', { name: 'Fire' });
     const buttonAll = screen.getByRole('button', { name: 'All' });
-    const buttonNext = screen.getByRole('button', { name: 'Próximo pokémon' });
     expect(buttonAll).toBeInTheDocument();
 
     userEvent.click(buttonTypeFire);
     userEvent.click(buttonAll);
-    expect(screen.getByTestId('pokemon-type')).toHaveTextContent(/electric/i);
+    expect(typePokemonElement).toHaveTextContent(/electric/i);
 
     userEvent.click(buttonNext);
-    expect(screen.getByTestId('pokemon-type')).toHaveTextContent(/fire/i);
+    expect(typePokemonElement).toHaveTextContent(/fire/i);
   });
 });

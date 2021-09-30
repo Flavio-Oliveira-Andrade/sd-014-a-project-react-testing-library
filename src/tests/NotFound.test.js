@@ -14,12 +14,10 @@ describe(' Testes NotFoundc.', () => {
     expect(tituloNotFound).toBeInTheDocument();
   });
 
-  // test('página mostra a imagem', () => {
-  //   render(<NotFound />);
+  test('pagina deve mostrar a imagem', () => {
+    render(<NotFound />);
 
-  //   const imgNF = screen.getByRole('img', {
-  //     src: 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif',
-  //   });
-  //   expect(imgNF).toBeInTheDocument();
-  // });
+    const img = screen.getByAltText(/Pikachu/);
+    expect(img).toHaveAttribute('src', 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
+  });
 });

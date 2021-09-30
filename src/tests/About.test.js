@@ -4,12 +4,13 @@ import { render, screen } from '@testing-library/react';
 import About from '../components/About';
 
 describe(' Testes About.', () => {
-  // test(' Teste se a página contém as informações sobre a Pokédex.',()=>{
-  //   render(<About />);
-  //   const informaçõesAbout= screen.queryByText('asdasd',{
+  test(' Teste se a página contém as informações sobre a Pokédex.', () => {
+    render(<About />);
 
-  //   });
-  // });
+    const paragraph = screen.getAllByText(/Pokémons/);
+    expect(paragraph).toHaveLength(2);
+  });
+
   test('a página contém um heading h2 com o texto About Pokédex', () => {
     render(<About />);
 
@@ -26,13 +27,13 @@ describe(' Testes About.', () => {
 
     const paragrafo1About = screen.getByText(/This application simulates/i);
 
-    expect(paragrafo1About && paragrafo2About).toBeInTheDocument();
+    expect(paragrafo1About).toBeInTheDocument();
+    expect(paragrafo2About).toBeInTheDocument();
   });
   test('Teste se a página contém a seguinte imagem de uma Pokédex: https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png', () => {
     render(<About />);
-    const imagem = screen.getByRole('img', {
-      src: 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png',
-    });
-    expect(imagem).toBeInTheDocument();
+    const IMG = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
+    const imagem = screen.getByRole('img');
+    expect(imagem.src).toBe(IMG);
   });
 });

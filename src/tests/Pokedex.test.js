@@ -48,4 +48,16 @@ describe('5º verifica funcionamento do componente Pokedex', () => {
       expect(buttonsType[index]).toHaveTextContent(type);
     });
   });
+  it('verifica se ao selecionar o tipo mostra apenas pokemons daquele tipo', () => { // dar continuidade aqui.
+    renderWithRouter(<App />);
+    const buttonTypeFire = screen.getByRole('button', { name: 'Fire' });
+    const buttonNext = screen.getByRole('button', { name: 'Próximo pokémon' });
+    expect(buttonTypeFire).toBeInTheDocument();
+    expect(buttonNext).toBeInTheDocument();
+
+    userEvent.click(buttonTypeFire);
+    expect(screen.getByText('Charmander')).toBeInTheDocument();
+    userEvent.click(buttonNext);
+    expect(screen.getByText('Rapidash')).toBeInTheDocument();
+  });
 });

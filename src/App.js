@@ -22,7 +22,6 @@ class App extends Component {
   static setIsPokemonFavoriteById() {
     const favoritePokemonIds = readFavoritePokemonIds();
     const isPokemonFavorite = pokemons.reduce((acc, pokemon) => {
-      console.log(pokemons);
       acc[pokemon.id] = favoritePokemonIds.includes(pokemon.id);
       return acc;
     }, {});

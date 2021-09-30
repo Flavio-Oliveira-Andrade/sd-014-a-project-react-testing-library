@@ -2,11 +2,12 @@ import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from './utils/renderWithRouter';
-import Home from '../App';
+import App from '../App';
+import pokemon from '../data';
 
 describe('Testando o componente Pokedex', () => {
   it('Testando se página contém um h2 com o texto "Encountered pokémons"', () => {
-    renderWithRouter(<Home />);
+    renderWithRouter(<App />);
     const headingH2 = screen.getByRole('heading', {
       level: 2,
       name: 'Encountered pokémons',
@@ -16,7 +17,7 @@ describe('Testando o componente Pokedex', () => {
 
   it(`Testando se é exibido o próximo 
   Pokémon da lista quando o botão "Próximo pokémon" é clicado`, () => {
-    renderWithRouter(<Home />);
+    renderWithRouter(<App />);
 
     const btnPreview = screen.getByRole('button', {
       name: /próximo pokémon/i,
@@ -24,14 +25,17 @@ describe('Testando o componente Pokedex', () => {
     expect(btnPreview).toBeInTheDocument();
 
     const namePokemon = screen.getByTestId('pokemon-name');
-    expect(namePokemon.innerHTML).toBe('Pikachu');
+    expect(namePokemon).toHaveTextContent(pokemon[0].name);
+
     userEvent.click(btnPreview);
-    expect(namePokemon.innerHTML).toBe('Charmander');
+    expect(namePokemon).toHaveTextContent(pokemon[1].name);
+
     userEvent.click(btnPreview);
-    expect(namePokemon.innerHTML).toBe('Caterpie');
+    expect(namePokemon).toHaveTextContent(pokemon[2].name);
   });
+
   it('Testando se é mostrado um pokemon por vez', () => {
-    renderWithRouter(<Home />);
+    renderWithRouter(<App />);
     const btnPreview = screen.getByRole('button', {
       name: /próximo pokémon/i,
     });
@@ -39,12 +43,13 @@ describe('Testando o componente Pokedex', () => {
 
     const namePokemon = screen.getAllByTestId('pokemon-name');
     expect(namePokemon).toHaveLength(1);
+
     userEvent.click(btnPreview);
     expect(namePokemon).toHaveLength(1);
   });
 
   it('Testando se a Pokédex tem os botões de filtro', () => {
-    renderWithRouter(<Home />);
+    renderWithRouter(<App />);
     const btnFilters = screen.getAllByTestId('pokemon-type-button');
 
     btnFilters.forEach((btn) => {
@@ -58,22 +63,26 @@ describe('Testando o componente Pokedex', () => {
 
     const typePokemon = screen.getByTestId('pokemon-type');
     const btnElectric = screen.getByRole('button', {
-      name: 'Electric',
+      name: pokemon[0].type,
     });
+
     const btnFire = screen.getByRole('button', {
-      name: 'Fire',
+      name: pokemon[1].type,
     });
+
     userEvent.click(btnElectric);
-    expect(typePokemon.innerHTML).toBe('Electric');
+    expect(typePokemon).toHaveTextContent(pokemon[0].type);
+
     userEvent.click(btnFire);
-    expect(typePokemon.innerHTML).toBe('Fire');
+    expect(typePokemon).toHaveTextContent(pokemon[1].type);
+
     userEvent.click(btnPreview);
-    expect(typePokemon.innerHTML).toBe('Fire');
-    expect(btnFire.innerHTML).toBe('Fire');
+    expect(typePokemon).toHaveTextContent(pokemon[1].type);
+    expect(btnFire).toHaveTextContent(pokemon[1].type);
   });
 
   it('Testando se a Pokédex tem o botão de resetar o filtro', () => {
-    renderWithRouter(<Home />);
+    renderWithRouter(<App />);
     const btnAll = screen.getByRole('button', {
       name: 'All',
     });
@@ -85,9 +94,11 @@ describe('Testando o componente Pokedex', () => {
     expect(btnPreview).toBeInTheDocument();
 
     userEvent.click(btnAll);
+
     const typePokemon = screen.getByTestId('pokemon-type');
-    expect(typePokemon.innerHTML).toBe('Electric');
+    expect(typePokemon).toHaveTextContent(pokemon[0].type);
+
     userEvent.click(btnPreview);
-    expect(typePokemon.innerHTML).toBe('Fire');
+    expect(typePokemon).toHaveTextContent(pokemon[1].type);
   });
 });

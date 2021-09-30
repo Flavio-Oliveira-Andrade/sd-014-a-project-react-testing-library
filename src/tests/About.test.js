@@ -2,13 +2,11 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import About from '../components/About';
 
-const URL = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
-
 describe('Testes do componente About', () => {
   it('Testando para ver se a página contém as informações sobre a Pokédex', () => {
     render(<About />);
     const paragraphOne = screen.getByText(/simulates a Pokédex/);
-    const paragraphTwo = screen.getByText(/Pokémons by type/);
+    const paragraphTwo = screen.getByText(/filter Pokémons by type/);
     expect(paragraphOne).toBeInTheDocument();
     expect(paragraphTwo).toBeInTheDocument();
   });
@@ -30,7 +28,8 @@ describe('Testes do componente About', () => {
 
   it('Testando se a página contém a seguinte imagem de uma Pokédex:', () => {
     render(<About />);
-    const img = screen.getByAltText('Pokédex');
-    expect(img.src).toBe(URL);
+    const URL = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
+    const img = screen.getByRole('img');
+    expect(img).toHaveAttribute('src', URL);
   });
 });

@@ -22,4 +22,5 @@ test(
 
     const favoritePokemons = screen.getByText(/Favorite Pokémons/i);
     expect(favoritePokemons).toBeInTheDocument();
-  });
+  },
+);

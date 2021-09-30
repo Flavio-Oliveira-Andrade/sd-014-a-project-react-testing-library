@@ -25,8 +25,7 @@ const MOCKED_PKM = {
     },
   ],
 };
-const { averageWeight, id, image, name, type } = MOCKED_PKM;
-const { measurementUnit, value } = averageWeight;
+const { averageWeight: { measurementUnit, value }, id, image, name, type } = MOCKED_PKM;
 
 describe('tests Pokemon.js component', () => {
   it('renders a pokemon card containing the pokemon\'s name, type, weight and image',
@@ -56,7 +55,9 @@ describe('tests Pokemon.js component', () => {
 
     const detailsLink = screen.getByRole('link');
     expect(detailsLink).toBeInTheDocument();
-    expect(detailsLink).toHaveAttribute('href', `/pokemons/${id}`); // o elemento a é considerado como link pelo react > ref https://stackoverflow.com/questions/57827126/how-to-test-anchors-href-with-react-testing-library
+    expect(detailsLink).toHaveAttribute('href', `/pokemons/${id}`);
+    // o elemento a é considerado como link pelo react
+    // ref https://stackoverflow.com/questions/57827126/how-to-test-anchors-href-with-react-testing-library
   });
 
   it('redirects to PokemonDetails.js on "More details" click', () => {

@@ -7,9 +7,10 @@ import pokemons from '../data';
 
 describe('7º testa se o componente PokemonDetails esta funcionando corretamente', () => {
   const { name, summary, foundAt } = pokemons[0];
+  const OPTIONS_DETAILS = { name: 'More details' };
   it('verifica se a pagina details renderiza as informações sobre o pokemon', () => {
     renderWithRouter(<App />);
-    const moreDetails = screen.getByRole('link', { name: 'More details' });
+    const moreDetails = screen.getByRole('link', OPTIONS_DETAILS);
     expect(moreDetails).toBeInTheDocument();
     userEvent.click(moreDetails);
 
@@ -25,7 +26,7 @@ describe('7º testa se o componente PokemonDetails esta funcionando corretamente
   });
   it('verifica se há uma seção com os mapas do pokemon, em Details', () => {
     renderWithRouter(<App />);
-    const moreDetails = screen.getByRole('link', { name: 'More details' });
+    const moreDetails = screen.getByRole('link', OPTIONS_DETAILS);
     expect(moreDetails).toBeInTheDocument();
     userEvent.click(moreDetails);
 
@@ -35,7 +36,24 @@ describe('7º testa se o componente PokemonDetails esta funcionando corretamente
     foundAt.forEach(({ location, map }, index) => {
       const imgElement = screen.getAllByRole('img', { name: `${name} location` });
       expect(screen.getByText(location)).toBeInTheDocument();
+      expect(imgElement[index]).toBeInTheDocument();
       expect(imgElement[index]).toHaveAttribute('src', map);
     });
+  });
+  it('Verifica se é possivel favoritar em Details', () => {
+    renderWithRouter(<App />);
+    const moreDetails = screen.getByRole('link', OPTIONS_DETAILS);
+    expect(moreDetails).toBeInTheDocument();
+    userEvent.click(moreDetails);
+
+    const checkboxFavoritar = screen.getByLabelText('Pokémon favoritado?');
+    expect(checkboxFavoritar).toBeInTheDocument();
+
+    userEvent.click(checkboxFavoritar);
+    const imgFavorited = screen.getByRole('img', { name: /is marked as favorite/i });
+    expect(imgFavorited).toBeInTheDocument();
+
+    userEvent.click(checkboxFavoritar);
+    expect(imgFavorited).not.toBeInTheDocument();
   });
 });

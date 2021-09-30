@@ -37,7 +37,7 @@ describe('Teste o componente <FavoritePokemons.js />', () => {
         moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Charmander_(Pok%C3%A9mon)',
       },
     ];
-    renderWithRouter(<FavoritePokemons pokemon={ listFavoritePokemons } />);
+    renderWithRouter(<FavoritePokemons pokemons={ listFavoritePokemons } />);
 
     const pokemons = screen.getAllByTestId('pokemon-name');
     expect(pokemons).toHaveLength(2);

@@ -1,23 +1,8 @@
 import React from 'react';
-import { Router } from 'react-router';
-import { createMemoryHistory } from 'history';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import renderWithRouter from './services/renderWithRouter';
 import App from '../App';
-
-const renderWithRouter = (component) => {
-  const customHistory = createMemoryHistory();
-  const utils = render(
-    <Router history={ customHistory }>
-      { component }
-    </Router>,
-  );
-
-  return {
-    ...utils,
-    history: customHistory,
-  };
-};
 
 describe('tests App.js', () => {
   it('renders "Home" text on the first link'

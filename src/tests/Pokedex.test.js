@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
-const nextPokemonBtn = () => screen.getByTestId('next-pokemon');
+const nextPokemonBtn = () => screen.getByRole('button', { name: 'Próximo pokémon' });
 const fireTypeBtn = () => screen.getByRole('button', { name: 'Fire' });
 const allBtn = () => screen.getByRole('button', { name: 'All' });
 const nonFilteredPokemonList = ['Pikachu', 'Charmander', 'Caterpie', 'Ekans'];

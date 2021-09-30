@@ -14,7 +14,7 @@ describe('4. Teste o componente <NotFound.js />', () => {
     expect(h2).toBeInTheDocument();
   });
 
-  test('A página contém a imagem do Pikachu chorando porque a página não existe', () => {
+  test('A página contém o Pikachu chorando porque a página não foi encontrada', () => {
     const img = screen
       .getByAltText(/Pikachu crying because the page requested was not found/i);
     expect(img).toBeInTheDocument();

@@ -1,6 +1,5 @@
 import React from 'react';
 import { screen, render } from '@testing-library/react';
-// import renderWithRouter from './helper/renderWithRouter';
 import NotFound from '../components/NotFound';
 
 describe('Testa o componente NotFound.js', () => {
@@ -16,9 +15,10 @@ describe('Testa o componente NotFound.js', () => {
   test('Testa se página mostra a imagem', () => {
     render(<NotFound />);
     const notFoundImage = screen.getByAltText(/page requested was not found/i);
+    // Source: "https://testing-library.com/docs/queries/byalttext/"
 
     expect(notFoundImage).toBeInTheDocument();
     expect(notFoundImage.src).toContain('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
-    // Source: "https://testing-library.com/docs/queries/byalttext/"
+    // Source: "https://stackoverflow.com/questions/60509527/jestreact-native-testing-library-how-to-test-an-image-src"
   });
 });

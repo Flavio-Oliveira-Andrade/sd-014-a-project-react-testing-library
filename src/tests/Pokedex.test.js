@@ -60,4 +60,18 @@ describe('5º verifica funcionamento do componente Pokedex', () => {
     userEvent.click(buttonNext);
     expect(screen.getByText('Rapidash')).toBeInTheDocument();
   });
+  it('verifica o funcionamento do button all, se reseta o filtro', () => {
+    renderWithRouter(<App />);
+    const buttonTypeFire = screen.getByRole('button', { name: 'Fire' });
+    const buttonAll = screen.getByRole('button', { name: 'All' });
+    const buttonNext = screen.getByRole('button', { name: 'Próximo pokémon' });
+    expect(buttonAll).toBeInTheDocument();
+
+    userEvent.click(buttonTypeFire);
+    userEvent.click(buttonAll);
+    expect(screen.getByTestId('pokemon-type')).toHaveTextContent(/electric/i);
+
+    userEvent.click(buttonNext);
+    expect(screen.getByTestId('pokemon-type')).toHaveTextContent(/fire/i);
+  });
 });

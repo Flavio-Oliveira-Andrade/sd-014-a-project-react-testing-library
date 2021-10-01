@@ -45,4 +45,17 @@ describe('Componente Pokemon', () => {
     const { pathname } = history.location;
     expect(pathname).toBe(`/pokemons/${id}`);
   });
+
+  test('renderiza uma estrela para um Pokémon favoritado', () => {
+    renderWithRouter(<Pokemon pokemon={ pokemons[0] } isFavorite />);
+    const favoriteStar = screen.getByRole('img', { name: /marked as favorite/i });
+    expect(favoriteStar).toBeInTheDocument();
+    expect(favoriteStar.src.match(/star-icon.svg$/i)).toHaveLength(1);
+  });
+
+  test('não renderiza uma estrela para um Pokémon não favoritado', () => {
+    renderWithRouter(<Pokemon pokemon={ pokemons[0] } isFavorite={ false } />);
+    const favoriteStar = screen.queryByRole('img', { name: /marked as favorite/i });
+    expect(favoriteStar).not.toBeInTheDocument();
+  });
 });

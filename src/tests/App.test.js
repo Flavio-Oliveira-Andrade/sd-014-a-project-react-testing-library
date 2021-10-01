@@ -34,7 +34,7 @@ test(
         <App />
       </Router>,
     );
-    expect(screen.getByText(/Encountered pokémons/i));
+    expect(screen.getByText(/Encountered pokémons/i)).toBeInTheDocument();
   },
 );
 
@@ -46,7 +46,7 @@ test(
         <About />
       </Router>,
     );
-    expect(screen.getByText(/About pokédex/i));
+    expect(screen.getByText(/About pokédex/i)).toBeInTheDocument();
   },
 );
 
@@ -58,7 +58,7 @@ test(
         <FavoritePokemons />
       </Router>,
     );
-    expect(screen.getByText(/Favorite pokémons/i));
+    expect(screen.getByText(/Favorite pokémons/i)).toBeInTheDocument();
   },
 );
 
@@ -70,7 +70,7 @@ test(
         <NotFound />
       </Router>,
     );
-    expect(screen.getByText(/Page requested not found/i));
+    expect(screen.getByText(/Page requested not found/i)).toBeInTheDocument();
   },
 );
 

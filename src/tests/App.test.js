@@ -10,7 +10,6 @@ describe('Teste se o topo da aplicaçãocontémumconjunto fixo de links denavega
     render(
       <MemoryRouter><App /></MemoryRouter>,
     );
-    // <MemoryRouter><App /></MemoryRouter>,
     const tituloHome = screen.getByRole('heading', {
       level: 1,
       name: /pokédex/i,

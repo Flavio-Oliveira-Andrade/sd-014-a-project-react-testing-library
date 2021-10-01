@@ -3,6 +3,7 @@ import React from 'react';
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router-dom';
 import App from '../App';
+import { About, FavoritePokemons } from '../components';
 
 test(
   'o primeiro link possui o text "Home", "About" e "Favorite Pokemons", respectivamente',
@@ -34,6 +35,30 @@ test(
       </Router>,
     );
     expect(screen.getByText(/Encountered pokémons/i));
+  },
+);
+
+test(
+  'redireciona aplicação para a página "About" ao clicar no link respectivo', () => {
+    const history = createMemoryHistory();
+    render(
+      <Router history={ history }>
+        <About />
+      </Router>,
+    );
+    expect(screen.getByText(/About pokédex/i));
+  },
+);
+
+test(
+  'redireciona para a página "Pokémons favoritados" ao clicar no link respectivo', () => {
+    const history = createMemoryHistory();
+    render(
+      <Router history={ history }>
+        <FavoritePokemons />
+      </Router>,
+    );
+    expect(screen.getByText(/Favorite pokémons/i));
   },
 );
 

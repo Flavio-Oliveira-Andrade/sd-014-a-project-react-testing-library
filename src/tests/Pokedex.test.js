@@ -21,11 +21,10 @@ describe('Teste o componente <Pokedex.js />', () => {
     renderWithRouter(
       <App />,
     );
-    const buttonNext = screen.getByTestId('next-pokemon');
-
-    userEvent.click(buttonNext);
-
-    expect(buttonNext.type).toBe('button');
+    const buttonNext = screen.getByRole('button', {
+      name: 'Próximo pokémon',
+    });
+    expect(buttonNext).toBeInTheDocument();
   });
 
   it('Teste se é mostrado apenas um Pokémon por vez.', () => {

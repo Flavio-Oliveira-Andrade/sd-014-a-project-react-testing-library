@@ -3,7 +3,6 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import App from '../App';
-import { About, FavoritePokemons, NotFound } from '../components';
 
 test(
   'contém um navigation com links "Home", "About" e "Favorite Pokemons", respectivamente',

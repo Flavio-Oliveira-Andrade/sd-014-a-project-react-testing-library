@@ -24,3 +24,17 @@ test(
     expect(favoritePokemons).toBeInTheDocument();
   },
 );
+
+test(
+  'redireciona aplicação para página inicial ao clicar no link "Home"', () => {
+    const history = createMemoryHistory();
+    render(
+      <Router history={ history }>
+        <App />
+      </Router>,
+    );
+    expect(screen.getByText(/Encountered pokémons/i));
+  },
+);
+
+// https://testing-library.com/docs/example-react-router/

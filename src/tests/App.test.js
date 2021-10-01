@@ -5,6 +5,7 @@ import renderWithRouter from './renderWithRouter/renderWithRouter';
 
 describe('testa o component App e seus links', () => {
   beforeEach(() => renderWithRouter(<App />));
+
   it('testa os links pela posição da classe', () => {
     const links = screen.getAllByRole('link');
     expect(links[0].href).toBe('http://localhost/');

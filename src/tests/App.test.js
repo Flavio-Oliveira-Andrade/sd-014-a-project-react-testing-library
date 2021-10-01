@@ -32,4 +32,3 @@ describe('Testa redirecionamentos dentro do componente App', () => {
     expect(noMatch).toBeInTheDocument();
   });
 });
-test('', () => {});

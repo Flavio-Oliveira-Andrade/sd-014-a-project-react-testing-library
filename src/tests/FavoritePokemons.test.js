@@ -16,7 +16,6 @@ describe('Página Favoritos', () => {
 
   test('mostra uma lista dos pokémons favoritos', async () => {
     renderWithRouter(<App />);
-    // const message = 'No favorite pokemon found';
     const pkmnDetailsLink = screen.getByRole('link', { name: /more details/i });
     const pkmnName = screen.getByTestId('pokemon-name').innerHTML;
     userEvent.click(pkmnDetailsLink);

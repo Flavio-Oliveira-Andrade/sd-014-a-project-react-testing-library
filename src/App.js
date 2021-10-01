@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter,Switch, Route, Link } from 'react-router-dom';
 
 import {
   About,
@@ -71,23 +71,23 @@ class App extends Component {
     const favoritePokemons = pokemons.filter(({ id }) => isPokemonFavoriteById[id]);
 
     return (
-      <Switch>
-        <Route
-          exact
-          path="/"
-          render={ ({ match }) => this.renderPokedex(match) }
-        />
-        <Route
-          path="/pokemons/:id"
-          render={ ({ match }) => this.renderPokemonDetails(match) }
-        />
-        <Route
-          path="/favorites"
-          render={ () => <FavoritePokemons pokemons={ favoritePokemons } /> }
-        />
-        <Route path="/about" component={ About } />
-        <Route component={ NotFound } />
-      </Switch>
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={ ({ match }) => this.renderPokedex(match) }
+          />
+          <Route
+            path="/pokemons/:id"
+            render={ ({ match }) => this.renderPokemonDetails(match) }
+          />
+          <Route
+            path="/favorites"
+            render={ () => <FavoritePokemons pokemons={ favoritePokemons } /> }
+          />
+          <Route path="/about" component={ About } />
+          <Route component={ NotFound } />
+        </Switch>
     );
   }
 
@@ -95,11 +95,10 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Pokédex</h1>
-        <p>Início projeto</p>
         <nav>
-          <Link className="link" to="/">{`Home`}</Link>
-          <Link className="link" to="/about">{`About`}</Link>
-          <Link className="link" to="/favorites">{`Favorite Pokémons`}</Link>
+            <Link className="link" to="/">{`Home`}</Link>
+            <Link className="link" to="/about">{`About`}</Link>
+            <Link className="link" to="/favorites">{`Favorite Pokémons`}</Link>
         </nav>
         {this.renderRoutes()}
       </div>

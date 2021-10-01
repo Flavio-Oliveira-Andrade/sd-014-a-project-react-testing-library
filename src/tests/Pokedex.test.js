@@ -6,7 +6,7 @@ import pokeProps from './mocks/pokeMocks';
 import Pokedex from '../components/Pokedex';
 import renderWithRouter from '../utils/renderWithRouter';
 
-describe('Página Pokedex', () => {
+describe('Componente Pokedex', () => {
   const TEST_ID_NAME = 'pokemon-name';
   const TEST_ID_TYPE = 'pokemon-type';
   const TEST_ID_TYPE_BTN = 'pokemon-type-button';

@@ -14,10 +14,12 @@ describe('6º verifica o funcionamento do componente Pokemon', () => {
 
     const nameElement = screen.getByTestId('pokemon-name');
     const typeElement = screen.getByTestId('pokemon-type');
-    const weightElement = screen.getByTestId('pokemon-weight');
+    const weightPokemon = screen.getByTestId('pokemon-weight');
     expect(nameElement).toHaveTextContent(name);
     expect(typeElement).toHaveTextContent(type);
-    expect(weightElement).toHaveTextContent(`${value} ${measurementUnit}`);
+    expect(weightPokemon).toHaveTextContent(
+      `Average weight: ${value} ${measurementUnit}`,
+    );
 
     const imgElement = screen.getByRole('img', { name: `${name} sprite` });
     expect(imgElement).toBeInTheDocument();

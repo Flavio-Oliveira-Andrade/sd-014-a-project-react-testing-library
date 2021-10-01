@@ -107,4 +107,3 @@ class App extends Component {
 }
 
 export default App;
-//comentario aleatorio pra fazer o pull request

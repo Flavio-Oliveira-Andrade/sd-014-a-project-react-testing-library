@@ -1,30 +1,11 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import renderWithRouter from './services/renderWithRouter';
+import renderWithRouter from './utils/renderWithRouter';
 import { Pokemon } from '../components';
+import pokemons from '../data';
 
-const MOCKED_PKM = {
-  id: 25,
-  name: 'Pikachu',
-  type: 'Electric',
-  averageWeight: {
-    value: '6.0',
-    measurementUnit: 'kg',
-  },
-  image: 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
-  moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Pikachu_(Pok%C3%A9mon)',
-  foundAt: [
-    {
-      location: 'Kanto Viridian Forest',
-      map: 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png',
-    },
-    {
-      location: 'Kanto Power Plant',
-      map: 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
-    },
-  ],
-};
+const MOCKED_PKM = pokemons[0];
 const { averageWeight: { measurementUnit, value }, id, image, name, type } = MOCKED_PKM;
 
 describe('tests Pokemon.js component', () => {

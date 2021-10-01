@@ -1,7 +1,7 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import renderWithRouter from './services/renderWithRouter';
+import renderWithRouter from './utils/renderWithRouter';
 import App from '../App';
 
 describe('tests App.js', () => {
@@ -9,9 +9,7 @@ describe('tests App.js', () => {
   + 'clicks on and renders the Home page', () => {
     const { history } = renderWithRouter(<App />);
 
-    const homeLink = screen.getByRole('link', {
-      name: /home/i,
-    });
+    const homeLink = screen.getByRole('link', { name: /Home/ });
     expect(homeLink).toBeInTheDocument();
 
     userEvent.click(homeLink);
@@ -23,9 +21,7 @@ describe('tests App.js', () => {
   + 'clicks on and renders the About page', () => {
     const { history } = renderWithRouter(<App />);
 
-    const aboutLink = screen.getByRole('link', {
-      name: /about/i,
-    });
+    const aboutLink = screen.getByRole('link', { name: /About/ });
     expect(aboutLink).toBeInTheDocument();
 
     userEvent.click(aboutLink);
@@ -37,9 +33,7 @@ describe('tests App.js', () => {
   + 'clicks on and renders the Favorite Pokémons page', () => {
     const { history } = renderWithRouter(<App />);
 
-    const favoritePkmLink = screen.getByRole('link', {
-      name: /favorite pokémons/i,
-    });
+    const favoritePkmLink = screen.getByRole('link', { name: /Favorite Pokémons/ });
     expect(favoritePkmLink).toBeInTheDocument();
 
     userEvent.click(favoritePkmLink);
@@ -53,7 +47,7 @@ describe('tests App.js', () => {
 
     const notFoundText = screen.getByRole('heading', {
       level: 2,
-      name: /page requested not found/i,
+      name: /Page requested not found/,
     });
     expect(notFoundText).toBeInTheDocument();
   });

@@ -1,7 +1,7 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 import { NotFound } from '../components';
-import renderWithRouter from './services/renderWithRouter';
+import renderWithRouter from './utils/renderWithRouter';
 
 describe('tests NotFound.js component', () => {
   it('renders a "Page requested not found" text', () => {
@@ -9,7 +9,7 @@ describe('tests NotFound.js component', () => {
 
     const notFoundText = screen.getByRole('heading', {
       level: 2,
-      name: /page requested not found/i,
+      name: /Page requested not found/,
     });
     expect(notFoundText).toBeInTheDocument();
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
-import renderWithRouter from './services/renderWithRouter';
+import renderWithRouter from './utils/renderWithRouter';
 import pokemons from '../data';
 
 const types = pokemons.map((pokemon) => pokemon.type)
@@ -18,16 +18,14 @@ describe('tests Pokedex.js component', () => {
   it('renders the "Encountered pokémons" heading text', () => {
     const headingText = screen.getByRole('heading', {
       level: 2,
-      name: /encountered pokémons/i,
+      name: /Encountered pokémons/,
     });
     expect(headingText).toBeInTheDocument();
   });
 
   it('renders the next button named "Próximo Pokémon"'
   + 'on next button click, renders only the next pokémon', () => {
-    const nextBtn = screen.getByRole('button', {
-      name: /próximo pokémon/i,
-    });
+    const nextBtn = screen.getByRole('button', { name: /Próximo pokémon/ });
     expect(nextBtn).toBeInTheDocument();
 
     const currentPkm = screen.getAllByTestId(DATA_TEST_NAME);
@@ -49,9 +47,7 @@ describe('tests Pokedex.js component', () => {
 
   it('must select only those pokémon of the type selected on click', () => {
     types.forEach((type) => {
-      const typeBtn = screen.getByRole('button', {
-        name: type,
-      });
+      const typeBtn = screen.getByRole('button', { name: type });
       userEvent.click(typeBtn);
       const selectedType = screen.getByTestId('pokemon-type');
       expect(selectedType).toHaveTextContent(type);
@@ -59,12 +55,10 @@ describe('tests Pokedex.js component', () => {
   });
 
   it('renders an "All" button that resets to default list', () => {
-    const allBtn = screen.getByRole('button', {
-      name: /all/i,
-    });
+    const allBtn = screen.getByRole('button', { name: /All/ });
     expect(allBtn).toBeInTheDocument();
     userEvent.click(allBtn);
     const firstPkm = screen.getByTestId(DATA_TEST_NAME);
-    expect(firstPkm).toHaveTextContent(/pikachu/i);
+    expect(firstPkm).toHaveTextContent(/Pikachu/);
   });
 });

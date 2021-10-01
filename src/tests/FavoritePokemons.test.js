@@ -4,7 +4,8 @@ import renderWithRouter from '../renderWithRouter';
 
 import FavoritePokemons from '../components/FavoritePokemons';
 
-describe('3º ao receber lista de pokemnos o component FavoritePokemons renderiza os', () => {
+describe('3º ao receber array de pokemons'
++ 'o component FavoritePokemons renderiza os', () => {
   test('quando não há pokemons favoritado, renderizar a msg correta', () => {
     render(<FavoritePokemons />);
     const mensagemNotFound = screen.getByText('No favorite pokemon found');

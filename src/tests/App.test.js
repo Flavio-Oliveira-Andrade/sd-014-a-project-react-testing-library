@@ -3,7 +3,7 @@ import React from 'react';
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router-dom';
 import App from '../App';
-import { About, FavoritePokemons } from '../components';
+import { About, FavoritePokemons, NotFound } from '../components';
 
 test(
   'o primeiro link possui o text "Home", "About" e "Favorite Pokemons", respectivamente',
@@ -59,6 +59,18 @@ test(
       </Router>,
     );
     expect(screen.getByText(/Favorite pokémons/i));
+  },
+);
+
+test(
+  'redireciona para a página "Not Found" ao direcionar a um link inexistente', () => {
+    const history = createMemoryHistory();
+    render(
+      <Router history={ history }>
+        <NotFound />
+      </Router>,
+    );
+    expect(screen.getByText(/Page requested not found/i));
   },
 );
 

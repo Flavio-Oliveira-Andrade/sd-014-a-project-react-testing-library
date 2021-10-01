@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
-// Projeto começando, woohoo!
 import {
   About,
   FavoritePokemons,
@@ -8,14 +7,11 @@ import {
   Pokedex,
   PokemonDetails,
 } from './components';
-
 import {
   readFavoritePokemonIds,
   updateFavoritePokemons,
 } from './services/pokedexService';
-
 import pokemons from './data';
-
 import './App.css';
 
 class App extends Component {

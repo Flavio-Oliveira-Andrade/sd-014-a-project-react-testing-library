@@ -18,6 +18,8 @@ describe('About.js test', () => {
 
   test('Testa se a página contém dois parágrafos com texto sobre a Pokédex', () => {
     renderWithRouter(<About />);
+    // Recurso extraido de duvida no Slak: https://trybecourse.slack.com/archives/C023LSXLGG7/p1633002986441900?thread_ts=1633002970.441800&cid=C023LSXLGG7
+
     const paragrafos = screen.getAllByText(/poké/i, { selector: 'p' });
     expect(paragrafos.length).toBe(2);
   });

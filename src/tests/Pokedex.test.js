@@ -53,7 +53,7 @@ describe('Teste do componente Pokedex', () => {
     expect(allTypes).toBeInTheDocument();
     expect(allTypes.innerHTML).toBe('All');
 
-    fireEvent.click(allTypes);
+    userEvent.click(allTypes);
     expect(pokemonName).toHaveTextContent(name);
     expect(pokemonType).toHaveTextContent(type);
     expect(pokemonWeight).toHaveTextContent(

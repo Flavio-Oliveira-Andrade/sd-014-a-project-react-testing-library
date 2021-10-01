@@ -1,10 +1,9 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { Router } from 'react-router';
 import { MemoryRouter } from 'react-router-dom';
-import { createMemoryHistory } from 'history';
 import App from '../App';
+import renderWithRouter from './utils/renderWithRouter';
 
 describe('Testando App.js', () => {
   test('testa se os links "Home", "About",'
@@ -85,15 +84,9 @@ describe('Testando App.js', () => {
   });
 
   test('redireciona para "Not Found", quando digitar uma rota não existe', () => {
-    const changeHistory = createMemoryHistory();
+    const { history } = renderWithRouter(<App />);
 
-    render(
-      <Router history={ changeHistory }>
-        <App />
-      </Router>,
-    );
-
-    changeHistory.push('/rota-inexistente');
+    history.push('/rota-inexistente');
     const testingNotFound = screen.getByRole('heading', {
       level: 2,
       name: /page requested not found/i,

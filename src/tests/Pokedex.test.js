@@ -35,4 +35,38 @@ describe('Página Pokedex', () => {
     const pkmnName4 = screen.getByTestId(TEST_ID_NAME).innerHTML;
     expect(pkmnName4).toBe(pokeProps.pokemons[0].name);
   });
+
+  test('renderiza botões de filtro por tipo', () => {
+    renderWithRouter(<Pokedex { ...pokeProps } />);
+
+    const typeButtons = screen.getAllByTestId('pokemon-type-button');
+    expect(typeButtons.length).toBe(2);
+    expect(typeButtons[0].innerHTML).toBe('Electric');
+    expect(typeButtons[1].innerHTML).toBe('Fire');
+  });
+
+  test('ao clicar em um botão de tipo, mostra apenas pokémons do tipo', () => {
+    renderWithRouter(<Pokedex { ...pokeProps } />);
+    const TEST_ID_TYPE = 'pokemon-type';
+
+    const typeButtons = screen.getAllByTestId('pokemon-type-button');
+    userEvent.click(typeButtons[1]);
+
+    let pkmnType = screen.getByTestId(TEST_ID_TYPE).innerHTML;
+    expect(pkmnType).toBe(typeButtons[1].innerHTML);
+
+    const nextPkmnButton = screen.getByRole('button', { name: 'Próximo pokémon' });
+
+    // changing some times the pokémon to make sure
+    userEvent.click(nextPkmnButton);
+    userEvent.click(nextPkmnButton);
+    userEvent.click(nextPkmnButton);
+
+    pkmnType = screen.getByTestId(TEST_ID_TYPE).innerHTML;
+    expect(pkmnType).toBe(typeButtons[1].innerHTML);
+
+    userEvent.click(typeButtons[0]);
+    pkmnType = screen.getByTestId(TEST_ID_TYPE).innerHTML;
+    expect(pkmnType).toBe(typeButtons[0].innerHTML);
+  });
 });

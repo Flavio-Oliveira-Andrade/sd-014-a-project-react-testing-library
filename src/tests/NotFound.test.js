@@ -17,7 +17,7 @@ describe(' Testes NotFoundc.', () => {
   test('pagina deve mostrar a imagem', () => {
     render(<NotFound />);
 
-    const img = screen.getByAltText(/Pikachu/);
-    expect(img).toHaveAttribute('src', 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
+    const imgPokemon = screen.getByAltText(/Pikachu/);
+    expect(imgPokemon).toHaveAttribute('src', 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
   });
 });

@@ -31,6 +31,7 @@ describe('Testa o componente <Pokedex.js />', () => {
 
     expect(pokemonName).toHaveTextContent(pokemons[0].name);
 
+    expect(nextButton).toBeInTheDocument();
     fireEvent.click(nextButton);
 
     expect(pokemonName).toHaveTextContent(pokemons[1].name);

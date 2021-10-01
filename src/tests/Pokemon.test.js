@@ -1,5 +1,6 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../utils/renderWithRouter';
 import { pokemons, isPokemonFavoriteById } from './mocks/pokeMocks';
 
@@ -26,5 +27,22 @@ describe('Componente Pokemon', () => {
     expect(pkmnType).toBe(type);
     expect(pkmnWeight).toBe(`Average weight: ${value} ${measurementUnit}`);
     expect(pkmnImage.src).toBe(imagePath);
+  });
+
+  test('renderiza um link para detalhes do Pokémon', () => {
+    const { id } = pokemons[0];
+
+    const { history } = renderWithRouter(
+      <Pokemon
+        pokemon={ pokemons[0] }
+        isFavorite={ isPokemonFavoriteById[id] }
+      />,
+    );
+
+    const detailsLink = screen.getByRole('link', { name: /details/i });
+    userEvent.click(detailsLink);
+
+    const { pathname } = history.location;
+    expect(pathname).toBe(`/pokemons/${id}`);
   });
 });

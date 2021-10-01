@@ -44,14 +44,33 @@ describe('Teste o componente <Pokedex.js />', () => {
     const filterPokemonButton = screen.getByRole('button', {
       name: /psychic/i,
     });
-    const buttonType = screen.getAllByTestId('pokemon-type-button');
-    const pokemonsTypeNumber = 7;
     const filterPokemonType = screen.getByTestId('pokemon-type');
 
     userEvent.click(filterPokemonButton);
 
-    expect(buttonType).toHaveLength(pokemonsTypeNumber); // Referencia https://jestjs.io/pt-BR/docs/expect#tohavelengthnumber
     expect(filterPokemonType.innerHTML).toEqual('Psychic');
+  });
+
+  it('A Pokédex deve circular somente pelos pokémons daquele tipo;', () => {
+    renderWithRouter(
+      <App />,
+    );
+    const buttonType = screen.getAllByTestId('pokemon-type-button');
+    const pokemonsTypeNumber = 7;
+
+    expect(buttonType).toHaveLength(pokemonsTypeNumber); // Referencia https://jestjs.io/pt-BR/docs/expect#tohavelengthnumber
+  });
+
+  it('O texto do botão deve corresponder ao nome do tipo, ex. Psychic', () => {
+    renderWithRouter(
+      <App />,
+    );
+    const buttonPsychic = screen.getByRole('button', {
+      name: /psychic/i,
+    });
+    const buttonText = screen.getByText(/psychic/i);
+    userEvent.click(buttonPsychic);
+    expect(buttonText).toBeInTheDocument();
   });
 
   it('Teste se a Pokédex contém um botão para resetar o filtro', () => {

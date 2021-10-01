@@ -61,9 +61,10 @@ describe('Teste o componente <Pokedex.js />', () => {
     const resetFilterButton = screen.getByRole('button', {
       name: /all/i,
     });
+    const loadingPage = screen.getByText(/pikachu/i);
 
     userEvent.click(resetFilterButton);
 
-    expect(resetFilterButton).toBeInTheDocument();
+    expect(loadingPage).toBeInTheDocument();
   });
 });

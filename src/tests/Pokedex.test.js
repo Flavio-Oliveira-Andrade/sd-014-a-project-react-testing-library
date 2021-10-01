@@ -17,18 +17,22 @@ describe('Página Pokedex', () => {
 
   test('mostra o próximo Pokémon ao clicar no botão "Próximo"', () => {
     renderWithRouter(<Pokedex { ...pokeProps } />);
-    const TEST_ID = 'pokemon-name';
-    const pkmnName = screen.getByTestId(TEST_ID).innerHTML;
+    const TEST_ID_NAME = 'pokemon-name';
+    const nextPkmnButton = screen.getByRole('button', { name: 'Próximo pokémon' });
+
+    const pkmnName = screen.getByTestId(TEST_ID_NAME).innerHTML;
     expect(pkmnName).toBe(pokeProps.pokemons[0].name);
 
-    const nextPkmnButton = screen.getByRole('button', { name: 'Próximo pokémon' });
     userEvent.click(nextPkmnButton);
-
-    const pkmnName2 = screen.getByTestId(TEST_ID).innerHTML;
+    const pkmnName2 = screen.getByTestId(TEST_ID_NAME).innerHTML;
     expect(pkmnName2).toBe(pokeProps.pokemons[1].name);
 
     userEvent.click(nextPkmnButton);
-    const pkmnName3 = screen.getByTestId(TEST_ID).innerHTML;
-    expect(pkmnName3).toBe(pokeProps.pokemons[0].name);
+    const pkmnName3 = screen.getByTestId(TEST_ID_NAME).innerHTML;
+    expect(pkmnName3).toBe(pokeProps.pokemons[2].name);
+
+    userEvent.click(nextPkmnButton);
+    const pkmnName4 = screen.getByTestId(TEST_ID_NAME).innerHTML;
+    expect(pkmnName4).toBe(pokeProps.pokemons[0].name);
   });
 });

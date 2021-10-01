@@ -54,6 +54,29 @@ module.exports = {
       summary: 'The flame on its tail shows the strength of its life force.'
     + 'If it is weak, the flame also burns weakly.',
     },
+    {
+      id: 78,
+      name: 'Rapidash',
+      type: 'Fire',
+      averageWeight: {
+        value: '95.0',
+        measurementUnit: 'kg',
+      },
+      image: 'https://cdn2.bulbagarden.net/upload/5/58/Spr_5b_078.png',
+      moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Rapidash_(Pok%C3%A9mon)',
+      foundAt: [
+        {
+          location: 'Kanto Route 28',
+          map: 'https://cdn2.bulbagarden.net/upload/5/5b/Kanto_Route_28_Map.png',
+        },
+        {
+          location: 'Johto Mount Silver',
+          map: 'https://cdn2.bulbagarden.net/upload/9/95/Johto_Mt_Silver_Map.png',
+        },
+      ],
+      summary: 'At full gallop, its four hooves barely touch the ground'
+      + 'because it moves so incredibly fast.',
+    },
   ],
-  isPokemonFavoriteById: { 25: true, 4: false },
+  isPokemonFavoriteById: { 25: true, 4: false, 78: true },
 };

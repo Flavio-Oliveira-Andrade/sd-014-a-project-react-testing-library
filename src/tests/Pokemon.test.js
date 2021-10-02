@@ -33,7 +33,7 @@ describe('Testa se o componente Pokemon.js: ', () => {
   });
 
   it('Mostra uma estrela ao exibir um pokemon favoritado', () => {
-    const { history } = renderWithRouter(<App />);
+    renderWithRouter(<App />);
     const detailsLink = screen.getByRole('link', { name: /more details/i });
     userEvent.click(detailsLink);
 

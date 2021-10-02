@@ -136,4 +136,5 @@ test('Teste se a Pokédex contém um botão para resetar o filtro', () => {
   expect(screen.getByText('teste3')).toBeInTheDocument();
   userEvent.click(botao);
   expect(next).toBeEnabled();
+  expect(screen.getAllByTestId('pokemon-type-button')).toHaveLength(2 + 1);
 });

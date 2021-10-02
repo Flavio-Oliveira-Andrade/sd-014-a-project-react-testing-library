@@ -3,7 +3,7 @@ import { screen } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from './renderWithRouter/renderWithRouter';
 
-describe('testa o component App e seus links', () => {
+describe('testa o componente App e seus links', () => {
   beforeEach(() => renderWithRouter(<App />));
 
   it('testa os links pela posição da classe', () => {

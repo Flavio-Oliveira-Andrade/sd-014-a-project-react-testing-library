@@ -17,23 +17,15 @@ describe('Testa o componente <Pokedex.js/>', () => {
     expect(pokemon).toHaveTextContent('Pikachu');
     fireEvent.click(botao);
     expect(pokemon).toHaveTextContent('Charmander');
+    fireEvent.click(botao);
+    expect(pokemon).toHaveTextContent('Caterpie');
+    fireEvent.click(botao);
+    expect(pokemon).toHaveTextContent('Ekans');
   });
   test('O botão deve conter o texto Próximo pokémon', () => {
     renderWithRouter(<App />);
     const text = screen.getByRole('button', { name: /próximo pokémon/i });
     expect(text).toBeInTheDocument();
-  });
-  test('Os próximos Pokémons da lista devem ser mostrados, ao clicar no botão;', () => {
-    renderWithRouter(<App />);
-    const botao = screen.getByRole('button', { name: /próximo pokémon/i });
-    const pokemon = screen.getByTestId('pokemon-name');
-    expect(pokemon).toHaveTextContent('Pikachu');
-    fireEvent.click(botao);
-    expect(pokemon).toHaveTextContent('Charmander');
-    fireEvent.click(botao);
-    expect(pokemon).toHaveTextContent('Caterpie');
-    fireEvent.click(botao);
-    expect(pokemon).toHaveTextContent('Ekans');
   });
   test('Testa se é mostrado apenas um Pokémon por vez.', () => {
     renderWithRouter(<App />);
@@ -65,10 +57,10 @@ describe('Testa o componente <Pokedex.js/>', () => {
   test('Testa se a Pokédex contém um botão para resetar o filtro', () => {
     renderWithRouter(<App />);
     const btn = screen.getByRole('button', { name: /all/i });
-    const pokemon = screen.getByTestId('pokemon-name');
+    const pokemon = screen.getByText(/average weight: 6\.0 kg/i);
     expect(btn).toBeInTheDocument();
     expect(btn).toBeVisible();
     fireEvent.click(btn);
-    expect(pokemon).toHaveTextContent('Pikachu');
+    expect(pokemon).toBeInTheDocument();
   });
 });

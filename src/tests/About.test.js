@@ -29,8 +29,8 @@ describe('testa o componente About.js', () => {
   test('testa se a página contém a respectiva imagem de uma Pokédex', () => {
     render(<About />, { wrapper: BrowserRouter });
 
-    const image = screen.getByRole('img', { name: 'Pokédex' });
-    expect(image).toBeInTheDocument();
+    const image = screen.getByRole('img', { src: 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png' });
+    expect(image.src).toBe('https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
   });
 });
 

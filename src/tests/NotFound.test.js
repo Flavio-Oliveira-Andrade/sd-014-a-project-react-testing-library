@@ -11,7 +11,7 @@ describe('Testa o componente <About.js/>', () => {
   });
   test('Testa se página mostra a imagem https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif', () => {
     renderWithRouter(<NotFound />);
-    const imag = screen.getByRole('img', { name: /the page requested was not found/i }).src;
+    const imag = screen.getByRole('img', { name: /requested was not found/i }).src;
     expect(imag).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
   });
 });

@@ -68,6 +68,7 @@ describe('Testa o componente Pokedex', () => {
     const pokeType = screen.getByTestId('pokemon-type');
     expect(pokeType.innerHTML).toStrictEqual(typeButtons[1].innerHTML);
     const nextButton = screen.getByTestId('next-pokemon');
+    expect(nextButton.innerHTML).toStrictEqual('Próximo pokémon');
     userEvent.click(nextButton);
     const pokeType2 = screen.getByTestId('pokemon-type');
     expect(pokeType.innerHTML).toStrictEqual(pokeType2.innerHTML);

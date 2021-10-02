@@ -10,7 +10,7 @@ describe('Página PokemonDetails', () => {
   const mockOnUpdateFavoritePokemons = jest.fn();
 
   test('renderiza detalhes sobre um Pokémon', () => {
-    const { id, name } = pokemons[0];
+    const { id, name, summary } = pokemons[0];
     renderWithRouter(
       <PokemonDetails
         isPokemonFavoriteById={ isPokemonFavoriteById }
@@ -20,8 +20,18 @@ describe('Página PokemonDetails', () => {
       />,
     );
 
+    const detailsLink = screen.queryByRole('link', { name: /details/i });
+    expect(detailsLink).not.toBeInTheDocument();
+
     const title = screen.getByRole('heading',
-      { name: `${name} Details` });
+      { level: 2, name: `${name} Details` });
     expect(title).toBeInTheDocument();
+
+    const subtitle = screen.getByRole('heading',
+      { level: 2, name: 'Summary' });
+    expect(subtitle).toBeInTheDocument();
+
+    const summaryElement = screen.getByText(summary, { selector: 'p' });
+    expect(summaryElement).toBeInTheDocument();
   });
 });

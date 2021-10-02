@@ -11,7 +11,7 @@ describe('Verifique se aplicação contém um conjunto fixo de links de navegaç
     // Interagir com eles (se houver necessidade):
 
     // Fazer o teste / testes:
-    expect(screen.getByText('Home')).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Home' })).toBeInTheDocument();
   });
 
   it('Existem o texto "About" na página:', () => {
@@ -21,7 +21,7 @@ describe('Verifique se aplicação contém um conjunto fixo de links de navegaç
     // Interagir com eles (se houver necessidade):
 
     // Fazer o teste / testes:
-    expect(screen.getByText('About')).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'About' })).toBeInTheDocument();
   });
 
   it('Existem os respectivos texto "Favorite Pokémons" na página:', () => {
@@ -31,6 +31,6 @@ describe('Verifique se aplicação contém um conjunto fixo de links de navegaç
     // Interagir com eles (se houver necessidade):
 
     // Fazer o teste / testes:
-    expect(screen.getByText('Favorite Pokémons')).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Favorite Pokémons' })).toBeInTheDocument();
   });
 });

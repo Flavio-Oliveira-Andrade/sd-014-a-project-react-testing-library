@@ -2,8 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
-import  App  from '../App';
-import pokemons from '../data';
+import App from '../App';
 
 describe('Testa o componente Pokedex', () => {
   test('Testa se há o heading', () => {
@@ -25,7 +24,7 @@ describe('Testa o componente Pokedex', () => {
         <App />
       </MemoryRouter>,
     );
-    
+
     const pokeName = screen.getByTestId('pokemon-name');
     let pokemon = 'Pikachu';
     expect(pokeName.innerHTML).toStrictEqual(pokemon);
@@ -37,7 +36,6 @@ describe('Testa o componente Pokedex', () => {
     pokemon = 'Charmander';
     expect(pokeName.innerHTML).toStrictEqual(pokemon);
     expect(pokeName).toBeInTheDocument();
-
   });
 
   test('Testa se há apenas um pokemon por vez', () => {
@@ -62,8 +60,9 @@ describe('Testa o componente Pokedex', () => {
     });
     expect(allButton).toBeInTheDocument();
 
+    const length = 7;
     const typeButtons = screen.getAllByTestId('pokemon-type-button');
-    expect(typeButtons).toHaveLength(7);
+    expect(typeButtons).toHaveLength(length);
 
     userEvent.click(typeButtons[1]);
     const pokeType = screen.getByTestId('pokemon-type');
@@ -72,9 +71,6 @@ describe('Testa o componente Pokedex', () => {
     userEvent.click(nextButton);
     const pokeType2 = screen.getByTestId('pokemon-type');
     expect(pokeType.innerHTML).toStrictEqual(pokeType2.innerHTML);
-
-
-
   });
 
   test('Testa se a Pokédex contém um botão para resetar o filtro', () => {
@@ -88,6 +84,5 @@ describe('Testa o componente Pokedex', () => {
     });
     expect(allButton).toBeInTheDocument();
     userEvent.click(allButton);
-
   });
 });

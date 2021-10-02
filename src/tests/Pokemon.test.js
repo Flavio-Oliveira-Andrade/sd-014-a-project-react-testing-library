@@ -56,7 +56,8 @@ describe('Componente Pokemon', () => {
 
   test('não renderiza uma estrela para um Pokémon não favoritado', () => {
     renderWithRouter(<Pokemon pokemon={ pokemons[0] } isFavorite={ false } />);
-    const favoriteStar = screen.queryByRole('img', { name: /marked as favorite/i });
+    const favoriteStar = screen.queryByRole('img',
+      { name: `${pokemons[0].name} is marked as favorite` });
     expect(favoriteStar).not.toBeInTheDocument();
   });
 });

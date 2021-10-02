@@ -4,7 +4,7 @@ import renderWithRouter from '../services/RenderWithRouter';
 import { FavoritePokemons } from '../components';
 import pokemons from '../data';
 
-describe('Testa o componente <About.js/>', () => {
+describe('Testa o componente <FavoritePokemons.js/>', () => {
   test('Testa se é exibido na tela a mensagem No favorite pokemon found', () => {
     renderWithRouter(<FavoritePokemons />);
     expect(screen.getByText(/No favorite pokemon found/)).toBeInTheDocument();

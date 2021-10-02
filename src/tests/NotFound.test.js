@@ -3,10 +3,10 @@ import { screen } from '@testing-library/react';
 import renderWithRouter from '../services/RenderWithRouter';
 import { NotFound } from '../components';
 
-describe('Testa o componente <About.js/>', () => {
+describe('Testa o componente <NotFound.js/>', () => {
   test('Testa se página contém um heading com o texto Page requested not found', () => {
     renderWithRouter(<NotFound />);
-    const text = screen.getByRole('heading', { name: /requested not found/i });
+    const text = screen.getByRole('heading', { level: 2, name: /requested not found/i });
     expect(text).toBeInTheDocument();
   });
   test('Testa se página mostra a imagem https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif', () => {

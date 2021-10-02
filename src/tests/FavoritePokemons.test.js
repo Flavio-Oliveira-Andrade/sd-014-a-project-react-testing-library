@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import renderWithRouter from '../utilities/renderWithRouter';
 import FavoritePokemons from '../components/FavoritePokemons';
+
 import pokemons from '../data';
 
 describe('Testes do requisito 3', () => {

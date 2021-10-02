@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
-describe('Requisito 1', () => {
+describe('Testes do Requisito 1', () => {
   it('Testa se o primeiro link possui o texto Home', () => {
     renderWithRouter(<App />);
     const textHome = screen.getByText('Home');

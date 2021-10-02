@@ -12,3 +12,4 @@ const renderWhithRouter = (component) => {
 
 export default renderWhithRouter;
 
+//criação do arquivo com a ajuda da aula ao vivo do dia 28/09

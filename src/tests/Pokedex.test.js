@@ -17,16 +17,34 @@ describe('Elementos do componente <Pokedex/>', () => {
     renderWithRouter(<App />);
     const btnNextPokemon = screen.getByRole('button', { name: /próximo pokémon/i });
     userEvent.click(btnNextPokemon);
-    const pokemon = screen.getByText(/charmander/i);
+    const pokemon = screen.getByTestId('pokemon-name');
     expect(pokemon).toBeInTheDocument();
   });
 
+  it('É mostrado apenas um pokémon por vez', () => {
+    renderWithRouter(<App />);
+    const pokemons = screen.getAllByTestId('pokemon-name');
+    expect(pokemons).toHaveLength(1);
+  });
   it('A Pokédex tem os botões de filtro.', () => {
     renderWithRouter(<App />);
-    const btnTypePokemon = screen.getByRole('button', { name: /psychic/i });
-    userEvent.click(btnTypePokemon);
-    const pokemon = screen.getByText(/alakazam/i);
-    expect(pokemon).toBeInTheDocument();
+    const lenghtArray = 7;
+    const typesPokemon = screen.getAllByTestId('pokemon-type-button');
+    expect(typesPokemon).toHaveLength(lenghtArray);
+
+    const btnTypePsychic = screen.getByRole('button', { name: /psychic/i });
+    expect(btnTypePsychic).toBeInTheDocument();
+
+    // Circulando pelo tipo de Pokemon
+    userEvent.click(btnTypePsychic);
+    const firstPokemon = screen.getByText(/alakazam/i);
+    expect(firstPokemon).toBeInTheDocument();
+    const btnNext = screen.getByRole('button', { name: /próximo pokémon/i });
+    userEvent.click(btnNext);
+    const secondPokemon = screen.getByText(/mew/i);
+    expect(secondPokemon).toBeInTheDocument();
+    userEvent.click(btnNext);
+    expect(firstPokemon).toBeInTheDocument();
   });
 
   it('O botão All  está sempre visível na tela inicial e quando clicado mostra'

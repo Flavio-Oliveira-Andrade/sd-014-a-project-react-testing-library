@@ -48,7 +48,8 @@ describe('Componente Pokemon', () => {
 
   test('renderiza uma estrela para um Pokémon favoritado', () => {
     renderWithRouter(<Pokemon pokemon={ pokemons[0] } isFavorite />);
-    const favoriteStar = screen.getByRole('img', { name: /marked as favorite/i });
+    const favoriteStar = screen.getByRole('img',
+      { name: `${pokemons[0].name} is marked as favorite` });
     expect(favoriteStar).toBeInTheDocument();
     expect(favoriteStar.src.match(/star-icon.svg$/i)).toHaveLength(1);
   });

@@ -26,34 +26,32 @@ describe('Verifique se aplicação contém um conjunto fixo de links de navegaç
   });
 });
 
-describe('Verifique se os links são direcionados conforme o esperado:', () => {
-  it('Teste se a aplicação é redirecionada ao clicar no link "/"', () => {
-    // Acessar elementos da sua tela:
-    const { history } = RenderWithRouter(<App />);
-    // Interagir com eles (se houver necessidade):
-    fireEvent.click(screen.getByText('Home'));
-    // Fazer o teste / testes:
-    const { pathname } = history.location;
-    expect(pathname).toBe('/');
-  });
+it('Teste se a aplicação é redirecionada ao clicar no link "/"', () => {
+  // Acessar elementos da sua tela:
+  const { history } = RenderWithRouter(<App />);
+  // Interagir com eles (se houver necessidade):
+  fireEvent.click(screen.getByText('Home'));
+  // Fazer o teste / testes:
+  const { pathname } = history.location;
+  expect(pathname).toBe('/');
+});
 
-  it('Teste se a aplicação é redirecionada ao clicar no link "/about"', () => {
-    // Acessar elementos da sua tela:
-    const { history } = RenderWithRouter(<App />);
-    // Interagir com eles (se houver necessidade):
-    fireEvent.click(screen.getByText('About'));
-    // Fazer teste / testes:
-    const { pathname } = history.location;
-    expect(pathname).toBe('/about');
-  });
+it('Teste se a aplicação é redirecionada ao clicar no link "/about"', () => {
+  // Acessar elementos da sua tela:
+  const { history } = RenderWithRouter(<App />);
+  // Interagir com eles (se houver necessidade):
+  fireEvent.click(screen.getByText('About'));
+  // Fazer teste / testes:
+  const { pathname } = history.location;
+  expect(pathname).toBe('/about');
+});
 
-  it('Teste se aplicação é direcionada ao clicar no link "/favorites"', () => {
-    // Acessar elementos da sua tela:
-    const { history } = RenderWithRouter(<App />);
-    // Interagir com eles (se houver necessidade):
-    fireEvent.click(screen.getByText('Favorite Pokémons'));
-    // Fazer teste / testes:
-    const { pathname } = history.location;
-    expect(pathname).toBe('/favorites');
-  });
+it('Teste se aplicação é direcionada ao clicar no link "/favorites"', () => {
+  // Acessar elementos da sua tela:
+  const { history } = RenderWithRouter(<App />);
+  // Interagir com eles (se houver necessidade):
+  fireEvent.click(screen.getByText('Favorite Pokémons'));
+  // Fazer teste / testes:
+  const { pathname } = history.location;
+  expect(pathname).toBe('/favorites');
 });

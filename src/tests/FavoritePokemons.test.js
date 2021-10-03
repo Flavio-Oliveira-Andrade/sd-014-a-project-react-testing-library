@@ -15,8 +15,15 @@ describe('Teste o componente FavoritePokemons', () => {
   it('Teste se é exibido todos os cards de pokémons favoritados.', () => {
     renderWithRouter(<FavoritePokemons pokemons={ [pokemons[2]] } />);
     const namePoke = screen.getByText('Caterpie');
-    const testId = screen.getByTestId('pokemon-name');
+    const testIdName = screen.getByTestId('pokemon-name');
+    const typePoke = screen.getByText('Bug');
+    const testIdType = screen.getByTestId('pokemon-type');
+    const altImage = screen.getByAltText('Caterpie sprite');
+    const url = 'https://cdn2.bulbagarden.net/upload/8/83/Spr_5b_010.png';
     expect(namePoke).toBeInTheDocument();
-    expect(testId).toBeInTheDocument();
+    expect(testIdName).toBeInTheDocument();
+    expect(typePoke).toBeInTheDocument();
+    expect(testIdType).toBeInTheDocument();
+    expect(altImage).toHaveAttribute('src',url);
   });
 });

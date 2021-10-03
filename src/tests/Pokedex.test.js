@@ -44,6 +44,18 @@ describe('Requisito 5', () => {
      expect(screenName).toHaveTextContent(pokeName);
   });
   test('É mostrado apenas um Pokémon por vez', () => {
-
+    const setIs = App.setIsPokemonFavoriteById();
+    renderWithRouter(
+      <Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ setIs }
+      />,
+    );
+    pokemons.forEach(() => {
+      const pokemonsById = screen.getAllByTestId('pokemon-name');
+      expect(pokemonsById.length).toBe(1);
+      const btnNext = screen.getByText('Próximo pokémon');
+      fireEvent.click(btnNext);      
+    });
   });
 });

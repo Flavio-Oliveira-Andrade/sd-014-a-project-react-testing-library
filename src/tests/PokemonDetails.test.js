@@ -40,4 +40,4 @@ describe('Testa o componente <PokemonDetails.js/>', () => {
     fireEvent.click(fave);
     expect(faveYes).not.toBeInTheDocument();
   });
-});
+}); // teste

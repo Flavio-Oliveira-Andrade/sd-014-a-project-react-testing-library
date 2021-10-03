@@ -1,6 +1,6 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
-// import userEvent from '@testing-library/user-event';
+import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../utils/renderWithRouter';
 import { pokemons, isPokemonFavoriteById } from './mocks/pokeMocks';
 
@@ -61,5 +61,23 @@ describe('Página PokemonDetails', () => {
       expect(locationImages[index]).toBeInTheDocument();
       expect(locationImages[index].src).toBe(map);
     });
+  });
+  test('renderiza checkkbox para favoritar um pokémon', () => {
+    const { id } = pokemons[0];
+    renderWithRouter(
+      <PokemonDetails
+        isPokemonFavoriteById={ isPokemonFavoriteById }
+        match={ { params: { id: String(id) } } }
+        pokemons={ pokemons }
+        onUpdateFavoritePokemons={ mockOnUpdateFavoritePokemons }
+      />,
+    );
+
+    const checkbox = screen.getByRole('checkbox', { name: 'Pokémon favoritado?' });
+    expect(checkbox).toBeInTheDocument();
+
+  userEvent.click(checkbox);
+  expect(mockOnUpdateFavoritePokemons).toHaveBeenCalledTimes(1);
+  expect(mockOnUpdateFavoritePokemons).toHaveBeenCalledWith(id, false);
   });
 });

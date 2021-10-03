@@ -21,7 +21,9 @@ describe('Testa o componente <PokemonDetails.js/>', () => {
     renderWithRouter(<App />);
     const btn = screen.getByRole('link', { name: /more details/i });
     fireEvent.click(btn);
-    const details = screen.getByRole('heading', { level: 2, name: /game locations of/i });
+    const details = screen.getByRole('heading', {
+      level: 2,
+      name: /game locations of pikachu/i });
     expect(details).toBeInTheDocument();
     const local = screen.getAllByAltText(/location/i);
     expect(local).toHaveLength(2);

@@ -76,8 +76,8 @@ describe('Página PokemonDetails', () => {
     const checkbox = screen.getByRole('checkbox', { name: 'Pokémon favoritado?' });
     expect(checkbox).toBeInTheDocument();
 
-  userEvent.click(checkbox);
-  expect(mockOnUpdateFavoritePokemons).toHaveBeenCalledTimes(1);
-  expect(mockOnUpdateFavoritePokemons).toHaveBeenCalledWith(id, false);
+    userEvent.click(checkbox);
+    expect(mockOnUpdateFavoritePokemons).toHaveBeenCalledTimes(1);
+    expect(mockOnUpdateFavoritePokemons).toHaveBeenCalledWith(id, false);
   });
 });

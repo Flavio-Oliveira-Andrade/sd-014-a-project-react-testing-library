@@ -1,6 +1,6 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+// import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../utils/renderWithRouter';
 import { pokemons, isPokemonFavoriteById } from './mocks/pokeMocks';
 
@@ -33,5 +33,33 @@ describe('Página PokemonDetails', () => {
 
     const summaryElement = screen.getByText(summary, { selector: 'p' });
     expect(summaryElement).toBeInTheDocument();
+  });
+
+  test('renderiza seção de mapas com localizações do Pokémon', () => {
+    const { id, name, foundAt } = pokemons[0];
+    renderWithRouter(
+      <PokemonDetails
+        isPokemonFavoriteById={ isPokemonFavoriteById }
+        match={ { params: { id: String(id) } } }
+        pokemons={ pokemons }
+        onUpdateFavoritePokemons={ mockOnUpdateFavoritePokemons }
+      />,
+    );
+
+    const mapTitle = screen.getByRole('heading',
+      { level: 2, name: `Game Locations of ${name}` });
+    expect(mapTitle).toBeInTheDocument();
+
+    const locationNames = screen.getAllByText(/./i, { selector: 'em' });
+    const locationImages = screen.getAllByRole('img',
+      { name: `${name} location` });
+
+    foundAt.forEach(({ location, map }, index) => {
+      expect(locationNames[index]).toBeInTheDocument();
+      expect(locationNames[index].innerHTML).toBe(location);
+
+      expect(locationImages[index]).toBeInTheDocument();
+      expect(locationImages[index].src).toBe(map);
+    });
   });
 });

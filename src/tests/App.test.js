@@ -3,7 +3,7 @@ import { screen, fireEvent } from '@testing-library/react';
 import RenderWithRouter from './new-test/RenderWithRouter';
 import App from '../App';
 
-describe('Verifique se aplicação contém um conjunto fixo de links de navegação.', () => {
+describe('1. Teste o componente `<App.js />`:', () => {
   it('Existem os respectivos texto "Home" na página:', () => {
     // Acessar elementos da sua tela:
     RenderWithRouter(<App />);

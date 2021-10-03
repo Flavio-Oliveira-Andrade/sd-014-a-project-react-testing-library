@@ -32,16 +32,15 @@ describe('Requisito 5', () => {
       name: 'All',
     });
     expect(btnAll).toBeInTheDocument();
+    const screenName = screen.getByTestId('pokemon-name');
     pokemons.forEach((poke) => {
-      const screenName = screen.getByTestId('pokemon-name');
       const pokeName = poke.name;
       expect(screenName).toHaveTextContent(pokeName);
       const btnNext = screen.getByText('Próximo pokémon');
       fireEvent.click(btnNext);
     });
-    const screenName = screen.getByTestId('pokemon-name');
     const pokeName = pokemons[0].name;
-     expect(screenName).toHaveTextContent(pokeName);
+    expect(screenName).toHaveTextContent(pokeName);
   });
   test('É mostrado apenas um Pokémon por vez', () => {
     const setIs = App.setIsPokemonFavoriteById();
@@ -55,7 +54,68 @@ describe('Requisito 5', () => {
       const pokemonsById = screen.getAllByTestId('pokemon-name');
       expect(pokemonsById.length).toBe(1);
       const btnNext = screen.getByText('Próximo pokémon');
-      fireEvent.click(btnNext);      
+      fireEvent.click(btnNext);
+    });
+  });
+  test('A Pokédex tem os botões de filtro.', () => {
+    const setIs = App.setIsPokemonFavoriteById();
+    renderWithRouter(
+      <Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ setIs }
+      />,
+    );
+    const pokeTypes = [[[ 'Electric'],[ 1 ]], [[ 'Fire'],[ 2 ]], [[ 'Bug'],[ 1 ]], [[ 'Poison'],[ 1 ]], [[ 'Psychic'],[ 2 ]], [[ 'Normal'],[ 1 ]], [[ 'Dragon'],[ 1 ]]];
+
+    const btnTypes = screen.getAllByTestId('pokemon-type-button');
+    const btnElectric = screen.getByRole('button', {
+      name: 'Electric',
+    });
+    const btnFire = screen.getByRole('button', {
+      name: 'Fire',
+    });
+    const btnBug = screen.getByRole('button', {
+      name: 'Bug',
+    });
+    const btnPoison = screen.getByRole('button', {
+      name: 'Poison',
+    });
+    const btnPsychic = screen.getByRole('button', {
+      name: 'Psychic',
+    });
+    const btnNormal = screen.getByRole('button', {
+      name: 'Normal',
+    });
+    const btnDragon = screen.getByRole('button', {
+      name: 'Dragon',
+    });
+
+    expect(btnElectric).toBeInTheDocument();
+    expect(btnFire).toBeInTheDocument();
+    expect(btnBug).toBeInTheDocument();
+    expect(btnPoison).toBeInTheDocument();
+    expect(btnPsychic).toBeInTheDocument();
+    expect(btnNormal).toBeInTheDocument();
+    expect(btnDragon).toBeInTheDocument();
+    expect(btnTypes.length).toBe(pokeTypes.length);
+
+    pokeTypes.forEach(([type, number]) => {
+      const btnType = screen.getByRole('button', {
+        name: type,
+      });
+      fireEvent.click(btnType);
+      const pokeType = screen.getByTestId('pokemon-type');
+      expect(pokeType).toHaveTextContent(type);
+      const btnNext = screen.getByText('Próximo pokémon');
+      for (let i = 1; i < number; i += 1) {
+        fireEvent.click(btnNext);
+        expect(pokeType).toHaveTextContent(type);
+      }
+      const btnAll = screen.getByRole('button', {
+        name: 'All',
+      });
+      expect(btnAll)
+      expect(btnAll).toBeVisible();
     });
   });
 });

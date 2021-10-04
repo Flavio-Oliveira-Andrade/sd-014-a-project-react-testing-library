@@ -1,16 +1,12 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { MemoryRouter } from 'react-router-dom';
 import App from '../App';
+import renderWithRouter from './utils/renderWithRouter';
 
 describe('Testando Pokedex', () => {
   test('Verifica se a página contém um título "Encountered pokémons"', () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
+    renderWithRouter(<App />);
     const homeLink = screen.getByRole('link', {
       name: /home/i,
     });
@@ -23,32 +19,22 @@ describe('Testando Pokedex', () => {
   });
   test('Verifica se é exibido o próximo pokémon da lista ao clicar'
     + ' no botão "Próximo pokémon"', () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
-    const buttonNext = screen.getByTestId('next-pokemon');
+    renderWithRouter(<App />);
+    const buttonNext = screen.getByTestId('next-pokemon', {
+      name: /próximo pokémon/i,
+    });
     expect(buttonNext).toBeInTheDocument();
     const pokemon = screen.getByTestId('pokemon-name');
     userEvent.click(buttonNext);
     expect(pokemon.innerHTML).toBe('Charmander');
   });
   test('Verifica se é mostrado um pokémon por vez', () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
+    renderWithRouter(<App />);
     const pokemon = screen.getAllByTestId('pokemon-name');
     expect(pokemon).toHaveLength(1);
   });
   test('Verifica se a pokédex tem os botoes de filtro', () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
+    renderWithRouter(<App />);
     const buttonAll = screen.getByRole('button', {
       name: /all/i,
     });
@@ -65,11 +51,7 @@ describe('Testando Pokedex', () => {
     expect(pokeFilter.innerHTML).toEqual(poke2.innerHTML);
   });
   test('Verifica se a Pokédex contém um botão para resetar o filtro', () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
+    renderWithRouter(<App />);
     const buttonAll = screen.getByRole('button', {
       name: /all/i,
     });

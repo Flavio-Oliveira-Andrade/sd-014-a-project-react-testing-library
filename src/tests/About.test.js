@@ -15,13 +15,11 @@ describe('Testa o componente About.js', () => {
   test('Testa se a página contém dois parágrafos com texto sobre a Pokédex', () => {
     render(<About />);
     const aboutParagraphs = screen.getAllByText(/Pokémons/i);
-
     expect(aboutParagraphs).toHaveLength(2);
   });
 
   test('Testa se a página contém a imagem de uma Pokédex', () => {
     render(<About />);
-
     const aboutImage = screen.getByRole('img');
 
     expect(aboutImage).toBeInTheDocument();

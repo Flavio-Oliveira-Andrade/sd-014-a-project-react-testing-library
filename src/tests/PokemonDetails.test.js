@@ -3,6 +3,9 @@ import { screen, fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 import pokemons from '../data';
+import { readFavoritePokemonIds } from '../services/pokedexService';
+
+const MORE_DETAILS = 'More details';
 
 describe('Requisito 7', () => {
   test('As informações detalhadas do Pokémon selecionado são mostradas na tela.', () => {
@@ -11,7 +14,7 @@ describe('Requisito 7', () => {
       name: 'Dragon',
     });
     const link = screen.getByRole('link', {
-      name: 'More details',
+      name: MORE_DETAILS,
     });
     fireEvent.click(btnDragon);
     fireEvent.click(link);
@@ -36,7 +39,7 @@ describe('Requisito 7', () => {
       name: 'Bug',
     });
     const link = screen.getByRole('link', {
-      name: 'More details',
+      name: MORE_DETAILS,
     });
     fireEvent.click(btnBug);
     fireEvent.click(link);
@@ -58,5 +61,31 @@ describe('Requisito 7', () => {
 
     expect(headerLocations).toBeInTheDocument();
     expect(qtdLocations.length).toBe(foundAt.length);
+  });
+  test('O usuário pode favoritar um pokémon através da página de detalhes.', () => {
+    const NUMBER_TESTS = 4;
+    renderWithRouter(<App />);
+    const btnPoison = screen.getByRole('button', {
+      name: 'Poison',
+    });
+    const link = screen.getByRole('link', {
+      name: MORE_DETAILS,
+    });
+    fireEvent.click(btnPoison);
+    fireEvent.click(link);
+
+    const checkFavorite = screen.getByLabelText('Pokémon favoritado?');
+    expect(checkFavorite).toBeInTheDocument();
+
+    //  https://www.w3schools.com/jsref/jsref_includes_array.asp
+    for (let i = 1; i <= NUMBER_TESTS; i += 1) {
+      fireEvent.click(checkFavorite);
+      const favorites = readFavoritePokemonIds();
+      if (i % 2 === 0) {
+        expect(favorites.includes(pokemons[3].id)).toBeFalsy();
+      } else {
+        expect(favorites.includes(pokemons[3].id)).toBeTruthy();
+      }
+    }
   });
 });

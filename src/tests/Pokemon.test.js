@@ -54,7 +54,7 @@ describe('Testa a Pokemon.js e suas funcionalidades.', () => {
     const addfavorite = screen.getByText(/pokémon favorito?/i);
     fireEvent.click(addfavorite);
     const starLink = '/star-icon.svg';
-    const star = screen.getByAltText(/is marked as favorite/i);
+    const star = screen.getByAltText(`${name} is marked as favorite`);
     expect(star.src).toContain(starLink);
   });
 });

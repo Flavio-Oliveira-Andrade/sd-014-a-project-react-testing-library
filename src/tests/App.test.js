@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
@@ -13,4 +13,12 @@ describe('Test App component', () => {
     expect(aboutLink).toBeInTheDocument();
     expect(favoritePokemon).toBeInTheDocument();
   });
+
+  it('should redirect to the homepage by clicking on the Home link in the nav bar',
+    () => {
+      renderWithRouter(<App />);
+      const homeLink = screen.getByRole('link', { name: 'Home' });
+      fireEvent.click(homeLink);
+      expect(screen.getByRole('heading', { name: 'Pokédex' })).toBeInTheDocument();
+    });
 });

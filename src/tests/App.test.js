@@ -80,4 +80,17 @@ describe('1. Teste o componente `<App.js />`', () => {
       .getByRole('link', { name: 'Favorite Pokémons' }))
       .toHaveAttribute('href', '/favorites');
   });
+
+  it.skip('Teste se é direcionada `Not Found` se acessar uma URL desconhecida:', () => {
+    // Passo 1 - Acesse o componente:
+    render(
+      <Router>
+        <App />
+      </Router>,
+    );
+    // Passo 2 - Interagir com ele (caso haja necessidade):
+    // fireEvent.click(screen.getByText('Home'));
+    // Passo 3 - Faça o teste:
+    expect(/* Falta implementar esse requisito. */);
+  });
 });

@@ -8,4 +8,14 @@ describe('Test NotFound component', () => {
     const heading = screen.getByText(/Page requested not found/i);
     expect(heading).toBeInTheDocument();
   });
+
+  it('shows an image', () => {
+    render(<NotFound />);
+    const image = screen.getByRole('img', { name: /Pikachu crying/ });
+    expect(image).toBeInTheDocument();
+    expect(image).toHaveAttribute(
+      'src',
+      'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif',
+    );
+  });
 });

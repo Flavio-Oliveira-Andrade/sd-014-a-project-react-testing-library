@@ -9,4 +9,14 @@ describe('Test About component', () => {
     const heading = screen.getByRole('heading', { name: 'About Pokédex' });
     expect(heading).toBeInTheDocument();
   });
+
+  it('should contain two paragraphs', () => {
+    renderWithRouter(<About />);
+    const firstParagraph = screen.getByText(
+      /This application simulates a Pokédex/,
+    );
+    const secondParagraph = screen.getByText(/One can filter Pokémons by type/);
+    expect(firstParagraph).toBeInTheDocument();
+    expect(secondParagraph).toBeInTheDocument();
+  });
 });

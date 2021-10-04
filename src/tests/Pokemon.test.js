@@ -1,12 +1,9 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { MemoryRouter } from 'react-router-dom';
+import { screen } from '@testing-library/dom';
 import renderWithRouter from '../utils/renderWithRouter';
-
 import App from '../App';
 import data from '../data';
-import pokemons from '../data';
 
 describe('6. Teste o componente <Pokemon.js />', () => {
   it('Teste se é renderizado um card com as informações de determinado pokémon',
@@ -20,7 +17,7 @@ describe('6. Teste o componente <Pokemon.js />', () => {
       expect(screen.getByText(weightText)).toBeInTheDocument();
 
       const img = screen.getByAltText(`${data[0].name} sprite`);
-      expect(img).toHaveAttribute('src', pokemons[0].image);
+      expect(img).toHaveAttribute('src', data[0].image);
     });
 
   it('Teste se o card do Pokémon indicado na Pokédex'

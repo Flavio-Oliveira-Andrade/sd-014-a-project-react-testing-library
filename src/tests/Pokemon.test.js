@@ -25,4 +25,20 @@ describe('Requisito 6', () => {
     expect(pokeImg.src).toBe('https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
     expect(pokeImg.alt).toBe(`${pokemons[0].name} sprite`);
   });
+  test('O card do Pokémon indicado na Pokédex contém um link de navegação para '
+  + 'exibir detalhes deste Pokémon. O link deve possuir a '
+  + 'URL /pokemons/<id>, onde <id> é o id do Pokémon exibido', () => {
+    const setIs = App.setIsPokemonFavoriteById();
+    renderWithRouter(
+      <Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ setIs }
+      />,
+    );
+    const link = screen.getByRole('link', {
+      name: 'More details',
+    });
+    expect(link).toBeInTheDocument();
+    expect(link.href).toBe(`http://localhost/pokemons/${pokemons[0].id}`);
+  });
 });

@@ -36,6 +36,7 @@ test('verify filter buttons', () => {
   const buttons = screen.getAllByTestId('pokemon-type-button');
 
   expect(buttons).toHaveLength(FILTER_LENGTH);
+
   fireEvent.click(buttons[0]);
 
   const typeName = screen.getByTestId('pokemon-type');

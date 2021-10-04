@@ -15,9 +15,15 @@ describe('testando About', () => {
   });
   test('verificando se existe duas tag <p>', () => {
     RenderWithRouter(<About />);
-    const tagP = screen.getAllByTestId('tag-p');
+    const tagP1 = screen.getByText(
+      /This application simulates a Pokédex, a digital encyclopedia containing/i,
+    );
+    const tagP2 = screen.getByText(
+      /This application simulates a Pokédex, a digital encyclopedia containing/i,
+    );
 
-    expect(tagP).toHaveLength(2);
+    expect(tagP1).toBeInTheDocument();
+    expect(tagP2).toBeInTheDocument();
   });
   test('testando se existe a imagem do Pokedex', () => {
     RenderWithRouter(<About />);

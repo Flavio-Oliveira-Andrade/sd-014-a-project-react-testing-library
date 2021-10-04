@@ -2,14 +2,16 @@ import React from 'react';
 import {
   screen,
 } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import App from '../App';
 import renderWithRouter from './utils/renderWithRouter';
-import userEvent from '@testing-library/user-event';
+
+const routerDetails = '/pokemons/25';
 
 test('se as informações detalhadas do Pokémon são mostradas na tela.', () => {
   const { history } = renderWithRouter(<App />);
-  history.push('/pokemons/25');
+  history.push(routerDetails);
 
   const nameDetails = screen.getByRole('heading', { name: /pikachu details/i });
   expect(nameDetails).toBeInTheDocument();
@@ -29,7 +31,7 @@ test('se as informações detalhadas do Pokémon são mostradas na tela.', () =>
 
 test('se existe na página uma seção com os mapas.', () => {
   const { history } = renderWithRouter(<App />);
-  history.push('/pokemons/25');
+  history.push(routerDetails);
 
   const textSummary = screen.getByRole('heading', {
     level: 2,
@@ -52,7 +54,7 @@ test('se existe na página uma seção com os mapas.', () => {
 
 test('se o usuário pode favoritar um pokémon através da página de detalhes.', () => {
   const { history } = renderWithRouter(<App />);
-  history.push('/pokemons/25');
+  history.push(routerDetails);
 
   const checkboxFavorite = screen
     .getByRole('checkbox', { name: /pokémon favoritado\?/i });

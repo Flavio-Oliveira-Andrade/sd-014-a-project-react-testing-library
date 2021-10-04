@@ -23,12 +23,15 @@ beforeEach(() => {
 });
 
 describe('Teste o componente Pokedex.js', () => {
-  test('Teste se página contém um heading h2 com o texto Encountered pokémons', () => {
-    const h2 = screen.getByRole('heading', { level: 2, name: /Encountered pokémons/i });
+  it('Teste se página contém um heading h2 com o texto Encountered pokémons', () => {
+    const h2 = screen.getByRole('heading', {
+      level: 2,
+      name: /Encountered pokémons/i,
+    });
     expect(h2).toBeInTheDocument();
   });
 
-  test('ver se o próximo Pokémon da lista muda quando botão do pokémon é clicado', () => {
+  it('ver se o próximo Pokémon da lista muda quando botão do pokémon é clicado', () => {
     const button = screen.getByRole('button', { name: 'Próximo pokémon' });
     expect(button).toBeInTheDocument();
 
@@ -45,5 +48,19 @@ describe('Teste o componente Pokedex.js', () => {
         expect(firstPokemon).toBe(pokemons[0].name);
       }
     }));
+  });
+  it('testa todo o filtro ', () => {
+    const pkTypeMap = pokemons.map((pkmn) => pkmn.type);
+    const pkTypes = [...new Set(pkTypeMap)]; // ver em um gif essa função para tira repetição
+
+    const buttonTypes = screen.getAllByTestId('pokemon-type-button');
+    buttonTypes.forEach((btn, i) => {
+      expect(btn.innerHTML).toBe(pkTypes[i]);
+    });
+
+    const button = screen.getByRole('button', { name: 'All' });
+    userEvent.click(button);
+    const renderPk = screen.getByText('Pikachu');
+    expect(renderPk).toBeInTheDocument();
   });
 });

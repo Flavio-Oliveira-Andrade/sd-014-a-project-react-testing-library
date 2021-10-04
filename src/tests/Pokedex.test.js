@@ -28,9 +28,7 @@ describe('Testando Pokedex', () => {
         <App />
       </MemoryRouter>,
     );
-    const buttonNext = screen.getByTestId('next-pokemon', {
-      name: /próximo pokémon/i,
-    });
+    const buttonNext = screen.getByTestId('next-pokemon');
     expect(buttonNext).toBeInTheDocument();
     const pokemon = screen.getByTestId('pokemon-name');
     userEvent.click(buttonNext);

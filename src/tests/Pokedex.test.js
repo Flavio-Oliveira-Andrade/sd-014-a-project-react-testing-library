@@ -20,6 +20,7 @@ describe('Testa o componente Pokedex', () => {
         + ' quando o botão Próximo pokémon é clicado', () => {
     renderWithRouter(<App />);
     const btnNext = screen.getByTestId('next-pokemon');
+    expect(btnNext).toHaveTextContent('Próximo pokémon');
     const testId = screen.getByTestId(idName);
     fireEvent.click(btnNext);
     expect(testId).toHaveTextContent('Charmander');

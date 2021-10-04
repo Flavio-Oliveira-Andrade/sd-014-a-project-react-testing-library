@@ -41,4 +41,27 @@ describe('Requisito 6', () => {
     expect(link).toBeInTheDocument();
     expect(link.href).toBe(`http://localhost/pokemons/${pokemons[0].id}`);
   });
+  test('Ao clicar no link de navegação do Pokémon, é feito o '
+  + 'redirecionamento da aplicação para a página de detalhes de Pokémon. '
+  + 'A URL exibida no navegador muda para /pokemon/<id>, onde <id> '
+  + 'é o id do Pokémon cujos detalhes se deseja ver '
+  + 'E existe um ícone de estrela nos Pokémons favoritados', () => {
+    const { history } = renderWithRouter(<App />);
+    const btnFire = screen.getByRole('button', {
+      name: 'Fire',
+    });
+    const link = screen.getByRole('link', {
+      name: 'More details',
+    });
+    fireEvent.click(btnFire);
+    fireEvent.click(link);
+
+    const { pathname } = history.location;
+    const header2 = screen.getByRole('heading', {
+      name: `${pokemons[1].name} Details`,
+    });
+
+    expect(header2).toHaveTextContent('Charmander Details');
+    expect(pathname).toBe(`/pokemons/${pokemons[1].id}`);
+  });
 });

@@ -7,10 +7,12 @@ describe('Teste o componente <About.js />', () => {
     render(
       <About />,
     );
+
     const aboutText = screen.getByRole('heading', {
       level: 2,
       name: 'About Pokédex',
     });
+
     expect(aboutText).toBeInTheDocument();
   });
 
@@ -19,8 +21,11 @@ describe('Teste o componente <About.js />', () => {
       <About />,
     );
     const firstParagraph = screen.getByText(/This application simulates a Pokédex/i);
+
     const secondParagraph = screen.getByText(/One can filter Pokémons by type/i);
+
     expect(firstParagraph).toBeInTheDocument();
+
     expect(secondParagraph).toBeInTheDocument();
   });
 
@@ -29,6 +34,7 @@ describe('Teste o componente <About.js />', () => {
       <About />,
     );
     const imagePokedex = screen.getByRole('img');
+
     expect(imagePokedex).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png'); // Referencia : https://medium.com/reactbrasil/exemplo-de-teste-de-alto-n%C3%ADvel-com-react-testing-library-5c001e89d493
   });
 });

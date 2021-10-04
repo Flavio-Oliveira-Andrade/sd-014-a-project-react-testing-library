@@ -9,10 +9,12 @@ describe('Teste o componente <Pokedex.js />', () => {
     renderWithRouter(
       <App />,
     );
+
     const encounteredPokemonText = screen.getByRole('heading', {
       level: 2,
       name: /Encountered pokémons/i,
     });
+
     expect(encounteredPokemonText).toBeInTheDocument();
   });
 
@@ -21,9 +23,11 @@ describe('Teste o componente <Pokedex.js />', () => {
     renderWithRouter(
       <App />,
     );
+
     const buttonNext = screen.getByRole('button', {
       name: 'Próximo pokémon',
     });
+
     expect(buttonNext).toBeInTheDocument();
   });
 
@@ -31,6 +35,7 @@ describe('Teste o componente <Pokedex.js />', () => {
     renderWithRouter(
       <App />,
     );
+
     const onePokemon = screen.getAllByTestId('next-pokemon');
 
     expect(onePokemon).toHaveLength(1);
@@ -40,9 +45,11 @@ describe('Teste o componente <Pokedex.js />', () => {
     renderWithRouter(
       <App />,
     );
+
     const filterPokemonButton = screen.getByRole('button', {
       name: /psychic/i,
     });
+
     const filterPokemonType = screen.getByTestId('pokemon-type');
 
     userEvent.click(filterPokemonButton);
@@ -54,7 +61,9 @@ describe('Teste o componente <Pokedex.js />', () => {
     renderWithRouter(
       <App />,
     );
+
     const buttonType = screen.getAllByTestId('pokemon-type-button');
+
     const pokemonsTypeNumber = 7;
 
     expect(buttonType).toHaveLength(pokemonsTypeNumber); // Referencia https://jestjs.io/pt-BR/docs/expect#tohavelengthnumber
@@ -67,8 +76,11 @@ describe('Teste o componente <Pokedex.js />', () => {
     const buttonPsychic = screen.getByRole('button', {
       name: /psychic/i,
     });
+
     const buttonText = screen.getByText(/psychic/i);
+
     userEvent.click(buttonPsychic);
+
     expect(buttonText).toBeInTheDocument();
   });
 
@@ -76,9 +88,11 @@ describe('Teste o componente <Pokedex.js />', () => {
     renderWithRouter(
       <App />,
     );
+
     const resetFilterButton = screen.getByRole('button', {
       name: /all/i,
     });
+
     const loadingPage = screen.getByText(/pikachu/i);
 
     userEvent.click(resetFilterButton);

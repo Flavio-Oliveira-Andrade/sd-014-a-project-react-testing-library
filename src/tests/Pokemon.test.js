@@ -10,14 +10,21 @@ describe('Teste o componente <Pokemon.js />', () => {
     renderWithRouter(
       <App />,
     );
+
     const pokemonName = screen.getByTestId('pokemon-name');
+
     const pokemonType = screen.getByTestId('pokemon-type');
+
     const pokemonAverageWeight = screen.getByTestId('pokemon-weight');
+
     const pokemonImage = screen.getByAltText(/pikachu sprite/i);
 
     expect(pokemonName.innerHTML).toEqual('Pikachu');
+
     expect(pokemonType.innerHTML).toEqual('Electric');
+
     expect(pokemonAverageWeight.innerHTML).toEqual('Average weight: 6.0 kg');
+
     expect(pokemonImage).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
   });
 
@@ -26,6 +33,7 @@ describe('Teste o componente <Pokemon.js />', () => {
     renderWithRouter(
       <App />,
     );
+
     const pokemonDetailsLink = screen.getByRole('link', {
       name: /more details/i,
     });
@@ -39,10 +47,13 @@ describe('Teste o componente <Pokemon.js />', () => {
     renderWithRouter(
       <App />,
     );
+
     const pokemonDetailsLink = screen.getByRole('link', {
       name: /more details/i,
     });
+
     userEvent.click(pokemonDetailsLink);
+
     const pokemonDetailsTitle = screen.getByRole('heading', {
       name: 'Pikachu Details',
     });
@@ -55,12 +66,17 @@ describe('Teste o componente <Pokemon.js />', () => {
     const { history } = renderWithRouter(
       <App />,
     );
+
     const pokemonDetailsLink = screen.getByRole('link', {
       name: /more details/i,
     });
+
     userEvent.click(pokemonDetailsLink);
+
     const { pathname } = history.location;
+
     expect(pathname).toBe('/pokemons/25');
+
     const pokemonDetailsTitle = screen.getByRole('heading', {
       name: 'Pikachu Details',
     });
@@ -72,13 +88,19 @@ describe('Teste o componente <Pokemon.js />', () => {
     renderWithRouter(
       <App />,
     );
+
     const pokemonDetailsLink = screen.getByRole('link', {
       name: /more details/i,
     });
+
     userEvent.click(pokemonDetailsLink);
+
     const starMarked = screen.getByRole('checkbox');
+
     userEvent.click(starMarked);
+
     const imageAltTextPokemon = screen.getByAltText('Pikachu is marked as favorite');
+
     expect(imageAltTextPokemon).toHaveAttribute('src', '/star-icon.svg');
   });
 });

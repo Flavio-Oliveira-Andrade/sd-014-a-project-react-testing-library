@@ -66,7 +66,9 @@ describe('Teste o componente <FavoritePokemons.js />', () => {
     render(
       <FavoritePokemons />,
     );
+
     const messageNotFound = screen.getByText('No favorite pokemon found');
+
     expect(messageNotFound).toBeInTheDocument();
   });
 
@@ -74,9 +76,13 @@ describe('Teste o componente <FavoritePokemons.js />', () => {
     renderWithRouter(
       <FavoritePokemons pokemons={ pokemons } />,
     );
+
     const cardPikachu = screen.getAllByTestId('pokemon-name');
+
     const cardCharmander = screen.getAllByTestId('pokemon-name');
+
     expect(cardPikachu[0]).toBeInTheDocument();
+
     expect(cardCharmander[1]).toBeInTheDocument();
   });
 });

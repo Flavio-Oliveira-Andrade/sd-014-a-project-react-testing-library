@@ -6,7 +6,7 @@ describe('Teste o componente <About.js />', () => {
   beforeEach(() => render(<About />));
   it('verifica se a página contém um heading h2 com o texto About Pokédex', () => {
     const head = screen.getByRole('heading', {
-      name: 'About Pokédex',
+      name: /About Pokédex/i,
       level: 2,
     });
 

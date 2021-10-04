@@ -5,16 +5,16 @@ import renderWithRouter from '../utils/renderWithRouter';
 import Pokedex from '../components/Pokedex';
 import pokemons from '../data';
 
-const ARR_OF_ID = {
-  25: false,
+const OBJ_OF_ID = {
   4: false,
   10: false,
   23: false,
+  25: false,
   65: false,
-  151: false,
   78: false,
   143: false,
   148: false,
+  151: false,
 };
 const QTD_OF_TYPES = 7;
 
@@ -23,7 +23,7 @@ describe('Teste o componente <Pokedex />', () => {
     renderWithRouter(
       <Pokedex
         pokemons={ pokemons }
-        isPokemonFavoriteById={ ARR_OF_ID }
+        isPokemonFavoriteById={ OBJ_OF_ID }
       />,
     );
     expect(screen.getByRole('heading', {
@@ -36,7 +36,7 @@ describe('Teste o componente <Pokedex />', () => {
     renderWithRouter(
       <Pokedex
         pokemons={ pokemons }
-        isPokemonFavoriteById={ ARR_OF_ID }
+        isPokemonFavoriteById={ OBJ_OF_ID }
       />,
     );
     const nextPokemonButton = screen.getByTestId('next-pokemon');
@@ -57,7 +57,7 @@ describe('Teste o componente <Pokedex />', () => {
     renderWithRouter(
       <Pokedex
         pokemons={ pokemons }
-        isPokemonFavoriteById={ ARR_OF_ID }
+        isPokemonFavoriteById={ OBJ_OF_ID }
       />,
     );
     const p = screen.getByTestId('pokemon-name');
@@ -68,7 +68,7 @@ describe('Teste o componente <Pokedex />', () => {
     renderWithRouter(
       <Pokedex
         pokemons={ pokemons }
-        isPokemonFavoriteById={ ARR_OF_ID }
+        isPokemonFavoriteById={ OBJ_OF_ID }
       />,
     );
     const buttons = screen.getAllByTestId('pokemon-type-button');
@@ -79,7 +79,7 @@ describe('Teste o componente <Pokedex />', () => {
     renderWithRouter(
       <Pokedex
         pokemons={ pokemons }
-        isPokemonFavoriteById={ ARR_OF_ID }
+        isPokemonFavoriteById={ OBJ_OF_ID }
       />,
     );
     const button = screen.getByRole('button', {

@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import NotFound from '../components/NotFound';
 
 describe('Test NotFound component', () => {
-  it('contains a heading with text Page requested not found', () => {
+  it('contains a heading with text "Page requested not found"', () => {
     render(<NotFound />);
     const heading = screen.getByText(/Page requested not found/i);
     expect(heading).toBeInTheDocument();

@@ -5,7 +5,7 @@ import FavoritePokemons from '../components/FavoritePokemons';
 import pokemons from '../data';
 
 describe('Test FavoritePokemons component', () => {
-  it('should display No favorite pokemon found message', () => {
+  it('should display "No favorite pokemon found" message', () => {
     render(<FavoritePokemons />);
     const message = screen.getByText('No favorite pokemon found');
     expect(message).toBeInTheDocument();

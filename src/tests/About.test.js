@@ -3,13 +3,13 @@ import { render, screen } from '@testing-library/react';
 import About from '../components/About';
 
 describe('Test About component', () => {
-  it('should contain a heading with the text About Pokédex', () => {
+  it('contains a heading with the text "About Pokédex"', () => {
     render(<About />);
     const heading = screen.getByRole('heading', { name: 'About Pokédex' });
     expect(heading).toBeInTheDocument();
   });
 
-  it('should contain two paragraphs', () => {
+  it('contains two paragraphs', () => {
     render(<About />);
     const firstParagraph = screen.getByText(
       /This application simulates a Pokédex/,
@@ -19,7 +19,7 @@ describe('Test About component', () => {
     expect(secondParagraph).toBeInTheDocument();
   });
 
-  it('should contain an image of a Pokédex', () => {
+  it('contains an image of a Pokédex', () => {
     render(<About />);
     const image = screen.getByRole('img');
     expect(image).toBeInTheDocument();

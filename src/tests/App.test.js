@@ -8,7 +8,9 @@ describe('Test App component', () => {
     renderWithRouter(<App />);
     const homeLink = screen.getByRole('link', { name: 'Home' });
     const aboutLink = screen.getByRole('link', { name: 'About' });
-    const favoritePokemon = screen.getByRole('link', { name: 'Favorite Pokémons' });
+    const favoritePokemon = screen.getByRole('link', {
+      name: 'Favorite Pokémons',
+    });
     expect(homeLink).toBeInTheDocument();
     expect(aboutLink).toBeInTheDocument();
     expect(favoritePokemon).toBeInTheDocument();
@@ -19,6 +21,18 @@ describe('Test App component', () => {
       renderWithRouter(<App />);
       const homeLink = screen.getByRole('link', { name: 'Home' });
       fireEvent.click(homeLink);
-      expect(screen.getByRole('heading', { name: 'Pokédex' })).toBeInTheDocument();
+      expect(
+        screen.getByRole('heading', { name: 'Encountered pokémons' }),
+      ).toBeInTheDocument();
+    });
+
+  it('should redirect to the about page by clicking on the About link in the nav bar',
+    () => {
+      renderWithRouter(<App />);
+      const homeLink = screen.getByRole('link', { name: 'About' });
+      fireEvent.click(homeLink);
+      expect(
+        screen.getByRole('heading', { name: 'About Pokédex' }),
+      ).toBeInTheDocument();
     });
 });

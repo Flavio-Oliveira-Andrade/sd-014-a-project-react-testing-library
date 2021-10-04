@@ -5,8 +5,10 @@ import renderWithRouter from '../services/renderWithRouter';
 import App from '../App';
 
 describe('Testa o componente Pokedex.js', () => {
-  it('Deveria ter um h2 com o texto "Encountered pokémons"', () => {
+  beforeEach(() => {
     renderWithRouter(<App />);
+  });
+  it('Deveria ter um h2 com o texto "Encountered pokémons"', () => {
     const h2 = screen.getByRole('heading', {
       level: 2,
       name: /Encountered pokémons/i,
@@ -14,7 +16,6 @@ describe('Testa o componente Pokedex.js', () => {
     expect(h2).toBeInTheDocument();
   });
   it('Deveria ter um botão para o próximo pokémon funcionando corretamente', () => {
-    renderWithRouter(<App />);
     const nextButton = screen.getByRole('button', {
       name: /Próximo pokémon/i,
     });
@@ -24,7 +25,6 @@ describe('Testa o componente Pokedex.js', () => {
     expect(screen.getByText('Caterpie')).toBeInTheDocument();
   });
   it('Deveria existir um botão para resetar o filtro', () => {
-    renderWithRouter(<App />);
     const button = screen.getByRole('button', {
       name: /All/i,
     });
@@ -33,7 +33,12 @@ describe('Testa o componente Pokedex.js', () => {
     expect(screen.getByText('Pikachu')).toBeInTheDocument();
   });
   it('Deveria aparecer apenas um pokémon por vez', () => {
-    renderWithRouter(<App />);
     expect(screen.getAllByText('More details')).toHaveLength(1);
+  });
+  it('Deveria existir botões de filtragem dos pokémons pelos tipos', () => {
+    const pokemonsTypeButton = screen.getAllByTestId('pokemon-type-button');
+    pokemonsTypeButton.forEach((element, index) => {
+      expect(element).not.toEqual(pokemonsTypeButton[index + 1]);
+    });
   });
 });

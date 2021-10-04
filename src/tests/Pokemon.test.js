@@ -63,5 +63,12 @@ describe('Requisito 6', () => {
 
     expect(header2).toHaveTextContent('Charmander Details');
     expect(pathname).toBe(`/pokemons/${pokemons[1].id}`);
+
+    const checkFavorite = screen.getByLabelText('Pokémon favoritado?');
+    fireEvent.click(checkFavorite);
+    const imgFavorite = screen.getByAltText(`${pokemons[1].name} is marked as favorite`);
+
+    expect(imgFavorite).toBeInTheDocument();
+    expect(imgFavorite.src).toBe('http://localhost/star-icon.svg');
   });
 });

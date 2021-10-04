@@ -7,10 +7,6 @@ import renderWithRouter from './utils/renderWithRouter';
 describe('Testando Pokedex', () => {
   test('Verifica se a página contém um título "Encountered pokémons"', () => {
     renderWithRouter(<App />);
-    const homeLink = screen.getByRole('link', {
-      name: /home/i,
-    });
-    userEvent.click(homeLink);
     const titlePokedex = screen.getByRole('heading', {
       level: 2,
       name: /encountered pokémons/i,
@@ -25,30 +21,48 @@ describe('Testando Pokedex', () => {
     });
     expect(buttonNext).toBeInTheDocument();
     const pokemon = screen.getByTestId('pokemon-name');
+    expect(pokemon.innerHTML).toBe('Pikachu');
     userEvent.click(buttonNext);
     expect(pokemon.innerHTML).toBe('Charmander');
+    userEvent.click(buttonNext);
+    expect(pokemon.innerHTML).toBe('Caterpie');
   });
   test('Verifica se é mostrado um pokémon por vez', () => {
     renderWithRouter(<App />);
+    const buttonNext = screen.getByRole('button', {
+      name: /próximo pokémon/i,
+    });
+    expect(buttonNext).toBeInTheDocument();
     const pokemon = screen.getAllByTestId('pokemon-name');
+    expect(pokemon).toHaveLength(1);
+    userEvent.click(buttonNext);
     expect(pokemon).toHaveLength(1);
   });
   test('Verifica se a pokédex tem os botoes de filtro', () => {
     renderWithRouter(<App />);
-    const buttonAll = screen.getByRole('button', {
-      name: /all/i,
-    });
-    const lengthFilters = 7;
-    expect(buttonAll).toBeInTheDocument();
     const filtersButton = screen.getAllByTestId('pokemon-type-button');
-    expect(filtersButton).toHaveLength(lengthFilters);
-    userEvent.click(filtersButton[1]);
-    const pokeFilter = screen.getByTestId('pokemon-type');
-    expect(pokeFilter.innerHTML).toEqual(filtersButton[1].innerHTML);
+
+    filtersButton.forEach((btn) => {
+      expect(btn).toBeInTheDocument();
+    });
+
     const buttonNext = screen.getByTestId('next-pokemon');
+    expect(buttonNext).toBeInTheDocument();
+
+    const pokemonType = screen.getByTestId('pokemon-type');
+    const electricButton = screen.getByRole('button', {
+      name: /electric/i,
+    });
+    const buttonFire = screen.getByRole('button', {
+      name: /fire/i,
+    });
+    userEvent.click(electricButton);
+    expect(pokemonType.innerHTML).toBe('Electric');
+    userEvent.click(buttonFire);
+    expect(pokemonType.innerHTML).toBe('Fire');
     userEvent.click(buttonNext);
-    const poke2 = screen.getByTestId('pokemon-type');
-    expect(pokeFilter.innerHTML).toEqual(poke2.innerHTML);
+    expect(pokemonType.innerHTML).toBe('Fire');
+    expect(buttonFire.innerHTML).toBe('Fire');
   });
   test('Verifica se a Pokédex contém um botão para resetar o filtro', () => {
     renderWithRouter(<App />);
@@ -56,6 +70,15 @@ describe('Testando Pokedex', () => {
       name: /all/i,
     });
     expect(buttonAll).toBeInTheDocument();
+    const buttonNext = screen.getByRole('button', {
+      name: /próximo pokémon/i,
+    });
+    expect(buttonNext).toBeInTheDocument();
+
     userEvent.click(buttonAll);
+    const filterPokemon = screen.getByTestId('pokemon-type');
+    expect(filterPokemon.innerHTML).toBe('Electric');
+    userEvent.click(buttonNext);
+    expect(filterPokemon.innerHTML).toBe('Fire');
   });
 });

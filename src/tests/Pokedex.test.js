@@ -5,7 +5,6 @@ import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
 const dataId = 'pokemon-name';
-
 describe('Testa se o component Pokedex renderiza na tela', () => {
   it('Verifica se a pagina apresenta o título "Encounterd Pokémons" ', () => {
     renderWithRouter(<App />);

@@ -2,9 +2,18 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import App from '../App';
+import pokemons from '../data';
 import renderWithRouter from '../renderWithRouter';
 
 describe('testa componente "Pokedex"', () => {
+  const typesOfPokemon = pokemons.reduce((acc, curr) => {
+    if (acc.includes(curr.type)) {
+      return acc;
+    }
+    acc.push(curr.type);
+    return acc;
+  }, []);
+
   test('página contém um heading h2 com o texto "Encountered pokémons"', () => {
     renderWithRouter(<App />);
 
@@ -33,16 +42,26 @@ describe('testa componente "Pokedex"', () => {
   test('é mostrado apenas um Pokémon por vez', () => {
     renderWithRouter(<App />);
 
-    const pokemons = screen.queryAllByTestId('pokemon-name');
-    expect(pokemons.length).toBe(1);
+    const nomePokemons = screen.queryAllByTestId('pokemon-name');
+    expect(nomePokemons.length).toBe(1);
   });
 
   test('a Pokédex tem os botões de filtro', () => {
     renderWithRouter(<App />);
 
-    const filterButton = screen.queryAllByTestId(/pokemon-type-button/i);
+    const arrayTipo = screen.queryAllByTestId(/pokemon-type-button/i);
 
-    expect(filterButton).toBeInTheDocument();
+    expect(typesOfPokemon.length).toBe(arrayTipo.length);
+
+    typesOfPokemon.forEach((type) => {
+      const botaoTipo = screen.getAllByRole('button', {
+        name: type,
+      });
+
+      userEvent.click(botaoTipo[0]);
+
+      expect(botaoTipo.type).toBe(typesOfPokemon.type);
+    });
   });
 
   test('a Pokédex contém um botão para resetar o filtro', () => {
@@ -54,3 +73,5 @@ describe('testa componente "Pokedex"', () => {
     expect(screen.getByText(/Pikachu/i)).toBeInTheDocument();
   });
 });
+
+// https://github.com/tryber/sd-014-a-project-react-testing-library/pull/113/commits/2972be334a1e4f009ee5247f29ab804729fc6afa

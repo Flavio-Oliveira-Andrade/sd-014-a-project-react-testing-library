@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 import pokemons from '../data';
+import { Pokemon } from '../components';
 
 describe('testa o componente "Pokemon"', () => {
   test('renderiza um card com as informações de determinado pokémon', () => {
@@ -48,11 +49,12 @@ describe('testa o componente "Pokemon"', () => {
     expect(pikachu).toBeInTheDocument();
   });
 
-  test('URL exibida no navegador muda para /pokemon/<id>, <id> é o id do Pokémon', () => {
-    renderWithRouter(<App />);
-  });
-
   test('existe um ícone de estrela nos Pokémons favoritados', () => {
-    renderWithRouter(<App />);
+    renderWithRouter(<Pokemon pokemon={ pokemons[0] } isFavorite />);
+
+    const favorito = screen.getByRole('img', { name: /Pikachu is marked as favorite/i });
+
+    expect(favorito).toHaveAttribute('src', '/star-icon.svg');
+    expect(favorito).toHaveAttribute('alt', `${pokemons[0].name} is marked as favorite`);
   });
 });

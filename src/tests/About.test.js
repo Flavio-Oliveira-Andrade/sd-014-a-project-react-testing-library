@@ -1,17 +1,16 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
-import renderWithRouter from '../renderWithRouter';
+import { render, screen } from '@testing-library/react';
 import About from '../components/About';
 
 describe('Test About component', () => {
   it('should contain a heading with the text About Pokédex', () => {
-    renderWithRouter(<About />);
+    render(<About />);
     const heading = screen.getByRole('heading', { name: 'About Pokédex' });
     expect(heading).toBeInTheDocument();
   });
 
   it('should contain two paragraphs', () => {
-    renderWithRouter(<About />);
+    render(<About />);
     const firstParagraph = screen.getByText(
       /This application simulates a Pokédex/,
     );
@@ -21,7 +20,7 @@ describe('Test About component', () => {
   });
 
   it('should contain an image of a Pokédex', () => {
-    renderWithRouter(<About />);
+    render(<About />);
     const image = screen.getByRole('img');
     expect(image).toBeInTheDocument();
     expect(image).toHaveAttribute(

@@ -32,13 +32,25 @@ describe('testa componente "Pokedex"', () => {
 
   test('é mostrado apenas um Pokémon por vez', () => {
     renderWithRouter(<App />);
+
+    const pokemons = screen.queryAllByTestId('pokemon-name');
+    expect(pokemons.length).toBe(1);
   });
 
   test('a Pokédex tem os botões de filtro', () => {
     renderWithRouter(<App />);
+
+    const filterButton = screen.queryAllByTestId(/pokemon-type-button/i);
+
+    expect(filterButton).toBeInTheDocument();
   });
 
   test('a Pokédex contém um botão para resetar o filtro', () => {
     renderWithRouter(<App />);
+
+    const allTypesButton = screen.getByRole('button', { name: /All/i });
+
+    userEvent.click(allTypesButton);
+    expect(screen.getByText(/Pikachu/i)).toBeInTheDocument();
   });
 });

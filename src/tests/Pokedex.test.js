@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import App from '../App';
 
-const nextPokemon = 'next-pokemon';
+const nextPokemon = 'Próximo pokémon';
 
 describe('Testa o componente Pokedex', () => {
   it('Testa se página contém um heading h2'
@@ -18,7 +18,7 @@ describe('Testa o componente Pokedex', () => {
   it('Testa se é exibido o próximo Pokémon da lista'
     + 'quando o botão Próximo pokémon é clicado.', () => {
     render(<App />, { wrapper: MemoryRouter });
-    const nextPokemonButton = screen.getByTestId(nextPokemon);
+    const nextPokemonButton = screen.getByText(nextPokemon);
     const currentPokemon = screen.getByTestId('pokemon-name');
     fireEvent.click(nextPokemonButton);
     expect(currentPokemon.innerHTML).toStrictEqual('Charmander');
@@ -27,7 +27,7 @@ describe('Testa o componente Pokedex', () => {
   it('Os próximos Pokémons da lista devem ser mostrados,'
     + ' um a um, ao clicar sucessivamente no botão.', () => {
     render(<App />, { wrapper: MemoryRouter });
-    const nextPokemonButton = screen.getByTestId(nextPokemon);
+    const nextPokemonButton = screen.getByText(nextPokemon);
     const currentPokemon = screen.getAllByTestId('pokemon-name');
     expect(currentPokemon.length).toStrictEqual(1);
     fireEvent.click(nextPokemonButton);
@@ -57,17 +57,18 @@ describe('Testa o componente Pokedex', () => {
     const type = ['Electric', 'Fire', 'Bug', 'Poison',
       'Psychic', 'Psychic', 'Fire', 'Normal', 'Dragon'];
     typeButtons.forEach((button, index) => {
-      const nextPokemonButton = screen.getByTestId(nextPokemon);
+      const nextPokemonButton = screen.getByText(nextPokemon);
       const currentPokemonType = screen.getByTestId('pokemon-type');
       expect(currentPokemonType.innerHTML).toBe(type[index]);
       fireEvent.click(nextPokemonButton);
     });
   });
+
   it('Testa se existe o botão All e sua funcionalidade', () => {
     render(<App />, { wrapper: MemoryRouter });
     const allButton = screen.getByText('All');
     expect(allButton).toBeInTheDocument();
-    const nextPokemonButton = screen.getByTestId(nextPokemon);
+    const nextPokemonButton = screen.getByText(nextPokemon);
     const currentPokemonType = screen.getByTestId('pokemon-type');
     fireEvent.click(nextPokemonButton);
     fireEvent.click(nextPokemonButton);

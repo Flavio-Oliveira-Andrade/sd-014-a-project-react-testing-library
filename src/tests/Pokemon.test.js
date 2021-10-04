@@ -1,7 +1,9 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import Pokemon from '../components/Pokemon';
 import renderWithRouter from '../components/Rotas';
+import App from '../App';
 
 const fakePikachu = {
   id: 25,
@@ -27,6 +29,8 @@ const fakePikachu = {
    hard berries with electricity to make them tender enough to eat.`,
 };
 
+const detalhes = 'More details';
+
 describe(' renderizado um card com as informações de determinado pokémon', () => {
   it('Testando renderizado um card', () => {
     renderWithRouter(<Pokemon pokemon={ fakePikachu } isFavorite />);
@@ -50,5 +54,43 @@ describe(' renderizado um card com as informações de determinado pokémon', ()
     expect(cartPokemonImgPokemon).toBeInTheDocument();
     expect(cartPokemonImgPokemon).toHaveAttribute('src', fakePikachu.image);
     expect(cartPokemonImgPokemon).toHaveAttribute('alt', `${fakePikachu.name} sprite`);
+  });
+
+  it('Clicando no link e redirecionando para detalhes de Pokemon ', () => {
+    renderWithRouter(<App pokemon={ fakePikachu } isFavorite />);
+    const linkDetalhes = screen.getByRole('link', {
+      name: detalhes,
+    });
+    expect(linkDetalhes).toBeInTheDocument();
+    userEvent.click(linkDetalhes);
+
+    const tituloH2 = screen.getByRole('heading', {
+      level: 2,
+      name: `${fakePikachu.name} Details`,
+    });
+    expect(tituloH2).toBeInTheDocument();
+  });
+
+  it('Testando se existe um ícone de estrela nos Pokémons favoritados', () => {
+    renderWithRouter(<App />);
+    const linkDetalhes = screen.getByRole('link', {
+      name: detalhes,
+    });
+    expect(linkDetalhes).toBeInTheDocument();
+
+    userEvent.click(linkDetalhes);
+
+    const checkboxCheck = screen.getByRole('checkbox', {
+      name: 'Pokémon favoritado?',
+    });
+    expect(checkboxCheck).toBeInTheDocument();
+
+    userEvent.click(checkboxCheck);
+
+    const imgFavorite = screen.getByAltText(/favorite/);
+    expect(imgFavorite).toBeInTheDocument();
+    expect(imgFavorite).toHaveAttribute('src', '/star-icon.svg');
+    expect(imgFavorite).toHaveAttribute('alt',
+      `${fakePikachu.name} is marked as favorite`);
   });
 });

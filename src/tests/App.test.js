@@ -5,7 +5,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 
-describe('Teste se o topo da aplicaçãocontémumconjunto fixo de links denavegação', () => {
+describe('Teste se o topo da aplicaçãocontémumconjunto fixo de links navegação', () => {
   test('O primeiro link deve possuir o texto Home', () => {
     render(
       <MemoryRouter><App /></MemoryRouter>,

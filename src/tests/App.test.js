@@ -7,11 +7,6 @@ import App from '../App';
 
 describe('Testa o componente App.js', () => {
   test('Testa se a aplicação contém um conjunto fixo de links de navegação', () => {
-    // render(
-    //   <Router history={ history }>
-    //     <App />
-    //   </Router>,
-    // );
     renderWithRouter(<App />);
 
     const pageHome = screen.getByText(/Home/i);

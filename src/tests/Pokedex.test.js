@@ -43,6 +43,7 @@ describe('Testando o componente Pokedex', () => {
   it('Teste se a Pokédex tem os botões de filtro.', () => {
     const filtraTipos = [...new Set(pokemons
       .reduce((types, { type }) => [...types, type], []))];
+      // https://dicasdejavascript.com.br/javascript-como-remover-valores-repetidos-de-um-array/
     const buttons = screen.getAllByTestId('pokemon-type-button');
     buttons.forEach((btn, index) => expect(btn.innerHTML).toBe(filtraTipos[index]));
     const buttonAll = screen.getByRole('button', { name: 'All' });

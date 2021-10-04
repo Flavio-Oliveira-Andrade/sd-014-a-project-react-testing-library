@@ -5,81 +5,65 @@ import { MemoryRouter } from 'react-router-dom';
 import renderWithRouter from '../utils/renderWithRouter';
 
 import App from '../App';
+import data from '../data';
+import pokemons from '../data';
 
-describe('1 - Teste o componente <App.js />', () => {
-  it('Teste se o topo da aplicação contém um conjunto fixo de links de navegação',
+describe('6. Teste o componente <Pokemon.js />', () => {
+  it('Teste se é renderizado um card com as informações de determinado pokémon',
     () => {
-      render(
-        <MemoryRouter>
-          <App />
-        </MemoryRouter>,
-      );
-      const homeLink = screen.getByRole('link', {
-        name: /home/i,
-      });
-      const aboutLink = screen.getByRole('link', {
-        name: /about/i,
-      });
-      const favLink = screen.getByRole('link', {
-        name: /Favorite Pokémons/i,
-      });
-      expect(homeLink).toBeInTheDocument();
-      expect(aboutLink).toBeInTheDocument();
-      expect(favLink).toBeInTheDocument();
+      renderWithRouter(<App />);
+      expect(screen.getByTestId('pokemon-name')).toHaveTextContent(data[0].name);
+      expect(screen.getByTestId('pokemon-type')).toHaveTextContent(data[0].type);
+      const weight = data[0].averageWeight.value;
+      const unit = data[0].averageWeight.measurementUnit;
+      const weightText = `Average weight: ${weight} ${unit}`;
+      expect(screen.getByText(weightText)).toBeInTheDocument();
+
+      const img = screen.getByAltText(`${data[0].name} sprite`);
+      expect(img).toHaveAttribute('src', pokemons[0].image);
     });
 
-  it('redirecionar para a URL / ao clicar no link Home da barra de navegação',
-    () => {
-      render(
-        <MemoryRouter>
-          <App />
-        </MemoryRouter>,
-      );
-      const homeLink = screen.getByRole('link', {
-        name: /home/i,
-      });
-      userEvent.click(homeLink);
-      expect(screen.getByText('Encountered pokémons')).toBeInTheDocument();
+  it('Teste se o card do Pokémon indicado na Pokédex'
+  + 'contém um link de navegação para exibir detalhes deste Pokémon.',
+  () => {
+    renderWithRouter(<App />);
+    const detailsLink = screen.getByRole('link', {
+      name: /More details/i,
     });
+    const linkTo = `/pokemons/${data[0].id}`;
+    expect(detailsLink).toHaveAttribute('href', linkTo);
+  });
 
-  it('redirecionar para a URL /about ao clicar no link Home da barra de navegação',
-    () => {
-      render(
-        <MemoryRouter>
-          <App />
-        </MemoryRouter>,
-      );
-      const aboutLink = screen.getByRole('link', {
-        name: /about/i,
-      });
-      userEvent.click(aboutLink);
-      expect(screen.getByText('About Pokédex')).toBeInTheDocument();
-    });
-
-  it('redirecionar para a URL /favorites ao clicar no link Home da barra de navegação',
-    () => {
-      render(
-        <MemoryRouter>
-          <App />
-        </MemoryRouter>,
-      );
-      const favLink = screen.getByRole('link', {
-        name: /Favorite Pokémons/i,
-      });
-      userEvent.click(favLink);
-      expect(screen.getByText('Favorite pokémons')).toBeInTheDocument();
-    });
-
-  it('Teste se a aplicação é redirecionada para a página Not Found'
-  + ' ao entrar em uma URL desconhecida',
+  it('Teste se ao clicar no link de navegação do Pokémon, é feito o redirecionamento'
+  + 'da aplicação para a página de detalhes de Pokémon',
   () => {
     const { history } = renderWithRouter(<App />);
-    history.push('/rota-que-nao-existe');
-
-    const notFoundText = screen.getByRole('heading', {
-      level: 2,
-      name: /Page requested not found /i,
+    const detailsLink = screen.getByRole('link', {
+      name: /More details/i,
     });
-    expect(notFoundText).toBeInTheDocument();
+    userEvent.click(detailsLink);
+    expect(screen.getByText(/summary/i)).toBeInTheDocument();
+    expect(screen.getByText(/Game Locations of/i)).toBeInTheDocument();
+    const currentPath = history.location.pathname;
+    expect(currentPath).toBe(`/pokemons/${data[0].id}`);
   });
+
+  it('Teste se existe um ícone de estrela nos Pokémons favoritados',
+    () => {
+      renderWithRouter(<App />);
+      const home = screen.getByRole('link', {
+        name: /Home/i,
+      });
+      const detailsLink = screen.getByRole('link', {
+        name: /More details/i,
+      });
+
+      userEvent.click(detailsLink);
+      const addFavorite = screen.getByRole('checkbox');
+      userEvent.click(addFavorite);
+      userEvent.click(home);
+
+      const img = screen.getByAltText('Pikachu is marked as favorite');
+      expect(img).toHaveAttribute('src', '/star-icon.svg');
+    });
 });

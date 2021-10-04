@@ -46,4 +46,13 @@ describe('Test App component', () => {
     });
     expect(favoritesPage).toBeInTheDocument();
   });
+
+  it('should redirect to Not Found page by entering an unknown URL', () => {
+    const { history } = renderWithRouter(<App />);
+    history.push('/unknown');
+    const notFoundPage = screen.getByRole('heading', {
+      name: /page requested not found/i,
+    });
+    expect(notFoundPage).toBeInTheDocument();
+  });
 });

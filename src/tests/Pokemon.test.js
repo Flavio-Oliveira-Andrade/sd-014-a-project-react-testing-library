@@ -39,9 +39,8 @@ describe('Teste o componente <Pokemon.js />', () => {
   test('Teste se existe um ícone de estrela nos Pokémons favoritados.', () => {
     const { name } = pokemons[0];
     renderWithRouter(<Pokemon pokemon={ pokemons[0] } />);
-    const iconeStrela = screen.getByRole('img', {
-      name: /favorite/i,
-    });
+    const iconeStrela = screen.getByRole('img', { name: /favorite/i });
+    expect(iconeStrela).toBeInTheDocument();
     expect(iconeStrela).toHaveAttribute('src', '/star-icon.svg');
     expect(iconeStrela).toHaveAttribute('alt', `${name} is marked as favorite`);
   });

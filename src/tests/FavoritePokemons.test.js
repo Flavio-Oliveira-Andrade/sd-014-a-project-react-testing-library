@@ -1,14 +1,14 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
-import FavoritePokemons from '../components';
+import { FavoritePokemons } from '../components';
 
 describe('Teste o componente <FavoritePokemons.js />', () => {
   test('Teste se é exibido na tela a mensagem "No favorite pokemon found",'
   + 'se a pessoa não tiver pokémons favoritos', () => {
     renderWithRouter(<FavoritePokemons pokemons={ [] } />);
 
-    const paragraphs = screen.getByText('No favorite pokemon found');
+    const paragraphs = screen.getByText(/No favorite pokemon found/i);
     expect(paragraphs).toBeInTheDocument();
   });
 

@@ -24,6 +24,6 @@ describe('Teste o componente FavoritePokemons', () => {
     expect(testIdName).toBeInTheDocument();
     expect(typePoke).toBeInTheDocument();
     expect(testIdType).toBeInTheDocument();
-    expect(altImage).toHaveAttribute('src',url);
+    expect(altImage).toHaveAttribute('src', url);
   });
 });

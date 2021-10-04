@@ -6,6 +6,8 @@ import App from '../App';
 import pokemons from '../data';
 
 describe('Test Pokedex component', () => {
+  const POKEMON_NAME_TEST_ID = 'pokemon-name';
+
   it('contains a heading with the text "Encountered pokémons"', () => {
     renderWithRouter(<App />);
     const heading = screen.getByRole('heading', {
@@ -23,15 +25,21 @@ describe('Test Pokedex component', () => {
     expect(nextPokemonButton).toBeInTheDocument();
 
     pokemons.forEach(({ name }) => {
-      const pokemonName = screen.getByTestId('pokemon-name');
+      const pokemonName = screen.getByTestId(POKEMON_NAME_TEST_ID);
       expect(pokemonName).toBeInTheDocument();
       expect(pokemonName).toHaveTextContent(name);
       userEvent.click(nextPokemonButton);
     });
 
     // Displays the first Pokémon again
-    const firstPokemonName = screen.getByTestId('pokemon-name');
+    const firstPokemonName = screen.getByTestId(POKEMON_NAME_TEST_ID);
     expect(firstPokemonName).toBeInTheDocument();
     expect(firstPokemonName).toHaveTextContent(pokemons[0].name);
+  });
+
+  it('shows only one Pokémon at a time', () => {
+    renderWithRouter(<App />);
+    const pokemonList = screen.getAllByTestId(POKEMON_NAME_TEST_ID);
+    expect(pokemonList).toHaveLength(1);
   });
 });

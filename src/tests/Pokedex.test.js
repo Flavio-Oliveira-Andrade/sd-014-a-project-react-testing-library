@@ -20,7 +20,7 @@ describe('Testa se o component Pokedex renderiza na tela', () => {
     renderWithRouter(<App />);
     const nextButton = screen.getByTestId('next-pokemon');
     const pokemonName = screen.getByTestId(dataId);
-
+    expect(nextButton.innerHTML).toBe('Próximo pokémon');
     userEvent.click(nextButton);
     expect(pokemonName).toHaveTextContent('Charmander');
   });

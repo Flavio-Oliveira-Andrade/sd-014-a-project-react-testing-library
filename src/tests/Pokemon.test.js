@@ -1,5 +1,6 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 import pokemons from '../data';
@@ -20,11 +21,31 @@ describe('testa o componente "Pokemon"', () => {
   });
 
   test('link possui URL: /pokemons/<id>, onde <id> é o id do Pokémon exibido', () => {
-    renderWithRouter(<App />);
+    const { history } = renderWithRouter(<App />);
+
+    const link = screen.getByRole('link', { name: /More details/i });
+
+    expect(link.href).toBe('http://localhost/pokemons/25');
+
+    userEvent.click(link);
+
+    const { pathname } = history.location;
+
+    expect(pathname).toBe('/pokemons/25');
   });
 
   test('redireciona a aplicação para a página de detalhes de Pokémon', () => {
     renderWithRouter(<App />);
+
+    const link = screen.getByRole('link', { name: /More details/i });
+
+    expect(link.href).toBe('http://localhost/pokemons/25');
+
+    userEvent.click(link);
+
+    const pikachu = screen.getByText(/Pikachu Details/i);
+
+    expect(pikachu).toBeInTheDocument();
   });
 
   test('URL exibida no navegador muda para /pokemon/<id>, <id> é o id do Pokémon', () => {

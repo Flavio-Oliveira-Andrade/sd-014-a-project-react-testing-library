@@ -17,7 +17,10 @@ describe('Teste o componente PokemonDetails', () => {
     expect(detailsPokemon).toBeInTheDocument();
     expect(details).not.toBeInTheDocument();
 
-    const detailsTitle = screen.getByText(pokemons[0].summary);
+    const detailsTitle = screen.getByRole('heading', {
+      level: 2,
+      name: /Summary/i,
+    });
     expect(detailsTitle).toBeInTheDocument();
     const summary = screen.getByText(pokemons[0].summary);
     expect(summary).toBeInTheDocument();

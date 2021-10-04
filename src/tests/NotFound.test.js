@@ -12,7 +12,8 @@ test('verify correct text for heading', () => {
 test('verify correct image exibition', () => {
   render(<NotFound />);
   const alt = 'Pikachu crying because the page requested was not found';
-  const altImg = screen.getByAltText(alt);
+  const image = screen.getByAltText(alt);
 
-  expect(altImg).toBeVisible();
+  expect(image).toHaveAttribute('src', 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
+  expect(image).toHaveAttribute('alt', alt);
 });

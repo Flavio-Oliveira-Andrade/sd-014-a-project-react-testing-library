@@ -101,13 +101,13 @@ test('se é exibido o próximo Pokémon da lista'
   expect(buttonPróxPoke).toBeInTheDocument();
   userEvent.click(buttonPróxPoke);
 
-  const nextCardPokemon = screen.getByTestId('pokemon-name').innerHTML;
-  expect(nextCardPokemon).toEqual('Charmander');
+  const pokemonNameId = 'pokemon-name';
+  let cardPokemon = screen.getByTestId(pokemonNameId).innerHTML;
+  expect(cardPokemon).toEqual('Charmander');
 
   userEvent.click(buttonPróxPoke);
-
-  const firstCardPokemon = screen.getByTestId('pokemon-name').innerHTML;
-  expect(firstCardPokemon).toEqual('Pikachu');
+  cardPokemon = screen.getByTestId(pokemonNameId).innerHTML;
+  expect(cardPokemon).toEqual('Pikachu');
 });
 
 test('se é mostrado apenas um Pokémon por vez.', () => {

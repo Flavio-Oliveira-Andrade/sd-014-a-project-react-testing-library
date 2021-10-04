@@ -6,16 +6,15 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import pokemons from '../data';
 
-const getBtn = (text) => screen.getByRole('button', { name: text });
+const getBtn = (text) => screen.getByRole('button', { name: text }); //  função auxiliar para pegar os botões.
 
-const pokeFilter = (btnType, pokemonType) => {
+const pokeFilter = (btnType, pokemonType) => { // função auxiliar para testar pelos filtros de pokemon.
   const nextBtn = getBtn('Próximo pokémon');
 
   userEvent.click(btnType);
   const displayedPokemon = screen.getByTestId('pokemon-type');
 
   expect(displayedPokemon.textContent).toMatch(btnType.textContent);
-
   const filteredPokemons = pokemons.filter((pokemon) => pokemon.type === pokemonType);
   filteredPokemons.forEach((pokemon) => {
     const pokemonScreen = screen.getByText(pokemon.name);
@@ -43,10 +42,12 @@ describe('Testa o componente "Pokedex"', () => {
       name: 'All',
     });
 
+    const btnDataTest = screen.getAllByTestId('pokemon-type-button');
     userEvent.click(allFilterBtn);
 
     const nextBtn = screen.getByTestId('next-pokemon');
     const pokemonDataTest = screen.getAllByTestId('pokemon-name');
+    const NUMBER_OF_FILTER_BTNS = 7;
 
     const arrayPokemons = pokemons.reduce((acc, pokemon) => {
       const pokemonName = screen.getByText(pokemon.name);
@@ -61,6 +62,7 @@ describe('Testa o componente "Pokedex"', () => {
     const firstNameScreen = screen.getByText(firstPokeName);
     expect(firstNameScreen).toBeInTheDocument();
     expect(pokemonDataTest.length).toBe(1);
+    expect(btnDataTest.length).toBe(NUMBER_OF_FILTER_BTNS);
   });
 
   test('Testa os botões de filtro de pokemons', () => {

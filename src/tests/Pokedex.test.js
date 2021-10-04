@@ -29,7 +29,7 @@ describe('Testando Pokedex', () => {
       </MemoryRouter>,
     );
     const buttonNext = screen.getByTestId('next-pokemon', {
-      name: /proximo pokémon/i,
+      name: /próximo pokémon/i,
     });
     expect(buttonNext).toBeInTheDocument();
     const pokemon = screen.getByTestId('pokemon-name');

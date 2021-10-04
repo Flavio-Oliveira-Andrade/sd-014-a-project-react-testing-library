@@ -133,8 +133,8 @@ test('se a Pokédex tem os botões de filtro.', () => {
   const buttonFire = screen.getByRole('button', { name: /fire/i });
   expect(buttonFire).toBeInTheDocument();
 
-  const buttonbug = screen.getByRole('button', { name: /bug/i });
-  expect(buttonbug).toBeInTheDocument();
+  const buttonBug = screen.getByRole('button', { name: /bug/i });
+  expect(buttonBug).toBeInTheDocument();
 
   const buttonPoison = screen.getByRole('button', { name: /poison/i });
   expect(buttonPoison).toBeInTheDocument();
@@ -149,8 +149,8 @@ test('se a Pokédex tem os botões de filtro.', () => {
   expect(buttonDragon).toBeInTheDocument();
 
   userEvent.click(buttonFire);
-  const typePokemon = screen.getByTestId('pokemon-type').innerHTML;
-  expect(typePokemon).toEqual('Fire');
+  const typeFire = screen.getByTestId('pokemon-name').innerHTML;
+  expect(typeFire).toEqual('Charmander');
 
   const buttonAll = screen.getByRole('button', { name: /all/i }).disabled;
   expect(buttonAll).toEqual(false);
@@ -163,8 +163,8 @@ test('se a Pokédex contém um botão para resetar o filtro.', () => {
   expect(buttonDragon).toBeInTheDocument();
 
   userEvent.click(buttonDragon);
-  const typePokemon = screen.getByTestId('pokemon-type').innerHTML;
-  expect(typePokemon).toEqual('Dragon');
+  const typeDragon = screen.getByTestId('pokemon-type').innerHTML;
+  expect(typeDragon).toEqual('Dragon');
 
   const buttonAll = screen.getByRole('button', { name: /all/i });
   userEvent.click(buttonAll);

@@ -1,8 +1,10 @@
 import React from 'react';
-import { getAllByTestId, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
+
+const pokemonName = 'pokemon-name';
 
 describe('Testando o componente Pokedex', () => {
   test('Teste se página contém um heading h2 com o texto "Encountered pokémons"', () => {
@@ -28,7 +30,6 @@ describe('Teste se é exibido o próximo Pokémon da lista quando'
   test('O primeiro Pokémon da lista deve ser mostrado'
   + 'ao clicar no botão, se estiver no último Pokémon da lista;', () => {
     renderWithRouter(<App />);
-    const pokemonName = 'pokemon-name';
 
     const ultimoPokemon = screen.getByTestId(pokemonName);
     const btnProximo = screen.getByRole('button', {
@@ -44,7 +45,7 @@ describe('Teste se é exibido o próximo Pokémon da lista quando'
   test('Verifica se mostra um Pokemon por vez', () => {
     renderWithRouter(<App />);
 
-    const poke = screen.getAllByTestId('pokemon-name');
+    const poke = screen.getAllByTestId(pokemonName);
     expect(poke).toHaveLength(1);
   });
 
@@ -85,10 +86,10 @@ describe('Teste se é exibido o próximo Pokémon da lista quando'
     const btnAll = screen.getByRole('button', { name: 'All' });
 
     userEvent.click(btnAll);
-    const pokemon = screen.getAllByTestId('pokemon-name');
+    const pokemon = screen.getAllByTestId(pokemonName);
     const proximo = screen.getByRole('button', { name: /Próximo pokémon/i });
     userEvent.click(proximo);
-    const pokeProx = screen.getByTestId('pokemon-name').innerHTML;
+    const pokeProx = screen.getByTestId(pokemonName).innerHTML;
 
     expect(pokemon).not.toEqual(pokeProx);
   });

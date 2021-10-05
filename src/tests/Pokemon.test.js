@@ -62,9 +62,23 @@ describe('Testa componente Pokemon', () => {
     userEvent.click(screen.getByRole('link', { name: /more details/i }));
     const { pathname } = history.location;
     expect(pathname).toBe(`/pokemons/${pokemon.id}`);
+    const heading = screen.getByRole('heading', {
+      level: 2,
+      name: `${pokemon.name} Details`,
+    });
+    expect(heading).toBeInTheDocument();
   });
   test('Verifica se a URL exibida no navegador muda para /pokemon/<id> ', () => {
-    renderWithRouter(<App />);
+    const { history } = renderWithRouter(<Pokemon
+      pokemon={ pokemon }
+      showDetailsLink={ false }
+      isFavorite
+    />);
+    const infoPok = screen.getByRole('link', { name: /more details/i });
+    expect(infoPok).toBeInTheDocument();
+    userEvent.click(infoPok);
+    const { pathname } = history.location;
+    expect(pathname).toBe(`/pokemons/${pokemon.id}`);
   });
   test('Verifica se existe um ícone de estrela nos Pokémons favoritados ', () => {
     renderWithRouter(<Pokemon

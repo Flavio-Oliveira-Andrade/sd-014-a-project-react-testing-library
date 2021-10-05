@@ -1,19 +1,12 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
-import { Router } from 'react-router';
+import { screen } from '@testing-library/react';
 import { fireEvent } from '@testing-library/dom';
 import App from '../App';
+import historyRouter from '../services/historyRouter';
 
 describe('Teste o componente `<About.js />.`', () => {
   it('Teste se a página contém as informações sobre a Pokédex.', async () => {
-    const history = createMemoryHistory();
-
-    render(
-      <Router history={ history }>
-        <App />
-      </Router>,
-    );
+    historyRouter(<App />);
 
     const linkAbout = screen.getByRole('link', { name: /About/i });
 

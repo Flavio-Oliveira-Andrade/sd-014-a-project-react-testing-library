@@ -1,23 +1,19 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { Router } from 'react-router';
-import { createMemoryHistory } from 'history';
+import { screen } from '@testing-library/react';
 import { fireEvent } from '@testing-library/dom';
 import data from '../data';
 import App from '../App';
+import historyRouter from '../services/historyRouter';
 
 describe('Teste o componente `<Pokemon.js />`', () => {
   it('O nome correto do Pokémon deve ser mostrado na tela;', () => {
-    const history = createMemoryHistory();
-    render(
-      <Router history={ history }>
-        <App />
-      </Router>,
-    );
+    historyRouter(<App />);
+
     const {
       name,
       image,
     } = data[0];
+
     const details = screen.getByRole('link', { name: 'More details' });
     const nav = screen.getByRole('navigation');
     const imgPkm = screen.getByAltText(/Pikachu sprite/i);

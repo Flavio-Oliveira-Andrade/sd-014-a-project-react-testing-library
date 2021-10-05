@@ -29,6 +29,7 @@ describe('Teste o componente `<Pokemon.js />`', () => {
     console.log(typePkm.innerHTML);
 
     expect(imgPkm).toHaveAttribute('src', `${image}`);
+    expect(namePkm.innerHTML).toBe(name);
     expect(nav).toBeInTheDocument();
     expect(namePkm).toBeInTheDocument();
     expect(typePkm).toBeInTheDocument();

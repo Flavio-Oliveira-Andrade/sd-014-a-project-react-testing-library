@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { NotFound } from '../components';
 
-describe('3 - Testes do componente NotFound.js', () => {
+describe('4 - Testes do componente NotFound.js', () => {
   beforeEach(() => {
     render(<NotFound />);
   });

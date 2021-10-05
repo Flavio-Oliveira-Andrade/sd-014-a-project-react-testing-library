@@ -18,6 +18,8 @@ const OBJ_OF_ID = {
 };
 const QTD_OF_TYPES = 7;
 
+const TYPES = pokemons.map(({ type }) => type);
+
 describe('Teste o componente <Pokedex />', () => {
   it('se página contém um heading h2 com o texto Encountered pokémons', () => {
     renderWithRouter(
@@ -72,6 +74,16 @@ describe('Teste o componente <Pokedex />', () => {
       />,
     );
     const buttons = screen.getAllByTestId('pokemon-type-button');
+    const buttonAll = screen.getByText(/all/i);
+    userEvent.click(buttonAll);
+    TYPES.forEach((type) => {
+      const button = screen.getByRole('button', {
+        name: type,
+      });
+      expect(button).toBeInTheDocument();
+    });
+    expect(screen.getByText(/próximo pokémon/i)).toBeInTheDocument();
+    expect(screen.getByText(/pikachu/i)).toBeInTheDocument();
     expect(buttons).toHaveLength(QTD_OF_TYPES);
   });
 

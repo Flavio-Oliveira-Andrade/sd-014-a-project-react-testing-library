@@ -65,6 +65,10 @@ describe('Test Pokedex component', () => {
       [],
     );
 
+    // Check if there are filter buttons for each type with no duplicates
+    const filterButtons = screen.getAllByTestId('pokemon-type-button');
+    expect(filterButtons).toHaveLength(types.length);
+
     types.forEach((type) => {
       const button = screen.getByRole('button', { name: type });
       expect(button).toBeInTheDocument();

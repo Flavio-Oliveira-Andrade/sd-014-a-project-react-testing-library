@@ -16,7 +16,7 @@ describe('Teste o componente <Pokemon />', () => {
     expect(screen.getByRole('link')).toHaveAttribute('href', '/pokemons/25');
     expect(screen.getByTestId('pokemon-name').textContent).toBe('Pikachu');
     expect(screen.getByTestId('pokemon-type').textContent).toBe('Electric');
-    expect(screen.getByText(/6.0 kg/i));
+    expect(screen.getByText(/average weight: 6.0 kg/i));
     const img = screen.getByRole('img', {
       name: /pikachu sprite/i,
     });

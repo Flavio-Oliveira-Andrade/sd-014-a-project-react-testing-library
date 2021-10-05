@@ -1,19 +1,12 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { Router } from 'react-router';
-import { createMemoryHistory } from 'history';
+import { screen } from '@testing-library/react';
 import { fireEvent } from '@testing-library/dom';
 import App from '../App';
+import historyRouter from '../services/historyRouter';
 
 describe('Teste o componente `<FavoritePokemons.js />`', () => {
   it('pagina "No favorite pokemon found" caso a pessoa não tenha adicionado pkm', () => {
-    const history = createMemoryHistory();
-
-    render(
-      <Router history={ history }>
-        <App />
-      </Router>,
-    );
+    historyRouter(<App />);
 
     const favorite = screen.getByRole('link', { name: /Favorite Pokémons/i });
 
@@ -25,12 +18,7 @@ describe('Teste o componente `<FavoritePokemons.js />`', () => {
   });
 
   it('Teste se é exibido todos os cards de pokémons favoritados.', () => {
-    const history = createMemoryHistory();
-    render(
-      <Router history={ history }>
-        <App />
-      </Router>,
-    );
+    historyRouter(<App />);
 
     const typeFire = screen.getByRole('button', { name: /Fire/i });
 

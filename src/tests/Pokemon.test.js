@@ -71,7 +71,7 @@ describe('Testa componente Pokemon', () => {
   test('Verifica se a URL exibida no navegador muda para /pokemon/<id> ', () => {
     const { history } = renderWithRouter(<Pokemon
       pokemon={ pokemon }
-      showDetailsLink={ false }
+      showDetailsLink
       isFavorite
     />);
     const infoPok = screen.getByRole('link', { name: /more details/i });

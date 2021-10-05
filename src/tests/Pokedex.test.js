@@ -8,7 +8,7 @@ import pokemons from '../data';
 describe('Test Pokedex component', () => {
   const POKEMON_NAME_TEST_ID = 'pokemon-name';
 
-  // Function to iterate over the pokemons array
+  // Function to iterate over the Pokémons array
   function iteratePokemons(pokemonsToIterate, nextPokemonButton) {
     pokemonsToIterate.forEach(({ name }) => {
       const pokemonName = screen.getByTestId(POKEMON_NAME_TEST_ID);
@@ -73,7 +73,7 @@ describe('Test Pokedex component', () => {
       // Click on the button to filter the pokemons
       userEvent.click(button);
 
-      // Filter pokemons by type
+      // Filter Pokémons by type
       const filteredPokemons = pokemons.filter(
         (pokemon) => pokemon.type === type,
       );
@@ -88,5 +88,25 @@ describe('Test Pokedex component', () => {
       // Button All is always visible
       expect(buttonAll).toBeInTheDocument();
     });
+  });
+
+  it('contains a button to reset the filter', () => {
+    renderWithRouter(<App />);
+
+    const buttonAll = screen.getByRole('button', { name: 'All' });
+    expect(buttonAll).toBeInTheDocument();
+
+    const nextPokemonButton = screen.getByTestId('next-pokemon');
+
+    iteratePokemons(pokemons, nextPokemonButton);
+
+    // Filter Pokémons by Electric type
+    userEvent.click(screen.getByRole('button', { name: 'Electric' }));
+    expect(screen.getByTestId(POKEMON_NAME_TEST_ID)).toHaveTextContent('Pikachu');
+    expect(nextPokemonButton).toBeDisabled();
+
+    // Click on the All button to reset the filter
+    userEvent.click(buttonAll);
+    iteratePokemons(pokemons, nextPokemonButton);
   });
 });

@@ -1,18 +1,11 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { Router } from 'react-router';
-import { createMemoryHistory } from 'history';
+import { screen } from '@testing-library/react';
 import App from '../App';
+import historyRouter from '../services/historyRouter';
 
 describe('Teste o componente <App.js /> ', () => {
   it('Teste se o topo da aplicação contém um conjunto fixo de links de navegação', () => {
-    const history = createMemoryHistory();
-
-    render(
-      <Router history={ history }>
-        <App />
-      </Router>,
-    );
+    historyRouter(<App />);
 
     const linkNav = screen.getByRole('navigation');
     expect(linkNav).toBeInTheDocument();

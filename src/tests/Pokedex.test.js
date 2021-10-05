@@ -56,5 +56,4 @@ describe('5. Teste o componente <Pokedex.js />', () => {
     expect(pokemonName).toBeInTheDocument();
     expect(pokemonName).toHaveTextContent(pokemons[0].name);
   });
-
 });

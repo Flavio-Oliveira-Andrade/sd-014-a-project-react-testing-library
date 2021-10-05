@@ -17,6 +17,8 @@ const isPokemonFavoriteById = {
   151: true,
 };
 
+const pokemonName = 'pokemon-name';
+
 describe('Teste da Pokédex', () => {
   test('Verifica se há o texto Encountered Pokémons', () => {
     render(<Pokedex
@@ -34,8 +36,6 @@ describe('Teste da Pokédex', () => {
       isPokemonFavoriteById={ isPokemonFavoriteById }
     />, { wrapper: BrowserRouter });
 
-    const pokemonName = 'pokemon-name';
-
     let pokemon = screen.getByTestId(pokemonName);
     expect(pokemon).toHaveTextContent('Pikachu');
 
@@ -45,17 +45,10 @@ describe('Teste da Pokédex', () => {
     pokemon = screen.getByTestId(pokemonName);
     expect(pokemon).toHaveTextContent('Charmander');
 
-    userEvent.click(nextBtn);
-    userEvent.click(nextBtn);
-    userEvent.click(nextBtn);
-    userEvent.click(nextBtn);
-    userEvent.click(nextBtn);
-    userEvent.click(nextBtn);
-    userEvent.click(nextBtn);
-    userEvent.click(nextBtn);
+    pokemons.forEach(() => userEvent.click(nextBtn));
 
     pokemon = screen.getByTestId(pokemonName);
-    expect(pokemon).toHaveTextContent('Pikachu');
+    expect(pokemon).toHaveTextContent('Charmander');
   });
   test('Verifica se renderiza apenas um pokémon por vez', () => {
     render(<Pokedex
@@ -63,7 +56,7 @@ describe('Teste da Pokédex', () => {
       isPokemonFavoriteById={ isPokemonFavoriteById }
     />, { wrapper: BrowserRouter });
 
-    const display = screen.getAllByTestId('pokemon-name');
+    const display = screen.getAllByTestId(pokemonName);
 
     expect(display).toHaveLength(1);
   });
@@ -74,18 +67,19 @@ describe('Teste da Pokédex', () => {
     />, { wrapper: BrowserRouter });
 
     const button = screen.getAllByTestId('pokemon-type-button');
-    const TYPES_QUANT = 7;
+    const pokemonsTypes = [...new Set(pokemons
+      .reduce((types, { type }) => [...types, type], []))];
+    const TYPES_QUANT = pokemonsTypes.length;
 
     expect(button).toHaveLength(TYPES_QUANT);
+    expect(button[0]).toHaveTextContent(pokemonsTypes[0]);
 
-    const repeat = button.reduce((acc, type) => {
-      if (acc) return;
-      let counter = 0;
-      console.log(type);
-      button.forEach((element) => { if (element.text === type.text) counter += 1; });
-      acc = counter >= 2;
-      return acc;
-    }, false);
-    console.log(repeat);
+    userEvent.click(screen.getByRole('button', { name: /all/i }));
+
+    const showPokemon = screen.queryByTestId(pokemonName);
+
+    expect(showPokemon).toBeInTheDocument();
+
+    expect(screen.queryByRole('button', { name: pokemonsTypes[0] }));
   });
 });

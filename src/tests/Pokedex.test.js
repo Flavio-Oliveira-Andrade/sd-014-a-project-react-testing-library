@@ -106,7 +106,9 @@ describe('Test Pokedex component', () => {
 
     // Filter Pokémons by Electric type
     userEvent.click(screen.getByRole('button', { name: 'Electric' }));
-    expect(screen.getByTestId(POKEMON_NAME_TEST_ID)).toHaveTextContent('Pikachu');
+    expect(screen.getByTestId(POKEMON_NAME_TEST_ID)).toHaveTextContent(
+      'Pikachu',
+    );
     expect(nextPokemonButton).toBeDisabled();
 
     // Click on the All button to reset the filter

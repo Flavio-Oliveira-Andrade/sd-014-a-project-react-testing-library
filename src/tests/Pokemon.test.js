@@ -30,7 +30,7 @@ describe('Testes do componente Pokemon', () => {
 
     expect(pokemonName).toBeInTheDocument();
     expect(pokemonType.innerHTML).toBe('Electric');
-    expect(pokemonWeight).toBeInTheDocument();
+    expect(pokemonWeight.innerHTML).toBe('Average weight: 6.0 kg');
     expect(detailLink).toBeInTheDocument();
     expect(pokemonImage).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
     expect(isFavoriteImage).toHaveAttribute('src', '/star-icon.svg');

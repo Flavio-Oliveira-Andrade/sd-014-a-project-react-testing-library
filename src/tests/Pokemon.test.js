@@ -26,8 +26,6 @@ describe('Teste o componente `<Pokemon.js />`', () => {
     const typePkm = screen.getByTestId('pokemon-type');
     const averagePkm = screen.getAllByTestId('pokemon-weight');
 
-    console.log(typePkm.innerHTML);
-
     expect(imgPkm).toHaveAttribute('src', `${image}`);
     expect(namePkm.innerHTML).toBe(name);
     expect(nav).toBeInTheDocument();

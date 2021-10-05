@@ -13,5 +13,3 @@ describe('Testa o componente <FavoritePokemons />', () => {
     expect(noFavorite).toBeInTheDocument();
   });
 });
-
-test('', () => {});

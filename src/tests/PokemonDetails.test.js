@@ -1,9 +1,8 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
+import { screen } from '@testing-library/react';
 import { fireEvent } from '@testing-library/dom';
-import { Router } from 'react-router';
 import App from '../App';
+import historyRouter from '../services/historyRouter';
 import data from '../data';
 
 const {
@@ -14,12 +13,7 @@ const {
 
 describe('Teste o componente `<PokemonDetails.js />`', () => {
   it('A página deve conter um texto `<name> Details`', () => {
-    const history = createMemoryHistory();
-    render(
-      <Router history={ history }>
-        <App />
-      </Router>,
-    );
+    historyRouter(<App />);
 
     const btnDetails = screen.getByText('More details');
 

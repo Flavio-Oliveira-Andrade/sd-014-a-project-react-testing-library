@@ -86,7 +86,8 @@ describe('Testa componente Pokemon', () => {
       showDetailsLink={ false }
       isFavorite
     />);
-    const marcaFavorito = screen.getByRole('img', { name: /is marked as favorite/i });
+    const marcaFavorito = screen.getAllByRole('img')[1];
     expect(marcaFavorito).toHaveAttribute('src', '/star-icon.svg');
+    expect(marcaFavorito).toHaveAttribute('alt', `${pokemon.name} is marked as favorite`);
   });
 });

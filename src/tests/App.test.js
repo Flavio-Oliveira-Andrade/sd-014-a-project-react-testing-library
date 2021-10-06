@@ -37,7 +37,7 @@ describe('Teste do componente App', () => {
     + ' Favorite Pokémons da barra de navegação.', () => {
     const { history } = renderWithRouter(<App />);
     const favoritePokemonsLink = screen.getByRole('link',
-    { name: 'Favorite Pokémons' });
+      { name: 'Favorite Pokémons' });
     userEvent.click(favoritePokemonsLink);
     expect(history.location.pathname).toBe('/favorites');
   });

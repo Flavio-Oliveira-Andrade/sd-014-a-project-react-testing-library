@@ -13,4 +13,11 @@ describe('Testes relacionados ao About', () => {
     expect(info01).toBeInTheDocument();
     expect(info02).toBeInTheDocument();
   });
+  it('Contém um titulo com o texto "About Pokédex"', () => {
+    renderWithRouter(<About />);
+
+    const titulo = screen.getByRole('heading', { level: 2 });
+
+    expect(titulo).toBeInTheDocument();
+  });
 });

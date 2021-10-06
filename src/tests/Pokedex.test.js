@@ -7,9 +7,21 @@ import Pokedex from '../components/Pokedex';
 import App from '../App';
 import pokemons from '../data';
 
-describe('Teste o componente <Pokedex.js />', () => {
-  const POKEMON_NAME_TEST_ID = 'pokemon-name';
+const POKEMON_NAME_TEST_ID = 'pokemon-name';
 
+const changeToNextPokemon = (pokemonsArr) => {
+  const nextPokemonBtn = screen.getByRole('button', {
+    name: /próximo pokémon/i,
+  });
+  pokemonsArr.forEach((pokemon) => {
+    const currentPokemon = screen.getByTestId(POKEMON_NAME_TEST_ID);
+    expect(currentPokemon).toBeInTheDocument();
+    expect(currentPokemon).toHaveTextContent(pokemon.name);
+    userEvent.click(nextPokemonBtn);
+  });
+};
+
+describe('Teste o componente <Pokedex.js />', () => {
   test('Teste se página contém um heading h2 com o texto "Encountered pokémons"', () => {
     const isPokemonFavoriteById = { 25: false };
     renderWithRouter(
@@ -33,12 +45,7 @@ describe('Teste o componente <Pokedex.js />', () => {
 
     const nextPokemonBtn = screen.getByTestId('next-pokemon');
     expect(nextPokemonBtn).toBeInTheDocument();
-    pokemons.forEach((pokemon) => {
-      const currentPokemon = screen.getByTestId(POKEMON_NAME_TEST_ID);
-      expect(currentPokemon).toBeInTheDocument();
-      expect(currentPokemon).toHaveTextContent(pokemon.name);
-      userEvent.click(nextPokemonBtn);
-    });
+    changeToNextPokemon(pokemons);
 
     const firstPokemonScreen = screen.getByTestId(POKEMON_NAME_TEST_ID);
     expect(firstPokemonScreen).toBeInTheDocument();
@@ -81,49 +88,19 @@ describe('Teste o componente <Pokedex.js />', () => {
         expect(currentPokemon).toBeInTheDocument();
         expect(currentPokemon).toHaveTextContent(filteredPokemons[0].name);
       } else {
-        filteredPokemons.forEach(({ name }) => {
-          const currentPokemon = screen.getByTestId(POKEMON_NAME_TEST_ID);
-          expect(currentPokemon).toBeInTheDocument();
-          expect(currentPokemon).toHaveTextContent(name);
-          userEvent.click(nextPokemonBtn);
-        });
+        changeToNextPokemon(filteredPokemons);
       }
     });
   });
 
   test('Teste se a Pokédex contém um botão para resetar o filtro', () => {
     renderWithRouter(<App />);
-    const filterByType = (filter) => pokemons.filter((pokemon) => {
-      if (filter === 'All') return pokemon;
-      return pokemon.type === filter;
-    });
 
     const allBtn = screen.getByRole('button', {
       name: 'All',
     });
     expect(allBtn).toBeInTheDocument();
-    let filteredType = allBtn.textContent;
-
-    let filteredPokemons = filterByType(filteredType);
-
-    expect(filteredPokemons).toStrictEqual(pokemons);
-
-    const fireBtn = screen.getByRole('button', {
-      name: 'Fire',
-    });
-    userEvent.click(fireBtn);
-    filteredType = fireBtn.textContent;
-
-    filteredPokemons = filterByType(filteredType);
-
-    const firePokemons = pokemons.filter(({ type }) => type === filteredType);
-    expect(filteredPokemons).toStrictEqual(firePokemons);
-
     userEvent.click(allBtn);
-    filteredType = allBtn.textContent;
-
-    filteredPokemons = filterByType(filteredType);
-
-    expect(filteredPokemons).toStrictEqual(pokemons);
+    changeToNextPokemon(pokemons);
   });
 });

@@ -9,7 +9,7 @@ const NotFound = () => (
     </h2>
     <img
       className="not-found-image"
-      src={`https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif`}
+      src={'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif'}
       alt="Pikachu crying because the page requested was not found"
     />
   </div>

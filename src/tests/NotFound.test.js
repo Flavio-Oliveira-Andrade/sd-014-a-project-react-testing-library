@@ -14,7 +14,7 @@ describe('Verifica o componente <NotFound.js />', () => {
     expect(notFoundTitle).toBeInTheDocument();
   });
 
-  it('Teste se página mostra a imagem '
+  it('Verifica se página mostra a imagem '
     + 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif.', () => {
     const { history } = renderWithRouter(<App />);
     history.push('tubico');

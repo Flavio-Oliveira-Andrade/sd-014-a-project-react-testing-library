@@ -1,6 +1,5 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../services/renderWithRouter';
 import App from '../App';
@@ -25,15 +24,14 @@ describe('Test <PokemonDetails.js /> component', () => {
 
     expect(moreDetailsLink).toBeNull();
 
-    const summaryHeading = screen.getByRole('heading',
+    const summaryHeading = screen.queryByRole('heading',
       { name: /summary/i, level: 2 });
 
-    expect(summaryHeading).not.toBeEmptyDOMElement();
+    expect(summaryHeading).not.toBeNull();
 
     const summaryText = screen.getByText(pokemons[0].summary);
 
     expect(summaryText).toBeInTheDocument();
-    expect(summaryText).not.toBeEmptyDOMElement();
   });
 
   it('should have a section with maps that show where is the Pokémon', () => {

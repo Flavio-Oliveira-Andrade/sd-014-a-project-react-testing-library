@@ -5,7 +5,7 @@ import { createMemoryHistory } from 'history';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 
-describe('App test', () => {
+describe('Teste do App', () => {
   it('Testa se o topo da aplicação renderiza corretamente.', () => {
     const customHistory = createMemoryHistory();
     render(

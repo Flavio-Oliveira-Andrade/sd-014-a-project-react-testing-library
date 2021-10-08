@@ -66,5 +66,7 @@ describe('Requisito 6, testa o Pokemon.js', () => {
     });
     expect(favImg).toBeInTheDocument();
     expect(favImg.src).toContain('/star-icon.svg');
+    expect(favImg).toHaveAttribute('alt', `${pokemons[0].name} is marked as favorite`);
+    expect(favImg).toBeInTheDocument();
   });
 });

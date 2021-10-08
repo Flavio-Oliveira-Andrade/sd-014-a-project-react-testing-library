@@ -1,11 +1,8 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 
 import renderWithRouter from '../renderWithRouter';
 import NotFound from '../components/NotFound';
-import App from '../App';
-import { render } from 'react-dom';
 
 describe('Testando o componente NotFound.js', () => {
   it('Se a página tenha um texto "Page requested not found 😭":', () => {

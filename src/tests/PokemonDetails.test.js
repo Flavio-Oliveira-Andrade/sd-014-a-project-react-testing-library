@@ -113,4 +113,3 @@ describe('Teste o componente <PokemonDetails.js />', () => {
     });
   });
 });
-

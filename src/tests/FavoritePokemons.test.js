@@ -2,7 +2,7 @@ import React from 'react';
 import { screen, render } from '@testing-library/react';
 import FavoritePokemons from '../components/FavoritePokemons';
 
-describe('Testando componente FavortitePokemons', () => {
+describe('3. Teste o componente `<FavoritePokemons.js />`', () => {
   test('Teste se é exibido na tela a mensagem `No favorite pokemon found`', () => {
     // passo 1 adicionar componente
     render(<FavoritePokemons />);

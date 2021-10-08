@@ -7,14 +7,14 @@ import FavoritePokemons from '../components/FavoritePokemons';
 import App from '../App';
 
 describe('Testando o componente FavoritePokemons.js', () => {
-  it('Não tendo favoritos a mensagem "No favorite pokemon found" é mostrada', () => {
+  it('Não tendo favoritos a mensagem "No favorite pokemon found" é mostrada:', () => {
     renderWithRouter(<FavoritePokemons />);
 
     const msg = screen.getByText('No favorite pokemon found');
     expect(msg).toBeInTheDocument();
   });
 
-  it('Mostra todos os pokemons favoritados', () => {
+  it('Mostra todos os pokemons favoritados:', () => {
     renderWithRouter(<App />);
 
     // Clicando no "More datails" na figura do pokemon:

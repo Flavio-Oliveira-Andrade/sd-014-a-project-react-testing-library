@@ -61,15 +61,15 @@ describe('6. Teste o componente `<Pokemon.js />`', () => {
     expect(screen.getByText('Pikachu Details')).toBeInTheDocument();
   });
 
-  it.skip('Teste também se a URL exibida no navegador muda para'
-  + '`/pokemon/<id>`, onde `<id>` é o id do Pokémon cujos'
-  + 'detalhes se deseja ver;', () => {
-    render(
-      <Router>
-        <App />
-      </Router>,
-    );
-  });
+  // it.skip('Teste também se a URL exibida no navegador muda para'
+  // + '`/pokemon/<id>`, onde `<id>` é o id do Pokémon cujos'
+  // + 'detalhes se deseja ver;', () => {
+  //   render(
+  //     <Router>
+  //       <App />
+  //     </Router>,
+  //   );
+  // });
 
   it.skip('Teste se existe um ícone de estrela nos Pokémons favoritados', () => {
     render(

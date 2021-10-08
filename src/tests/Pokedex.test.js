@@ -10,6 +10,8 @@ const renderWithRouter = (ui, { route = '/' } = {}) => {
   return render(ui, { wrapper: BrowserRouter });
 };
 
+const nameId = 'pokemon-name';
+
 describe('Testa a pagina de Pokedex', () => {
   beforeEach(() => renderWithRouter(<App />));
   it('Testa se página contém um heading h2 com o texto Encountered pokémons', () => {

@@ -1,0 +1,261 @@
+22:21:41 (24988) INFO ConfigReader Using stryker.conf.json
+22:21:41 (24988) DEBUG BroadcastReporter Broadcasting to reporters ["progress","clear-text","html"]
+22:21:41 (24988) DEBUG ConfigReader Loading config /home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/stryker.conf.json
+22:21:41 (24988) DEBUG ConfigReader Loaded config: {
+  "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+  "mutate": [
+    "src/components/About.js",
+    "src/App.js",
+    "src/components/FavoritePokemons.js",
+    "src/components/NotFound.js",
+    "src/components/Pokedex.js",
+    "src/components/Pokemon.js",
+    "src/components/PokemonDetails.js"
+  ],
+  "mutator": {
+    "name": "javascript",
+    "excludedMutations": [
+      "ArithmeticOperator",
+      "ArrayDeclaration",
+      "ArrowFunction",
+      "BlockStatement",
+      "BooleanLiteral",
+      "ConditionalExpression",
+      "EqualityOperator",
+      "LogicalOperator",
+      "ObjectLiteral",
+      "UnaryOperator",
+      "UpdateOperator"
+    ]
+  },
+  "testRunner": "jest",
+  "reporters": [
+    "progress",
+    "clear-text",
+    "html"
+  ],
+  "coverageAnalysis": "off",
+  "jest": {
+    "projectType": "create-react-app"
+  },
+  "allowConsoleColors": true,
+  "commandRunner": {
+    "command": "npm test"
+  },
+  "clearTextReporter": {
+    "allowColor": true,
+    "logTests": true,
+    "maxTestsToLog": 3
+  },
+  "dashboard": {
+    "baseUrl": "https://dashboard.stryker-mutator.io/api/reports",
+    "reportType": "full"
+  },
+  "eventReporter": {
+    "baseDir": "reports/mutation/events"
+  },
+  "fileLogLevel": "trace",
+  "logLevel": "debug",
+  "maxConcurrentTestRunners": 9007199254740991,
+  "plugins": [
+    "@stryker-mutator/*"
+  ],
+  "symlinkNodeModules": true,
+  "tempDirName": ".stryker-tmp",
+  "thresholds": {
+    "high": 80,
+    "low": 60,
+    "break": null
+  },
+  "timeoutFactor": 1.5,
+  "timeoutMS": 5000,
+  "transpilers": [],
+  "warnings": true,
+  "configFile": "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/stryker.conf.json"
+}
+22:21:41 (24988) DEBUG PluginLoader Loading @stryker-mutator/* from /home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/node_modules/@stryker-mutator
+22:21:41 (24988) DEBUG PluginLoader Loading plugin "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/node_modules/@stryker-mutator/javascript-mutator" (matched with expression @stryker-mutator/*)
+22:21:41 (24988) DEBUG PluginLoader Loading plugin "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/node_modules/@stryker-mutator/jest-runner" (matched with expression @stryker-mutator/*)
+22:21:41 (24988) DEBUG PluginLoader Loading plugins /home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/node_modules/@stryker-mutator/javascript-mutator
+22:21:41 (24988) DEBUG PluginLoader Loading plugins /home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/node_modules/@stryker-mutator/jest-runner
+22:21:41 (24988) DEBUG PluginLoader Loading plugins /home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/node_modules/@stryker-mutator/core/src/reporters/index.js
+22:21:41 (24988) DEBUG buildSchemaWithPluginContributions Contributing 1 schemas from plugins to options validation.
+22:21:41 (24988) INFO InputFileResolver Found 7 of 62 file(s) to be mutated.
+22:21:41 (24988) DEBUG InputFileResolver All input files: [
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/stryker.log",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/.babelrc.json",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/.eslintignore",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/.eslintrc.json",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/.github/CODEOWNERS",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/.github/workflows/main.yml",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/.gitignore",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/.stylelintignore",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/.stylelintrc.json",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/.trybe/requirements.json",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/README.md",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/package-lock.json",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/package.json",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/public/favicon.ico",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/public/index.html",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/public/logo192.png",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/public/logo512.png",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/public/manifest.json",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/public/robots.txt",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/public/star-icon.svg",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/App.css",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/App.js",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/components/About.js",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/components/Button.js",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/components/FavoritePokemons.js",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/components/NotFound.js",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/components/Pokedex.js",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/components/Pokemon.js",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/components/PokemonDetails.js",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/components/about.css",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/components/button.css",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/components/favorite-pokemons.css",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/components/index.js",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/components/not-found.css",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/components/pokedex.css",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/components/pokemon-details.css",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/components/pokemon.css",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/data.js",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/index.css",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/index.js",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/logo.svg",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/serviceWorker.js",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/services/pokedexService.js",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/setupTests.js",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/tests/About.test.js",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/tests/App.test.js",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/tests/FavoritePokemons.test.js",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/tests/NotFound.test.js",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/tests/Pokedex.test.js",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/tests/Pokemon.test.js",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/tests/PokemonDetails.test.js",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/types/index.js",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/stryker.conf.json",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/stryker/About.conf.json",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/stryker/App.conf.json",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/stryker/FavoritePokemons.conf.json",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/stryker/NotFound.conf.json",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/stryker/Pokedex.conf.json",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/stryker/Pokemon.conf.json",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/stryker/PokemonDetails.conf.json",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/testefalhando.png",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/testepassando.png"
+]
+22:21:41 (24988) DEBUG InputFileResolver Files to mutate: [
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/App.js",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/components/About.js",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/components/FavoritePokemons.js",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/components/NotFound.js",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/components/Pokedex.js",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/components/Pokemon.js",
+  "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/src/components/PokemonDetails.js"
+]
+22:21:41 (24988) DEBUG TemporaryDirectory Using temp directory "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/.stryker-tmp"
+22:21:41 (24988) DEBUG TestFrameworkOrchestrator The `coverageAnalysis` setting is "off", not hooking into the test framework to achieve performance benefits.
+22:21:41 (24988) INFO InitialTestExecutor Starting initial test run. This may take a while.
+22:21:41 (24988) DEBUG Sandbox Creating a sandbox for files in /home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/.stryker-tmp/sandbox2088825
+22:21:41 (24988) DEBUG Sandbox Creating test runner 0
+22:21:41 (24988) DEBUG ChildProcessProxy Starting /home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/node_modules/@stryker-mutator/core/src/test-runner/ChildProcessTestRunnerWorker.js in child process 25027
+22:21:41 (25027) DEBUG ChildProcessProxyWorker Changing current working directory for this process to /home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/.stryker-tmp/sandbox2088825
+22:21:41 (25027) DEBUG PluginLoader Loading @stryker-mutator/* from /home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/node_modules/@stryker-mutator
+22:21:41 (25027) DEBUG PluginLoader Loading plugin "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/node_modules/@stryker-mutator/javascript-mutator" (matched with expression @stryker-mutator/*)
+22:21:41 (25027) DEBUG PluginLoader Loading plugin "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/node_modules/@stryker-mutator/jest-runner" (matched with expression @stryker-mutator/*)
+22:21:41 (25027) DEBUG PluginLoader Loading plugins /home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/node_modules/@stryker-mutator/javascript-mutator
+22:21:41 (25027) DEBUG PluginLoader Loading plugins /home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/node_modules/@stryker-mutator/jest-runner
+22:21:41 (25027) DEBUG PluginLoader Loading plugins /home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/node_modules/@stryker-mutator/core/src/reporters/index.js
+22:21:41 (25027) TRACE JestTestRunner Merging file-based config {
+  "roots": [
+    "<rootDir>/src"
+  ],
+  "collectCoverageFrom": [
+    "**/*.{js,jsx}",
+    "!src/index.js",
+    "!src/serviceWorker.js"
+  ],
+  "setupFiles": [
+    "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/node_modules/react-app-polyfill/jsdom.js"
+  ],
+  "setupFilesAfterEnv": [
+    "<rootDir>/src/setupTests.js"
+  ],
+  "testMatch": [
+    "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+    "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
+  ],
+  "testEnvironment": "jest-environment-jsdom-fourteen",
+  "transform": {
+    "^.+\\.(js|jsx|ts|tsx)$": "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/node_modules/react-scripts/config/jest/babelTransform.js",
+    "^.+\\.css$": "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/node_modules/react-scripts/config/jest/cssTransform.js",
+    "^(?!.*\\.(js|jsx|ts|tsx|css|json)$)": "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/node_modules/react-scripts/config/jest/fileTransform.js"
+  },
+  "transformIgnorePatterns": [
+    "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$",
+    "^.+\\.module\\.(css|sass|scss)$"
+  ],
+  "modulePaths": [],
+  "moduleNameMapper": {
+    "^react-native$": "react-native-web",
+    "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+  },
+  "moduleFileExtensions": [
+    "web.js",
+    "js",
+    "web.ts",
+    "ts",
+    "web.tsx",
+    "tsx",
+    "json",
+    "web.jsx",
+    "jsx",
+    "node"
+  ],
+  "watchPlugins": [
+    "jest-watch-typeahead/filename",
+    "jest-watch-typeahead/testname"
+  ],
+  "rootDir": "/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/.stryker-tmp/sandbox2088825"
+} 
+      with custom config {}
+      and default (internal) stryker config [object Object]
+22:21:41 (25027) DEBUG JestTestRunner Running jest with --findRelatedTests flag. Set jest.enableFindRelatedTests to false to run all tests on every mutant.
+22:21:41 (25027) DEBUG JestTestRunner Project root is /home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/.stryker-tmp/sandbox2088825
+22:21:41 (24988) DEBUG TimeoutDecorator Starting timeout timer (300000 ms) for a test run
+22:21:41 (25027) TRACE JestLessThan25TestAdapter Invoking Jest with config {"roots":["<rootDir>/src"],"collectCoverageFrom":["**/*.{js,jsx}","!src/index.js","!src/serviceWorker.js"],"setupFiles":["/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/node_modules/react-app-polyfill/jsdom.js"],"setupFilesAfterEnv":["<rootDir>/src/setupTests.js"],"testMatch":["<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}","<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"],"testEnvironment":"jest-environment-jsdom-fourteen","transform":{"^.+\\.(js|jsx|ts|tsx)$":"/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/node_modules/react-scripts/config/jest/babelTransform.js","^.+\\.css$":"/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/node_modules/react-scripts/config/jest/cssTransform.js","^(?!.*\\.(js|jsx|ts|tsx|css|json)$)":"/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/node_modules/react-scripts/config/jest/fileTransform.js"},"transformIgnorePatterns":["[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$","^.+\\.module\\.(css|sass|scss)$"],"modulePaths":[],"moduleNameMapper":{"^react-native$":"react-native-web","^.+\\.module\\.(css|sass|scss)$":"identity-obj-proxy"},"moduleFileExtensions":["web.js","js","web.ts","ts","web.tsx","tsx","json","web.jsx","jsx","node"],"watchPlugins":["jest-watch-typeahead/filename","jest-watch-typeahead/testname"],"rootDir":"/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/.stryker-tmp/sandbox2088825","collectCoverage":false,"verbose":false,"bail":false,"notify":false,"reporters":[]}
+22:22:02 (24988) DEBUG ChildProcessProxy Disposing of worker process 25027
+22:22:02 (24988) DEBUG ChildProcessProxy Kill 25027
+22:22:02 (24988) ERROR InitialTestExecutor One or more tests failed in the initial test run:
+	Testa a pagina de Pokedex Testa se é exibido o próximo Poke da lista quando se clica no botão de ->.
+		Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: /Próximo pokémon/i
+Received: "Próximo pokémon"
+    at Object.<anonymous> (/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/.stryker-tmp/sandbox2088825/src/tests/Pokedex.test.js:23:28)
+    at Object.asyncJestTest (/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
+    at /home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/node_modules/jest-jasmine2/build/queueRunner.js:43:12
+    at new Promise (<anonymous>)
+    at mapper (/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
+    at /home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/node_modules/jest-jasmine2/build/queueRunner.js:73:41
+	Testa a pagina de Pokedex Testa se a Pokédex tem os botões de filtro.
+		TypeError: _react2.screen.getAllByClass is not a function
+    at Object.<anonymous> (/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/.stryker-tmp/sandbox2088825/src/tests/Pokedex.test.js:36:27)
+    at Object.asyncJestTest (/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
+    at /home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/node_modules/jest-jasmine2/build/queueRunner.js:43:12
+    at new Promise (<anonymous>)
+    at mapper (/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
+    at /home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/node_modules/jest-jasmine2/build/queueRunner.js:73:41
+	Testa a pagina de Pokedex Testa se a Pokédex contém um botão para resetar o filtro
+		ReferenceError: nameId is not defined
+    at Object.<anonymous> (/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/.stryker-tmp/sandbox2088825/src/tests/Pokedex.test.js:54:47)
+    at Object.asyncJestTest (/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
+    at /home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/node_modules/jest-jasmine2/build/queueRunner.js:43:12
+    at new Promise (<anonymous>)
+    at mapper (/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
+    at /home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/node_modules/jest-jasmine2/build/queueRunner.js:73:41
+22:22:02 (24988) ERROR StrykerCli an error occurred Error: There were failed tests in the initial test run.
+    at InitialTestExecutor.validateResult (/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/node_modules/@stryker-mutator/core/src/process/InitialTestExecutor.js:69:27)
+    at InitialTestExecutor.run (/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/node_modules/@stryker-mutator/core/src/process/InitialTestExecutor.js:41:14)
+    at async Stryker.runMutationTest (/home/saulo/Trybe/projetos/front-end/projeto-rtl/sd-014-a-project-react-testing-library/node_modules/@stryker-mutator/core/src/Stryker.js:53:38)

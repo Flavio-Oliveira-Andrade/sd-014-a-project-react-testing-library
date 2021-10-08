@@ -38,10 +38,11 @@ function teste(pokeType, bt, btAll, btNext) {
 
 // Os testes:
 describe('Testando os componentes de <Pokedex />', () => {
-  it('Se existem um texto "Encountered pokémons:', () => {
+  it('Se existem um texto "Encountered pokémons":', () => {
     renderWithRouter(<App />);
     const text = screen.getByRole('heading', {
       level: 2,
+      name: 'Encountered pokémons',
     });
     expect(text).toBeInTheDocument();
   });

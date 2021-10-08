@@ -18,7 +18,10 @@ describe('Testes relacionados ao About', () => {
   it('Contém um titulo com o texto "About Pokédex"', () => {
     renderWithRouter(<About />);
 
-    const titulo = screen.getByRole('heading', { level: 2 });
+    const titulo = screen.getByRole('heading', {
+      level: 2,
+      name: 'About Pokédex',
+    });
 
     expect(titulo).toBeInTheDocument();
   });

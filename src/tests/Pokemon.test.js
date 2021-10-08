@@ -77,4 +77,22 @@ describe('Test Pokemon component', () => {
       cleanup();
     });
   });
+
+  it('should be a star icon in favorite Pokémons', () => {
+    pokemons.forEach((pokemon) => {
+      renderWithRouter(<Pokemon pokemon={ pokemon } isFavorite />);
+
+      const starIcon = screen.getByRole('img', { name: /favorite/ });
+
+      expect(starIcon).toBeInTheDocument();
+      expect(starIcon).toHaveAttribute('src', '/star-icon.svg');
+      expect(starIcon).toHaveAttribute(
+        'alt',
+        `${pokemon.name} is marked as favorite`,
+      );
+
+      // Cleanup is necessary to avoid memory leaks in the test environment
+      cleanup();
+    });
+  });
 });

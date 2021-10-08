@@ -71,15 +71,17 @@ describe('6. Teste o componente `<Pokemon.js />`', () => {
   //   );
   // });
 
-  it.skip('Teste se existe um ícone de estrela nos Pokémons favoritados', () => {
+  it('Teste se existe um ícone de estrela nos Pokémons favoritados', () => {
     render(
       <Router>
         <App />
       </Router>,
     );
 
-    // userEvent.click(screen.getByText(/More details/i));
-    // expect(screen.getByRole('img')).toHaveAttribute('src', '/star-icon.svg');
-    // expect(screen.getByAltText('Pikachu is marked as favorite')).toBeInTheDocument();
+    userEvent.click(screen.getByLabelText('Pokémon favoritado?'));
+    expect(screen.getByAltText('Pikachu is marked as favorite'))
+      .toHaveAttribute('src', '/star-icon.svg');
+
+    expect(screen.getByAltText('Pikachu is marked as favorite')).toBeInTheDocument();
   });
 });

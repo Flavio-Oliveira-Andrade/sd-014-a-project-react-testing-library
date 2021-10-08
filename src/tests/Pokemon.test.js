@@ -54,4 +54,16 @@ describe('Teste o componente `<Pokemon.js />`', () => {
     userEvent.click(screen.getByRole('link', { name: 'More details' }));
     expect(screen.getByText('Pikachu Details')).toBeInTheDocument();
   });
+
+  test('Teste se existe um ícone de estrela nos Pokémons favoritados', () => {
+    render(
+      <Router>
+        <App />
+      </Router>,
+    );
+
+    userEvent.click(screen.getByLabelText('Pokémon favoritado?'));
+    expect(screen.getByAltText('Pikachu is marked as favorite'))
+      .toHaveAttribute('src', '/star-icon.svg');
+  });
 });

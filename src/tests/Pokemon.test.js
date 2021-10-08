@@ -33,4 +33,19 @@ describe('Test Pokemon component', () => {
       cleanup();
     });
   });
+
+  it('contains a link to display details on the Pokémon card', () => {
+    // (The link must have the URL /pokemons/<id>, where <id> is the id of the Pokemon displayed)
+    pokemons.forEach((pokemon) => {
+      renderWithRouter(<Pokemon pokemon={ pokemon } isFavorite={ false } />);
+
+      const link = screen.getByRole('link', { name: 'More details' });
+
+      expect(link).toBeInTheDocument();
+      expect(link).toHaveAttribute('href', `/pokemons/${pokemon.id}`);
+
+      // Cleanup is necessary to avoid memory leaks in the test environment
+      cleanup();
+    });
+  });
 });

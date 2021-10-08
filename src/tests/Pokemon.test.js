@@ -1,5 +1,6 @@
 import React from 'react';
 import { cleanup, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import Pokemon from '../components/Pokemon';
 import pokemons from '../data';
@@ -43,6 +44,27 @@ describe('Test Pokemon component', () => {
 
       expect(link).toBeInTheDocument();
       expect(link).toHaveAttribute('href', `/pokemons/${pokemon.id}`);
+
+      // Cleanup is necessary to avoid memory leaks in the test environment
+      cleanup();
+    });
+  });
+
+  it('redirects to Pokémon details page by clicking on Pokémon link', () => {
+    pokemons.forEach((pokemon) => {
+      const { history } = renderWithRouter(
+        <Pokemon pokemon={ pokemon } isFavorite={ false } />,
+      );
+
+      const link = screen.getByRole('link', { name: 'More details' });
+
+      expect(link).toBeInTheDocument();
+      expect(link).toHaveAttribute('href', `/pokemons/${pokemon.id}`);
+
+      userEvent.click(link);
+
+      // The URL must be /pokemons/<id>, where <id> is the id of the Pokémon displayed
+      expect(history.location.pathname).toBe(`/pokemons/${pokemon.id}`);
 
       // Cleanup is necessary to avoid memory leaks in the test environment
       cleanup();

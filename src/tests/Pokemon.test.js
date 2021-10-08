@@ -2,10 +2,13 @@ import React from 'react';
 import { cleanup, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
+import App from '../App';
 import Pokemon from '../components/Pokemon';
 import pokemons from '../data';
 
 describe('Test Pokemon component', () => {
+  const MORE_DETAILS_TEXT = 'More details';
+
   it('renders a card with the information of a certain Pokémon', () => {
     pokemons.forEach((pokemon) => {
       renderWithRouter(<Pokemon pokemon={ pokemon } isFavorite={ false } />);
@@ -36,11 +39,11 @@ describe('Test Pokemon component', () => {
   });
 
   it('contains a link to display details on the Pokémon card', () => {
-    // (The link must have the URL /pokemons/<id>, where <id> is the id of the Pokemon displayed)
+    // The link must have the URL /pokemons/<id>, where <id> is the id of the Pokemon displayed
     pokemons.forEach((pokemon) => {
       renderWithRouter(<Pokemon pokemon={ pokemon } isFavorite={ false } />);
 
-      const link = screen.getByRole('link', { name: 'More details' });
+      const link = screen.getByRole('link', { name: MORE_DETAILS_TEXT });
 
       expect(link).toBeInTheDocument();
       expect(link).toHaveAttribute('href', `/pokemons/${pokemon.id}`);
@@ -51,17 +54,21 @@ describe('Test Pokemon component', () => {
   });
 
   it('redirects to Pokémon details page by clicking on Pokémon link', () => {
+    renderWithRouter(<App />);
+
+    userEvent.click(screen.getByRole('link', { name: MORE_DETAILS_TEXT }));
+
+    const pokemonDetails = screen.getByRole('heading', { name: /Details/ });
+    expect(pokemonDetails).toBeInTheDocument();
+  });
+
+  it('changes the URL displayed in the browser to /pokemon/<id>', () => {
     pokemons.forEach((pokemon) => {
       const { history } = renderWithRouter(
         <Pokemon pokemon={ pokemon } isFavorite={ false } />,
       );
 
-      const link = screen.getByRole('link', { name: 'More details' });
-
-      expect(link).toBeInTheDocument();
-      expect(link).toHaveAttribute('href', `/pokemons/${pokemon.id}`);
-
-      userEvent.click(link);
+      userEvent.click(screen.getByRole('link', { name: MORE_DETAILS_TEXT }));
 
       // The URL must be /pokemons/<id>, where <id> is the id of the Pokémon displayed
       expect(history.location.pathname).toBe(`/pokemons/${pokemon.id}`);

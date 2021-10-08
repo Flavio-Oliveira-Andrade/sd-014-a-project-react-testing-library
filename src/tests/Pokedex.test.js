@@ -19,7 +19,7 @@ const isPokemonFavoriteById = {
   148: false,
 };
 
-describe('Testando componente Pokedex', () => {
+describe('Teste o componente `<Pokedex.js />`', () => {
   test('Teste se página contém um heading com o texto `Encountered pokémons`', () => {
     renderWithRouter(<App />);
 

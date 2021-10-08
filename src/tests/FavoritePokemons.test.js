@@ -4,7 +4,7 @@ import FavoritePokemons from '../components/FavoritePokemons';
 
 const noFound = 'No favorite pokemon found';
 
-describe('Testando componente FavortitePokemons', () => {
+describe('Teste o componente `<FavoritePokemons.js />`', () => {
   test('Teste se é exibido na tela a mensagem `No favorite pokemon found`', () => {
     // passo 1 adicionar componente
     render(<FavoritePokemons />);

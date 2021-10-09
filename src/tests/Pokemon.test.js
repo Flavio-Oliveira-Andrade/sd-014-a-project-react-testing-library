@@ -1,46 +1,49 @@
 import React from 'react';
 import { screen, fireEvent } from '@testing-library/react';
 import renderWithRouter from './render/renderWithRouter';
+
 import App from '../App';
+import pokemons from '../data';
+import Pokemon from '../components/Pokemon';
 
-const SEVEN = 7;
-
-describe('Testes do requisito 5', () => {
-  it('se página contém um heading h2 com o texto Encountered pokémons', () => {
+describe('Testes do requisito 6', () => {
+  it('se é renderizado um card com as informações de determinado pokémon', () => {
     renderWithRouter(<App />);
-    expect(
-      screen.getByRole('heading', { level: 2, name: /encountered pokémons/i }),
-    ).toBeInTheDocument();
+    const image = screen.getByAltText('Pikachu sprite');
+
+    expect(screen.getByTestId('pokemon-name').innerHTML).toBe('Pikachu');
+    expect(screen.getByTestId('pokemon-type').innerHTML).toBe('Electric');
+    expect(screen.getByTestId('pokemon-weight').innerHTML).toBe(
+      'Average weight: 6.0 kg',
+    );
+    expect(image).toBeInTheDocument();
+    expect(image).toHaveAttribute(
+      'src',
+      'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
+    );
   });
 
-  it('se é exibido o próximo Pokémon da lista quando o botão é clicado', () => {
+  it('se o card do Pokémon indicado na Pokédex contém um link de navegação', () => {
     renderWithRouter(<App />);
-    const button = screen.getByRole('button', { name: /próximo pokémon/i });
-    expect(button).toBeInTheDocument();
-    const pokemon = screen.getByTestId('pokemon-name');
-    fireEvent.click(button);
-    expect(pokemon.innerHTML).toBe('Charmander');
+    const link = screen.getByRole('link', { name: 'More details' });
+    expect(link).toBeInTheDocument();
   });
 
-  it('se é mostrado apenas um Pokémon por vez', () => {
-    renderWithRouter(<App />);
-    expect(screen.getAllByTestId('pokemon-name')).toHaveLength(1);
+  it('se ao clicar no link, é feito o redirecionamento e o navegador muda', () => {
+    const { history } = renderWithRouter(<App />);
+    const link = screen.getByRole('link', { name: 'More details' });
+    fireEvent.click(link);
+    const { pathname } = history.location;
+    expect(pathname).toBe('/pokemons/25');
   });
 
-  it('se a Pokédex tem os botões de filtro', () => {
-    renderWithRouter(<App />);
-    const filters = screen.getAllByTestId('pokemon-type-button');
-    expect(filters).toHaveLength(SEVEN);
-    filters.forEach((filter, index) => {
-      expect(filter).not.toEqual(filters[index + 1]);
+  it('se existe um ícone de estrela nos Pokémons favoritados', () => {
+    renderWithRouter(<Pokemon pokemon={ pokemons[0] } isFavorite />);
+    const favorite = screen.getByRole('img', {
+      name: 'Pikachu is marked as favorite',
     });
-  });
-
-  it('se a Pokédex contém um botão para resetar o filtro', () => {
-    renderWithRouter(<App />);
-    const button = screen.getByRole('button', { name: /all/i });
-    fireEvent.click(button);
-    expect(screen.getByText(/pikachu/i)).toBeInTheDocument();
-    expect(button).toBeInTheDocument();
+    expect(favorite).toBeInTheDocument();
+    expect(favorite).toHaveAttribute('src', '/star-icon.svg');
+    expect(favorite).toHaveAttribute('alt', 'Pikachu is marked as favorite');
   });
 });

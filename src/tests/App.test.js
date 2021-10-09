@@ -1,6 +1,10 @@
+// Refatorado com ajuda de Tiago Sathler
+
 import React from 'react';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../components/renderWithRouter';
+
 import App from '../App';
 
 describe('Testa o componente "App"', () => {
@@ -29,35 +33,60 @@ describe('Testa o componente "App"', () => {
   + ' inicial, na URL `/` ao clicar no link `Home`', () => {
     const { history } = renderWithRouter(<App />);
 
-    history.push('/');
+    // history.push('/');
+    const homeLink = screen.getByRole('link', { name: /home/i });
+    userEvent.click(homeLink);
 
-    const pokedexText = screen.getByRole('heading', { name: /pokédex/i });
-    expect(pokedexText).toBeInTheDocument();
+    // const pokedexText = screen.getByRole('heading', { name: /pokédex/i });
+    // expect(pokedexText).toBeInTheDocument();
+    // history.location.pathname
+    const { location: { pathname } } = history;
+    expect(pathname).toBe('/');
   });
 
   test('a aplicação é redirecionada para a página de'
   + '`About`, na URL `/about`, ao clicar no link `About`', () => {
     const { history } = renderWithRouter(<App />);
 
-    history.push('/about');
+    // history.push('/about');
+    const aboutLink = screen.getByRole('link', { name: /about/i });
+    userEvent.click(aboutLink);
 
-    const aboutText = screen.getByRole('heading', {
-      level: 2,
-      name: /about Pokédex/i,
-    });
-    expect(aboutText).toBeInTheDocument();
+    // const aboutText = screen.getByRole('heading', {
+    //   level: 2,
+    //   name: /about Pokédex/i,
+    // });
+    // expect(aboutText).toBeInTheDocument();
+    const { location: { pathname } } = history;
+    expect(pathname).toBe('/about');
   });
 
   test('a aplicação é redirecionada para a página de `Pokémons Favoritados`,'
   + 'na URL `/favorites`, ao clicar no link `Favorite Pokémons`', () => {
     const { history } = renderWithRouter(<App />);
 
-    history.push('/favorites');
+    // history.push('/favorites');
+    const pokemonsLink = screen.getByRole('link', { name: /pokémons/i });
+    userEvent.click(pokemonsLink);
 
-    const favoriteText = screen.getByRole('heading', {
+    // const favoriteText = screen.getByRole('heading', {
+    //   level: 2,
+    //   name: /favorite pokémons/i,
+    // });
+    // expect(favoriteText).toBeInTheDocument();
+    const { location: { pathname } } = history;
+    expect(pathname).toBe('/favorites');
+  });
+
+  test('Verificar se a aplicação é redirecionada para a página'
+  + '`Not Found` ao entrar em uma URL desconhecida', () => {
+    const { history } = renderWithRouter(<App />);
+
+    history.push('/hola');
+
+    const notFoundText = screen.getByRole('heading', {
       level: 2,
-      name: /favorite pokémons/i,
-    });
-    expect(favoriteText).toBeInTheDocument();
+      name: 'Page requested not found Crying emoji' });
+    expect(notFoundText).toBeInTheDocument();
   });
 });

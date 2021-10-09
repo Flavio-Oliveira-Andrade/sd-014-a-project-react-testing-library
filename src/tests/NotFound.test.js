@@ -18,5 +18,6 @@ describe('Teste o componente <NotFound.js />', () => {
 
     const img = screen.getByAltText(/page requested was not found/i);
     expect(img).toBeInTheDocument();
+    expect(img).toHaveAttribute('src', 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
   });
 });

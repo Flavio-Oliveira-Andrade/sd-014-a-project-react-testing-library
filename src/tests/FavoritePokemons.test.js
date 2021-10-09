@@ -8,15 +8,20 @@ import renderWithRouter from '../components/renderWithRouter';
 describe('Testa o componente "FavoritePokemons"', () => {
   test('Verifica se é exibido na tela a mensagem `No favorite pokemon found`,'
   + 'se a pessoa não tiver pokémons favoritos', () => {
-    const { history } = renderWithRouter(<App />);
-    history.push('/favorites');
+    // const { history } = renderWithRouter(<App />);
+    renderWithRouter(<App />);
+
+    // history.push('/favorites');
+    const favoriteLink = screen.getByRole('link', { name: /favorite pokémons/i });
+    userEvent.click(favoriteLink);
 
     const noFavoriteText = screen.getByText('No favorite pokemon found');
     expect(noFavoriteText).toBeInTheDocument();
   });
 
   test('Verifica se é exibido todos os cards de pokémons favoritados', () => {
-    const { history } = renderWithRouter(<App />);
+    // const { history } = renderWithRouter(<App />);
+    renderWithRouter(<App />);
 
     const moreDetailsButton = screen.getByRole('link', { name: /more details/i });
     userEvent.click(moreDetailsButton);
@@ -25,7 +30,9 @@ describe('Testa o componente "FavoritePokemons"', () => {
     expect(favoriteCheckbox).toBeInTheDocument();
     userEvent.click(favoriteCheckbox);
 
-    history.push('/favorites');
+    // history.push('/favorites');
+    const favoriteLink = screen.getByRole('link', { name: /favorite pokémons/i });
+    userEvent.click(favoriteLink);
 
     const pokemonName = screen.getByText(/pikachu/i);
     const pokemonType = screen.getByText(/electric/i);

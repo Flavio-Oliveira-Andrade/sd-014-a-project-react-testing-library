@@ -31,4 +31,37 @@ describe('Test PokemonDetails component', () => {
       cleanup();
     });
   });
+
+  it('should be a section with maps containing the Pokémons locations', () => {
+    pokemons.forEach((pokemon) => {
+      const { history } = renderWithRouter(<App />);
+      const { id, name, foundAt } = pokemon;
+
+      history.push(`/pokemons/${id}`);
+
+      const gameLocationsText = screen.getByRole('heading', {
+        level: 2,
+        name: `Game Locations of ${name}`,
+      });
+      expect(gameLocationsText).toBeInTheDocument();
+
+      const locationsImages = screen.getAllByRole('img', {
+        name: `${name} location`,
+      });
+      expect(locationsImages).toHaveLength(foundAt.length);
+
+      foundAt.forEach(({ location, map }) => {
+        const locationName = screen.getByText(location);
+        expect(locationName).toBeInTheDocument();
+
+        const locationImage = locationsImages.find(({ src }) => src === map);
+
+        expect(locationImage).toBeInTheDocument();
+        expect(locationImage).toHaveAttribute('alt', `${name} location`);
+      });
+
+      // Cleanup is necessary to avoid memory leaks in the test environment
+      cleanup();
+    });
+  });
 });

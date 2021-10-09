@@ -1,5 +1,6 @@
 import React from 'react';
 import { cleanup, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 import pokemons from '../data';
@@ -59,6 +60,35 @@ describe('Test PokemonDetails component', () => {
         expect(locationImage).toBeInTheDocument();
         expect(locationImage).toHaveAttribute('alt', `${name} location`);
       });
+
+      // Cleanup is necessary to avoid memory leaks in the test environment
+      cleanup();
+    });
+  });
+
+  it('should be possible to favorite a Pokémon through the details page', () => {
+    // A página deve exibir um checkbox que permite favoritar o Pokémon;
+    // Cliques alternados no checkbox devem adicionar e remover respectivamente o Pokémon da lista de favoritos;
+    // O label do checkbox deve conter o texto Pokémon favoritado?;
+
+    pokemons.forEach(({ id }) => {
+      const { history } = renderWithRouter(<App />);
+
+      history.push(`/pokemons/${id}`);
+
+      const favoriteCheckbox = screen.getByRole('checkbox');
+      expect(favoriteCheckbox).toBeInTheDocument();
+
+      userEvent.click(favoriteCheckbox);
+      expect(favoriteCheckbox).toBeChecked();
+
+      userEvent.click(favoriteCheckbox);
+      expect(favoriteCheckbox).not.toBeChecked();
+
+      const favoriteCheckboxLabel = screen.getByLabelText(
+        'Pokémon favoritado?',
+      );
+      expect(favoriteCheckboxLabel).toBeInTheDocument();
 
       // Cleanup is necessary to avoid memory leaks in the test environment
       cleanup();

@@ -7,9 +7,8 @@ import pokemons from '../data';
 
 describe('Test PokemonDetails component', () => {
   it('shows detailed information of selected Pokémon', () => {
-    pokemons.forEach((pokemon) => {
+    pokemons.forEach(({ id, name, summary }) => {
       const { history } = renderWithRouter(<App />);
-      const { id, name, summary } = pokemon;
 
       history.push(`/pokemons/${id}`);
 
@@ -34,9 +33,8 @@ describe('Test PokemonDetails component', () => {
   });
 
   it('should be a section with maps containing the Pokémons locations', () => {
-    pokemons.forEach((pokemon) => {
+    pokemons.forEach(({ id, name, foundAt }) => {
       const { history } = renderWithRouter(<App />);
-      const { id, name, foundAt } = pokemon;
 
       history.push(`/pokemons/${id}`);
 

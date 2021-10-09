@@ -1,8 +1,6 @@
 // test('', () => {});
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { BrowserRouter, Router } from 'react-router-dom';
-import { createMemoryHistory } from 'history';
+import { screen, fireEvent } from '@testing-library/react';
 import renderWithRouter from './utils/renderWithRouter';
 
 import App from '../App';

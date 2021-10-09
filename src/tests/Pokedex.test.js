@@ -22,7 +22,7 @@ describe('Testa a pagina de Pokedex', () => {
   it('Testa se é exibido o próximo Poke da lista quando se clica no botão de ->.', () => {
     const next = screen.getByTestId('next-pokemon');
     expect(next).toBeInTheDocument();
-    expect(next.innerHTML).toBe(/Próximo pokémon/i);
+    expect(next.innerHTML).toBe('Próximo pokémon');
     const nextPoke = screen.getByTestId(nameId);
     userEvent.click(next);
     expect(nextPoke).toHaveTextContent(/Charmander/i);
@@ -34,16 +34,20 @@ describe('Testa a pagina de Pokedex', () => {
   });
 
   it('Testa se a Pokédex tem os botões de filtro.', () => {
-    const FILTER_BUTTONS_QTD = 8;
-    const botoes = screen.getAllByClass('filter-button');
-    expect(botoes).toBeInTheDocument();
-    expect(botoes).toHaveLength(FILTER_BUTTONS_QTD);
+    const TYPES_BUTTONS = 7;
 
-    const eletricType = screen.getByTestId('pokemon-type');
-    expect(eletricType).toHaveTextContent(/eletric/i);
+    const pokemonsTypes = ['Electric', 'Fire',
+      'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon'];
+    pokemonsTypes.forEach((type) => expect(screen.getByRole('button', { name: type }))
+      .toBeInTheDocument());
 
-    const type = screen.getAllByTestId('pokemon-type-button');
-    expect(type[1]).toHaveTextContent(/fire/i);
+    const typeButton = screen.getAllByTestId('pokemon-type-button');
+    expect(typeButton).toHaveLength(TYPES_BUTTONS);
+    expect(typeButton[1]).toHaveTextContent(/fire/i);
+
+    userEvent.click(typeButton[2]);
+    const pokemon = screen.getByTestId(nameId);
+    expect(pokemon).toHaveTextContent(/Caterpie/i);
 
     const allButton = screen.getByRole('button', { name: 'All' });
     expect(allButton).toBeVisible();
@@ -51,6 +55,7 @@ describe('Testa a pagina de Pokedex', () => {
 
   it('Testa se a Pokédex contém um botão para resetar o filtro', () => {
     const allButton = screen.getByRole('button', { name: 'All' });
+    expect(allButton).toHaveTextContent('All');
     expect(allButton).toBeInTheDocument();
     userEvent.click(allButton);
     const pokemonInicial = screen.getByTestId(nameId);

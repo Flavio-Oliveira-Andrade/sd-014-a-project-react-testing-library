@@ -3,7 +3,7 @@ import { fireEvent, } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from '..renderWithRouter';
 
-describe('Teste o componente <App.js />', () => {
+describe('1 - Teste o componente <App.js />', () => {
   test('Teste se a página principal da Pokédex é renderizada em /', () => {
     const { getByText, history } = renderWithRouter(<App />);
     const rota = '/';

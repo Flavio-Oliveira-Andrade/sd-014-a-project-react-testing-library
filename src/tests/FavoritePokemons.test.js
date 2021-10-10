@@ -1,5 +1,6 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
+// import { render } from '@testing-library/react';
 import FavoritePokemons from '../components/FavoritePokemons';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';

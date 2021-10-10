@@ -1,46 +1,36 @@
 import React from 'react';
-import About from '../components/About';
+import { screen } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
+import About from '../components/About';
 
-describe('2 - Teste o componente <About.js /.', () => {
-  test('Teste se a página contém as informações sobre a Pokédex.', () => {
-    // Testa o título
-    const { getByText, getByAltText } = renderWithRouter(<About />);
-    const aboutTitle = getByText(/About Pokédex/);
-    expect(aboutTitle).toBeInTheDocument();
-    // Testa os dois parágrafos
-    let text = /This application simulates a Pokédex, a digital encyclopedia/;
-    const paragraph1 = getByText(text);
-    expect(paragraph1).toBeInTheDocument();
-    text = /One can filter Pokémons by type, and see more details for each one of them/;
-    const paragraph2 = getByText(text);
-    expect(paragraph2).toBeInTheDocument();
-    // Testa a imagem
-    const image = getByAltText('Pokédex');
-    const src = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
-    expect(image.src).toContain(src);
+describe('Testes relacionados ao About', () => {
+  it('Informações sobre o pokedex são renderizadas, sendo 2 paragrafos', () => {
+    renderWithRouter(<About />);
+
+    const info = screen.getAllByText(/Pokémons/i);
+    const info01 = screen.getByText(/application simulates a Pokédex/i);
+    const info02 = screen.getByText(/and see more details for each/i);
+
+    expect(info01).toBeInTheDocument();
+    expect(info02).toBeInTheDocument();
+    expect(info.length).toBe(2);
   });
+  it('Contém um titulo com o texto "About Pokédex"', () => {
+    renderWithRouter(<About />);
 
-  test('Teste se a página contém um heading h2 com o texto About Pokédex.', () => {
-    const { getByRole } = renderWithRouter(<About />);
-    const title = getByRole('heading', { level: 2 });
-    expect(title).toHaveTextContent('About Pokédex');
+    const titulo = screen.getByRole('heading', {
+      level: 2,
+      name: 'About Pokédex',
+    });
+
+    expect(titulo).toBeInTheDocument();
   });
+  it('Se contém uma imagem com SRC especifico', () => {
+    renderWithRouter(<About />);
 
-  test('Teste se a página contém dois parágrafos com texto sobre a Pokédex.', () => {
-    const { getByText } = renderWithRouter(<About />);
-    let text = /This application simulates a Pokédex, a digital encyclopedia/;
-    const paragraph1 = getByText(text);
-    expect(paragraph1).toBeInTheDocument();
-    text = /One can filter Pokémons by type, and see more details for each one of them/;
-    const paragraph2 = getByText(text);
-    expect(paragraph2).toBeInTheDocument();
-  });
+    const img = screen.getByRole('img');
 
-  test('Teste se a página contém a seguinte um imagem da Pokédex:', () => {
-    const { getByAltText } = renderWithRouter(<About />);
-    const image = getByAltText('Pokédex');
-    const src = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
-    expect(image.src).toContain(src);
+    expect(img).toBeInTheDocument();
+    expect(img.src).toBe('https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
   });
 });

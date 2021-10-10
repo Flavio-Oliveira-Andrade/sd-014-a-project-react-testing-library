@@ -1,10 +1,10 @@
 import React from 'react';
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import App from '../App';
 import renderWithRouter from '../components/renderWithRouter';
 import userEvent from '@testing-library/user-event';
 
-it('should have links with texts: Home, About, Favorite Pokemons', () => {
+it('has 3 links with texts: Home, About, Favorite Pokemons', () => {
     renderWithRouter(<App />);
 
     const links = screen.getAllByRole('link');
@@ -14,7 +14,7 @@ it('should have links with texts: Home, About, Favorite Pokemons', () => {
     expect(links[2]).toHaveTextContent('Favorite Pokémons');
 });
 
-it('should redirect to "/" if Home is clicked', () => {
+it('redirects to "/" if Home is clicked', () => {
     const { history } = renderWithRouter(<App />);
 
     const link = screen.getByRole('link', { name: 'Home' } );
@@ -24,7 +24,7 @@ it('should redirect to "/" if Home is clicked', () => {
     expect(pathname).toBe('/');
 });
 
-it('should redirect to "/About" if About is clicked', () => {
+it('redirects to "/About" if About is clicked', () => {
     const { history } = renderWithRouter(<App />);
 
     const link = screen.getByRole('link', { name: 'About' } );
@@ -34,7 +34,7 @@ it('should redirect to "/About" if About is clicked', () => {
     expect(pathname).toBe('/about');
 });
 
-it('should redirect to "/favorites" if Favorite Pokémons is clicked', () => {
+it('redirects to "/favorites" if Favorite Pokémons is clicked', () => {
     const { history } = renderWithRouter(<App />);
 
     const link = screen.getByRole('link', { name: 'Favorite Pokémons' } );
@@ -45,7 +45,7 @@ it('should redirect to "/favorites" if Favorite Pokémons is clicked', () => {
 
 });
 
-it('should redirect to Not Found if non existent url is searched', () => {
+it('redirects to Not Found if non existent url is searched', () => {
     const { history } = renderWithRouter(<App />);
 
     history.push('/wingardiumLeviosa');

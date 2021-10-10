@@ -1,170 +1,78 @@
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+
+import userEvent from '@testing-library/user-event';
+import renderWithRouter from './renderWithRouter';
 import App from '../App';
-import renderWithRouter from '../renderWithRouter';
 import data from '../data';
 
-// Testa o componente <Pokedex.js />
-
-describe('Teste se página contém um heading h2 com o texto Encountered pokémons', () => {
-  test('Teste se página contém um heading h2 com o texto Encountered pokémons', () => {
-    const { getByRole } = renderWithRouter(<App />);
-    const title = getByRole('heading', { level: 2 });
-    expect(title).toHaveTextContent('Encountered pokémons');
+// Funções:
+const verificaCadaPokemonClick = (where) => {
+  data.forEach(({ name }) => {
+    expect(screen.getByText(name)).toBeInTheDocument();
+    userEvent.click(where);
   });
-});
+};
 
-describe('Exibi-se o próximo Pokémon quando o botão Próximo pokémon é clicado.', () => {
-  test('Testa se há um botão que contêm o texto Próximo pokémon', () => {
-    const { getAllByRole } = renderWithRouter(<App />);
-    const button = getAllByRole('button');
-    expect(button[button.length - 1]).toHaveTextContent('Próximo pokémon');
-  });
+const pokemonType = data.reduce((acc, { type }) => {
+  const theFilter = data.filter(({ type: kind }) => type === kind).length;
+  if (acc.find(({ type: kind }) => kind === type)) return acc;
+  return [...acc, { type, qtd: theFilter }];
+}, []);
 
-  test('Pokémons da lista são mostrados sucessivamente', () => {
-    const { getAllByRole, getByText } = renderWithRouter(<App />);
-    const button = getAllByRole('button');
-    const nextButton = button[button.length - 1];
-    for (let i = 0; i < button.length; i += 1) {
-      const pokemonName = getByText(`${data[i].name}`);
-      expect(pokemonName).toBeInTheDocument();
-      fireEvent.click(nextButton);
+function teste(pokeType, bt, btAll, btNext) {
+  bt.forEach((button, index) => {
+    expect(button).toHaveTextContent(pokeType[index].type);
+    userEvent.click(button);
+    if (pokeType[index].qtd > 1) {
+      for (let i = 0; i < pokeType[index].qtd; i += 1) {
+        const pokesFiltered = data.filter(({ type }) => type === pokeType[index].type);
+        const name = screen.getByText(pokesFiltered[i].name);
+        expect(name).toBeInTheDocument();
+        userEvent.click(btNext);
+      }
     }
+    expect(btAll).toBeInTheDocument();
+  });
+}
+
+// Os testes:
+describe('Testando os componentes de <Pokedex />', () => {
+  it('Se existem um texto "Encountered pokémons":', () => {
+    renderWithRouter(<App />);
+    const text = screen.getByRole('heading', {
+      level: 2,
+      name: 'Encountered pokémons',
+    });
+    expect(text).toBeInTheDocument();
   });
 
-  test('Reseta quando chega no último Pokémon', () => {
-    const { getAllByRole, getByText } = renderWithRouter(<App />);
-    const button = getAllByRole('button');
-    const nextButton = button[button.length - 1];
-    for (let i = 0; i < button.length; i += 1) {
-      fireEvent.click(nextButton);
-    }
-    const pikachuName = getByText('Pikachu');
-    expect(pikachuName).toBeInTheDocument();
-  });
-});
+  it('Se e exibido o proiximo pokemon ao clicar em "Próximo pokémon":', () => {
+    renderWithRouter(<App />);
 
-describe('Teste se é mostrado apenas um Pokémon por vez', () => {
-  test('Teste se é mostrado apenas um Pokémon por vez.', () => {
-    const { getAllByRole, getAllByTestId } = renderWithRouter(<App />);
-    const button = getAllByRole('button');
-    const nextButton = button[button.length - 1];
-    for (let i = 0; i < button.length; i += 1) {
-      const pokemonName = getAllByTestId('pokemon-name');
-      expect(pokemonName).toHaveLength(1);
-      fireEvent.click(nextButton);
-    }
-  });
-});
-
-const stringNextPokemon = 'next-pokemon';
-const strPokemonTypeButton = 'pokemon-type-button';
-
-describe('Teste se a Pokédex tem os botões de filtro.', () => {
-  test('Se for o caso, Pokédex circula somente pelos pokémons daquele tipo', () => {
-    const { getAllByTestId, getByTestId } = renderWithRouter(<App />);
-    const nextPokemon = getByTestId(stringNextPokemon);
-    const pokemonTypeButton = getAllByTestId(strPokemonTypeButton);
-    const pokemonType = getByTestId('pokemon-type');
-    // Clico em Eletric
-    fireEvent.click(pokemonTypeButton[0]);
-    expect(nextPokemon.disabled).toBe(true);
-    // Clico em Fire
-    fireEvent.click(pokemonTypeButton[1]);
-    expect(pokemonType).toHaveTextContent('Fire');
-    fireEvent.click(nextPokemon);
-    expect(pokemonType).toHaveTextContent('Fire');
-    // Clico em Bug
-    fireEvent.click(pokemonTypeButton[2]);
-    expect(nextPokemon.disabled).toBe(true);
-    // Clico em Poison
-    fireEvent.click(pokemonTypeButton[3]);
-    expect(nextPokemon.disabled).toBe(true);
-    // Clico em Psychic
-    fireEvent.click(pokemonTypeButton[4]);
-    expect(pokemonType).toHaveTextContent('Psychic');
-    fireEvent.click(nextPokemon);
-    expect(pokemonType).toHaveTextContent('Psychic');
-    // Clico em Normal
-    fireEvent.click(pokemonTypeButton[5]);
-    expect(nextPokemon.disabled).toBe(true);
-    // Clico em Dragon
-    fireEvent.click(pokemonTypeButton[6]);
-    expect(nextPokemon.disabled).toBe(true);
+    const btn = screen.getByRole('button', { name: /próximo pokémon/i });
+    verificaCadaPokemonClick(btn);
   });
 
-  test('O texto do botão deve corresponder ao nome do tipo, ex. Psychic', () => {
-    const types = ['Electric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon'];
-    const { getAllByTestId } = renderWithRouter(<App />);
-    const pokemonTypeButton = getAllByTestId(strPokemonTypeButton);
-    for (let i = 0; i < pokemonTypeButton.length; i += 1) {
-      expect(pokemonTypeButton[i]).toHaveTextContent(types[i]);
-    }
-  });
-});
+  it('Testando os filtros dos botoes:', () => {
+    renderWithRouter(<App />);
 
-describe('Teste se a Pokédex contém um botão para resetar o filtro', () => {
-  test('Teste se existe um botão com text All;', () => {
-    const { getAllByRole } = renderWithRouter(<App />);
-    const allButtons = getAllByRole('button');
-    expect(allButtons[0]).toHaveTextContent('All');
+    const btn = screen.getAllByTestId('pokemon-type-button');
+    const btnAll = screen.getByRole('button', { name: 'All' });
+    const btnNext = screen.getByRole('button', { name: /próximo pokémon/i });
+
+    teste(pokemonType, btn, btnAll, btnNext);
   });
 
-  test('Quando o botão All for clicado não há filtros', () => {
-    const { getAllByRole, getByTestId } = renderWithRouter(<App />);
-    const nextPokemon = getByTestId(stringNextPokemon);
-    const allButtons = getAllByRole('button');
-    fireEvent.click(allButtons[0]);
-    for (let i = 0; i < data.length; i += 1) {
-      expect(nextPokemon.disabled).toBe(false);
-      fireEvent.click(nextPokemon);
-    }
-  });
+  it('5.5. se a Pokédex contém um botão para resetar o filtro', () => {
+    renderWithRouter(<App />);
 
-  test('Ao carregar a página, o filtro selecionado deverá ser All;', () => {
-    const { getAllByRole, getByTestId } = renderWithRouter(<App />);
-    const allButton = getAllByRole('button')[0];
-    const pokemonType = getByTestId('pokemon-type');
-    const nextPokemon = getByTestId(stringNextPokemon);
-    fireEvent.click(allButton);
-    expect(pokemonType).toHaveTextContent('Electric');
-    fireEvent.click(nextPokemon);
-    expect(pokemonType).toHaveTextContent('Fire');
-  });
-});
+    const btnAll = screen.getByRole('button', { name: 'All' });
+    expect(btnAll).toBeInTheDocument();
 
-describe('Cria-se um botão de filtro para cada tipo de Pokémon', () => {
-  test('Cria-se um botão de filtro para cada tipo de Pokémon', () => {
-    const types = ['Electric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon'];
-    const { getAllByTestId, getAllByRole } = renderWithRouter(<App />);
-    const pokemonTypeButton = getAllByTestId(strPokemonTypeButton);
-    const allButton = getAllByRole('button')[0];
-    for (let i = 0; i < pokemonTypeButton.length; i += 1) {
-      expect(pokemonTypeButton[i]).toHaveTextContent(types[i]);
-      expect(allButton.disabled).toBe(false);
-    }
-  });
-});
+    userEvent.click(btnAll);
 
-describe('Se existir um Pokémon, botão de Próximo pokémon deve ser desabilitado', () => {
-  test('Se existir um Pokémon, botão de Próximo pokémon deve ser desabilitado', () => {
-    const { getByTestId, getAllByTestId } = renderWithRouter(<App />);
-    const nextPokemon = getByTestId(stringNextPokemon);
-    const pokemonTypeButton = getAllByTestId(strPokemonTypeButton);
-    // Clico em Electric
-    fireEvent.click(pokemonTypeButton[0]);
-    expect(nextPokemon.disabled).toBe(true);
-    // Clico em Bug
-    fireEvent.click(pokemonTypeButton[2]);
-    expect(nextPokemon.disabled).toBe(true);
-    // Clico em Poison
-    fireEvent.click(pokemonTypeButton[3]);
-    expect(nextPokemon.disabled).toBe(true);
-    // Clico em Normal
-    fireEvent.click(pokemonTypeButton[5]);
-    expect(nextPokemon.disabled).toBe(true);
-    // Clico em Dragon
-    fireEvent.click(pokemonTypeButton[6]);
-    expect(nextPokemon.disabled).toBe(true);
+    const btn = screen.getByRole('button', { name: /próximo pokémon/i });
+    verificaCadaPokemonClick(btn);
   });
 });

@@ -1,70 +1,74 @@
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import renderWithRouter from './renderWithRouter';
+
 import App from '../App';
-import renderWithRouter from '../renderWithRouter';
+import Data from '../data';
 
-const stringMoreDetails = 'More details';
+const {
+  name,
+  type,
+  image,
+  id,
+  averageWeight: { value, measurementUnit } } = Data[0];
 
-describe('Teste o componente <Pokemon.js />', () => {
-  describe('Teste se é renderizado um card pokemon correto', () => {
-    test('O nome correto do Pokémon deve ser mostrado na tela', () => {
-      const { getByTestId } = renderWithRouter(<App />);
-      const pokemonName = getByTestId('pokemon-name');
-      expect(pokemonName).toBeInTheDocument();
-      expect(pokemonName).toHaveTextContent('Pikachu');
-    });
+describe('Verificando o componente <Pokemon />', () => {
+  it('Card deve conter => nome, tipo, img e peso', () => {
+    renderWithRouter(<App />);
 
-    test('O tipo correto do pokémon deve ser mostrado na tela', () => {
-      const { getByTestId } = renderWithRouter(<App />);
-      const pokemonType = getByTestId('pokemon-type');
-      expect(pokemonType).toBeInTheDocument();
-      expect(pokemonType).toHaveTextContent('Electric');
-    });
+    const text = `Average weight: ${value} ${measurementUnit}`;
 
-    test('O peso médio do pokémon deve ser exibido corretamente', () => {
-      const { getByTestId } = renderWithRouter(<App />);
-      const pokemonWeight = getByTestId('pokemon-weight');
-      expect(pokemonWeight).toHaveTextContent('Average weight: 6.0 kg');
-    });
+    const nome = screen.getByTestId('pokemon-name');
+    const tipo = screen.getByTestId('pokemon-type');
+    const peso = screen.getByTestId('pokemon-weight');
+    const img = screen.getByAltText(`${name} sprite`);
 
-    test('A imagem do Pokémon deve ser exibida corretamente', () => {
-      const { getByAltText } = renderWithRouter(<App />);
-      const pokemonImage = getByAltText('Pikachu sprite');
-      expect(pokemonImage).toBeInTheDocument();
-      expect(pokemonImage.src).toBe('https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
-    });
+    expect(nome).toBeInTheDocument();
+    expect(tipo).toBeInTheDocument();
+    expect(peso).toBeInTheDocument();
+    expect(img).toBeInTheDocument();
+
+    expect(nome).toHaveTextContent(name);
+    expect(tipo).toHaveTextContent(type);
+    expect(img).toHaveAttribute('src', image);
+    expect(peso).toHaveTextContent(text);
   });
 
-  describe('Teste se o card do Pokémon contém o link de navegação correto', () => {
-    test('Teste se o card do Pokémon contém o link de navegação correto', () => {
-      const { getByText } = renderWithRouter(<App />);
-      const pokemonLinkToDetails = getByText(stringMoreDetails);
-      expect(pokemonLinkToDetails).toHaveAttribute('href', '/pokemons/25');
-    });
+  it('Verifica se exite um link para mais informações no Card', () => {
+    renderWithRouter(<App />);
+
+    const link = screen.getByRole('link', { name: 'More details' });
+
+    expect(link).toBeInTheDocument();
+    expect(link).toHaveAttribute('href', `/pokemons/${id}`);
   });
 
-  describe('Redirecione para a página de detalhes corretamente', () => {
-    test('Redirecione para a página de detalhes corretamente', () => {
-      const { getByText, history } = renderWithRouter(<App />);
-      const pokemonLinkToDetails = getByText(stringMoreDetails);
-      fireEvent.click(pokemonLinkToDetails);
-      const { pathname } = history.location;
-      expect(pathname).toBe('/pokemons/25');
+  it('Verifica se ao clicar no link vai para os detalhes do pokemon', () => {
+    renderWithRouter(<App />);
+
+    const details = screen.getByRole('link', { name: /details/i });
+
+    userEvent.click(details);
+
+    const text = screen.getByRole('heading', {
+      level: 2,
+      name: /game Locations of/i,
     });
+    expect(text).toBeInTheDocument();
   });
 
-  describe('Teste se existe um ícone de estrela nos Pokémons favoritados', () => {
-    test('Teste se existe um ícone de estrela nos Pokémons favoritados', () => {
-      const { getByText, getByAltText, getByRole } = renderWithRouter(<App />);
-      const pokemonLinkToDetails = getByText(stringMoreDetails);
-      fireEvent.click(pokemonLinkToDetails);
+  it('Verifica se existe um ícone de estrela nos Pokémons favoritados', () => {
+    renderWithRouter(<App />);
 
-      const checkBoxPokemon = getByRole('checkbox');
-      fireEvent.click(checkBoxPokemon);
+    const linkElement = screen.getByRole('link', { name: /more details/i });
+    userEvent.click(linkElement);
 
-      const iconFavorite = getByAltText('Pikachu is marked as favorite');
-      expect(iconFavorite).toBeInTheDocument();
-      expect(iconFavorite.src).toBe('http://localhost/star-icon.svg');
-    });
+    const checkInput = screen.getByRole('checkbox');
+    userEvent.click(checkInput);
+
+    const starIconElement = screen.getByAltText(`${name} is marked as favorite`);
+    expect(starIconElement).toBeInTheDocument();
+    expect(starIconElement).toHaveAttribute('src', '/star-icon.svg');
   });
 });

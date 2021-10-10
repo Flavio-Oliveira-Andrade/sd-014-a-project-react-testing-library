@@ -1,18 +1,26 @@
 import React from 'react';
-import NotFound from '../components/NotFound';
-import renderWithRouter from '../renderWithRouter';
+import { screen } from '@testing-library/react';
 
-describe('Teste o componente <NotFound.js />', () => {
-  test('Página contém um heading h2 com o texto Page requested not found', () => {
-    const { getByRole } = renderWithRouter(<NotFound />);
-    const title = getByRole('heading', { level: 2 });
-    expect(title).toHaveTextContent('Page requested not found');
+import renderWithRouter from './renderWithRouter';
+import NotFound from '../components/NotFound';
+
+describe('Testando o componente NotFound.js', () => {
+  it('Se a página tenha um texto "Page requested not found 😭":', () => {
+    renderWithRouter(<NotFound />);
+
+    const text = screen.getByRole('heading', {
+      level: 2,
+      name: /page requested not found/i,
+    });
+
+    expect(text).toBeInTheDocument();
   });
 
-  test('Teste se página mostra a imagem https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif', () => {
-    const { getByAltText } = renderWithRouter(<NotFound />);
-    const image = getByAltText('Pikachu crying because the page requested was not found');
-    const src = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif';
-    expect(image.src).toContain(src);
+  it('Se a pagina renderiza a imagem:', () => {
+    renderWithRouter(<NotFound />);
+
+    const img = screen.getByAltText(/pikachu crying/i);
+
+    expect(img.src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
   });
 });

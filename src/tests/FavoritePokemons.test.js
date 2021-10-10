@@ -1,35 +1,35 @@
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
-// import { render } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+
+import renderWithRouter from './renderWithRouter';
 import FavoritePokemons from '../components/FavoritePokemons';
-import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
-describe('Teste o componente <FavoritePokemons.js />', () => {
-  test('Exibe No favorite pokemon found, se não houver pokémons favoritos.', () => {
-    localStorage.clear();
-    const { getByText } = renderWithRouter(<FavoritePokemons />);
-    const noPokemon = getByText(/No favorite pokemon found/);
-    expect(noPokemon).toBeInTheDocument();
+describe('Testando o componente FavoritePokemons.js', () => {
+  it('Não tendo favoritos a mensagem "No favorite pokemon found" é mostrada:', () => {
+    renderWithRouter(<FavoritePokemons />);
+
+    const msg = screen.getByText('No favorite pokemon found');
+    expect(msg).toBeInTheDocument();
   });
 
-  test('Teste se é exibido todos os cards de pokémons favoritados.', () => {
-    const { getByText, history, getByRole } = renderWithRouter(<App />);
-    const moreDetails = getByText(/More details/);
-    fireEvent.click(moreDetails);
-    const { pathname } = history.location;
-    expect(pathname).toBe('/pokemons/25');
-    const checkFavorite = getByRole('checkbox');
-    fireEvent.click(checkFavorite);
-    history.push('/favorites');
-    const pikachuText = getByText(/Pikachu/);
-    expect(pikachuText).toBeInTheDocument();
-  });
+  it('Mostra todos os pokemons favoritados:', () => {
+    renderWithRouter(<App />);
 
-  test('Nenhum card de pokémon é exibido, se não estiver favoritado.', () => {
-    localStorage.clear();
-    const { getByText } = renderWithRouter(<FavoritePokemons />);
-    const noPokemon = getByText(/No favorite pokemon found/i);
-    expect(noPokemon).toBeInTheDocument();
+    // Clicando no "More datails" na figura do pokemon:
+    const btnDetails = screen.getByRole('link', { name: 'More details' });
+    userEvent.click(btnDetails);
+
+    // Clicando no Check Box para favoritar:
+    const checkBox = screen.getByRole('checkbox');
+    userEvent.click(checkBox);
+
+    // Clicando no link "Favorite Pokémons" para ver se o pokemon foi favoritado:
+    const favorite = screen.getByRole('link', { name: 'Favorite Pokémons' });
+    userEvent.click(favorite);
+
+    const pokemon = screen.getByText(/average weight/i);
+    expect(pokemon).toBeInTheDocument();
   });
 });

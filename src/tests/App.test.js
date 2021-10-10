@@ -1,56 +1,70 @@
 import React from 'react';
-import { fireEvent, } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+
+import renderWithRouter from './renderWithRouter';
 import App from '../App';
-import renderWithRouter from '..renderWithRouter';
 
-describe('1 - Teste o componente <App.js />', () => {
-  test('Teste se a página principal da Pokédex é renderizada em /', () => {
-    const { getByText, history } = renderWithRouter(<App />);
-    const rota = '/';
-    history.push(rota);
-    const homePokedex = getByText(/Encountered pokémons/);
-    expect(homePokedex).toBeInTheDocument();
+describe('Se contém links de navegação no topo da pagina', () => {
+  it('Primeiro Link => Home', () => {
+    renderWithRouter(<App />);
+    const home = screen.getByRole('link', { name: 'Home' });
+
+    expect(home).toBeInTheDocument();
   });
 
-  test('Teste se o topo da aplicação contém os links de navegação.', () => {
-    const { getByRole } = renderWithRouter(<App />);
-    const linkHome = getByRole('link', { name: 'Home' });
-    const linkAbout = getByRole('link', { name: 'About' });
-    const linkFavorite = getByRole('link', { name: 'Favorite Pokémons' });
-    expect(linkHome).toBeInTheDocument();
-    expect(linkAbout).toBeInTheDocument();
-    expect(linkFavorite).toBeInTheDocument();
+  it('Segundo Link => About', () => {
+    renderWithRouter(<App />);
+    const about = screen.getByRole('link', { name: 'About' });
+
+    expect(about).toBeInTheDocument();
   });
 
-  test('Aplicação é redirecionada para a página / ao clicar em Home', () => {
-    const { getByRole, history } = renderWithRouter(<App />);
-    const linkHome = getByRole('link', { name: 'Home' });
-    fireEvent.click(linkHome);
-    const { pathname } = history.location;
+  it('Terceiro Link => Texto', () => {
+    renderWithRouter(<App />);
+    const text = screen.getByRole('link', { name: /Favorite Pokémons/i });
+
+    expect(text).toBeInTheDocument();
+  });
+});
+
+describe('Se quando clicar nos links eles te levaram ao local da pagina ', () => {
+  it('Home direciona para "/"', () => {
+    const { history } = renderWithRouter(<App />);
+
+    const linkTest = screen.getByRole('link', { name: 'Home' });
+
+    userEvent.click(linkTest);
+    const { location: { pathname } } = history;
     expect(pathname).toBe('/');
   });
 
-  test('Aplicação é redirecionada para a página /about ao clicar em About', () => {
-    const { getByRole, history } = renderWithRouter(<App />);
-    const linkAbout = getByRole('link', { name: 'About' });
-    fireEvent.click(linkAbout);
-    const { pathname } = history.location;
+  it('About direciona para "/about"', () => {
+    const { history } = renderWithRouter(<App />);
+
+    const linkTest = screen.getByRole('link', { name: 'About' });
+
+    userEvent.click(linkTest);
+    const { location: { pathname } } = history;
     expect(pathname).toBe('/about');
   });
 
-  test('Redirecione para a /favorites ao clicar em Favorite Pokémons', () => {
-    const { getByRole, history } = renderWithRouter(<App />);
-    const linkFavorite = getByRole('link', { name: 'Favorite Pokémons' });
-    fireEvent.click(linkFavorite);
-    const { pathname } = history.location;
+  it('Favorite Pokémons direciona para "/favorites"', () => {
+    const { history } = renderWithRouter(<App />);
+
+    const linkTest = screen.getByRole('link', { name: /Favorite Pokémons/i });
+
+    userEvent.click(linkTest);
+    const { location: { pathname } } = history;
     expect(pathname).toBe('/favorites');
   });
 
-  test('Redirecione para página Not Found ao entrar com URL desconhecida.', () => {
-    const { getByText, history } = renderWithRouter(<App />);
-    const pathname = '/notfound';
-    history.push(pathname);
-    const noMatch = getByText(/Page requested not found/i);
-    expect(noMatch).toBeInTheDocument();
+  it('URL que nao existe direciona para "NOT FOUND"', () => {
+    const { history } = renderWithRouter(<App />);
+
+    history.push('unknow');
+
+    const { location: { pathname } } = history;
+    expect(pathname).toBe('/unknow');
   });
 });

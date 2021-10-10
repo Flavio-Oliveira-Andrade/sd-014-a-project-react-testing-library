@@ -1,4 +1,4 @@
-// Refatorado com ajuda de Tiago Sathler
+// Refatorado com a explicacao de Tiago Sathler
 
 import React from 'react';
 import { screen } from '@testing-library/react';

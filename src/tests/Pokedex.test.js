@@ -6,7 +6,7 @@ import App from '../App';
 
 const ButtonNext = 'next-pokemon';
 
-describe('5. Teste o componente `<Pokedex.js />`', () => {
+describe.skip('5. Teste o componente `<Pokedex.js />`', () => {
   it('Teste se página contém um heading `h2` com o texto `Encountered pokémons`.', () => {
     render(
       <Router>
@@ -20,20 +20,8 @@ describe('5. Teste o componente `<Pokedex.js />`', () => {
     })).toBeInTheDocument();
   });
 
-  it('Teste se é exibido o próximo Pokémon da lista quando'
-   + 'o botão `Próximo pokémon` é clicado', () => {
-    render(
-      <Router>
-        <App />
-      </Router>,
-    );
-
-    userEvent.click(screen.getByText('Próximo pokémon'));
-    expect(screen.getByTestId(ButtonNext)).toHaveTextContent('Próximo pokémon');
-  });
-
-  it('Os próximos Pokémons da lista devem ser mostrados,'
-   + 'um a um, ao clicar sucessivamente no botão;', () => {
+  it('Teste se é exibido o próximo Pokémon da lista'
+   + 'quando o botão `Próximo pokémon` é clicado.', () => {
     render(
       <Router>
         <App />
@@ -43,6 +31,9 @@ describe('5. Teste o componente `<Pokedex.js />`', () => {
     userEvent.click(screen.getByTestId(ButtonNext));
     expect(screen.getByAltText('Charmander sprite'))
       .toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/0/0a/Spr_5b_004.png');
+
+    expect(screen.getByTestId((ButtonNext)))
+      .toHaveTextContent('Próximo pokémon');
 
     userEvent.click(screen.getByTestId(ButtonNext));
     expect(screen.getByAltText('Caterpie sprite'))
@@ -77,50 +68,56 @@ describe('5. Teste o componente `<Pokedex.js />`', () => {
       .toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
   });
 
-  it('O primeiro Pokémon da lista deve ser mostrado ao'
-   + 'clicar no botão, se estiver no último Pokémon da lista;', () => {
+  // it.skip('- Teste se é mostrado apenas um Pokémon por vez.', () => {
+  //   render(
+  //     <Router>
+  //       <App />
+  //     </Router>,
+  //   );
+
+  //   expect(screen.getAllByTestId('pokemon-type-button')).toBeInTheDocument();
+  // });
+
+  it('Teste se a Pokédex tem os botões de filtro.', () => {
     render(
       <Router>
         <App />
       </Router>,
     );
 
-    userEvent.click(screen.getByRole('button', { name: 'All' }));
-    expect(screen.getByText(('Pikachu'))).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Electric' }))
+      .toBeInTheDocument();
+
+    expect(screen.getByRole('button', { name: 'Fire' }))
+      .toBeInTheDocument();
+
+    expect(screen.getByRole('button', { name: 'Bug' }))
+      .toBeInTheDocument();
+
+    expect(screen.getByRole('button', { name: 'Poison' }))
+      .toBeInTheDocument();
+
+    expect(screen.getByRole('button', { name: 'Psychic' }))
+      .toBeInTheDocument();
+
+    expect(screen.getByRole('button', { name: 'Normal' }))
+      .toBeInTheDocument();
+
+    expect(screen.getByRole('button', { name: 'Dragon' }))
+      .toBeInTheDocument();
+
+    expect(screen.getByText('All')).toBeInTheDocument();
   });
 
-  it('Teste se é mostrado apenas um Pokémon por vez.', () => {
+  it('Teste se a Pokédex contém um botão para resetar o filtro', () => {
     render(
       <Router>
         <App />
       </Router>,
     );
 
-    userEvent.click(screen.getByTestId(ButtonNext));
-    expect(screen.getByText(('Charmander'))).toBeInTheDocument();
-
-    userEvent.click(screen.getByTestId(ButtonNext));
-    expect(screen.getByText(('Caterpie'))).toBeInTheDocument();
-
-    userEvent.click(screen.getByTestId(ButtonNext));
-    expect(screen.getByText(('Ekans'))).toBeInTheDocument();
-
-    userEvent.click(screen.getByTestId(ButtonNext));
-    expect(screen.getByText(('Alakazam'))).toBeInTheDocument();
-
-    userEvent.click(screen.getByTestId(ButtonNext));
-    expect(screen.getByText(('Mew'))).toBeInTheDocument();
-
-    userEvent.click(screen.getByTestId(ButtonNext));
-    expect(screen.getByText(('Rapidash'))).toBeInTheDocument();
-
-    userEvent.click(screen.getByTestId(ButtonNext));
-    expect(screen.getByText(('Snorlax'))).toBeInTheDocument();
-
-    userEvent.click(screen.getByTestId(ButtonNext));
-    expect(screen.getByText(('Dragonair'))).toBeInTheDocument();
-
-    userEvent.click(screen.getByTestId(ButtonNext));
-    expect(screen.getByText(('Pikachu'))).toBeInTheDocument();
+    userEvent.click(screen.getByText('All'));
+    expect(screen.getByAltText('Pikachu sprite'))
+      .toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
   });
 });

@@ -5,7 +5,7 @@ import FavoritePokemons from '../components/FavoritePokemons';
 import renderWithRouter from '../services/renderWithRouter';
 import pokemons from '../data';
 
-describe('2- Teste FavoritePokemons.js', () => {
+describe('3- Teste FavoritePokemons.js', () => {
   test('Teste se renderiza a mensagem "No favorite pokemon found', () => {
     renderWithRouter(<FavoritePokemons />);
     const noFavorites = screen.getByText(/No favorite pokemon found/i);

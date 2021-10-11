@@ -10,11 +10,11 @@ describe('Tests the PokemonDetails component', () => {
   const { id } = detailPokemon;
   const renderWithDetails = () => {
     const isFavoriteObj = { [`${id}`]: false };
-    console.log(isFavoriteObj);
     return renderWithRouter(<PokemonDetails
       pokemons={ pokemons }
       isPokemonFavoriteById={ isFavoriteObj }
       match={ { params: { id } } }
+      onUpdateFavoritePokemons={ () => null }
     />);
   };
   it('should render detailed info about the Pokemon', () => {

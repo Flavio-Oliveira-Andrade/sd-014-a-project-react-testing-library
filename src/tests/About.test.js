@@ -8,11 +8,13 @@ describe('Testa o component About', () => {
     renderWithRouter(<About />);
     expect(screen.getByText(/This application simulates a Pokédex/i)).toBeInTheDocument();
   });
+
   test('Testa se a página contém um heading h2 com o texto About Pokédex', () => {
     renderWithRouter(<About />);
     const textPokedex = screen.getByRole('heading', { level: 2, name: /about pokédex/i });
     expect(textPokedex).toBeInTheDocument();
   });
+
   test('Teste se a página contém dois parágrafos com texto sobre a Pokédex.', () => {
     renderWithRouter(<About />);
     const parag1 = screen.getByText(/This application simulates a Pokédex/i);
@@ -20,6 +22,7 @@ describe('Testa o component About', () => {
     expect(parag1).toBeInTheDocument();
     expect(parag2).toBeInTheDocument();
   });
+
   test('Teste se a página contém imagem de uma Pokédex', () => {
     renderWithRouter(<About />);
     const image = screen.getByRole('img', { name: /pokédex/i }).src;

@@ -42,4 +42,20 @@ describe('Tests the Pokedex component', () => {
       expect(thisPokemon.innerHTML).not.toBe(name);
     });
   });
+
+  it('should render a filter button for each pokemon type', () => {
+    renderWithProps();
+
+    const filters = pokemons.reduce((acc, { type }) => {
+      if (acc.includes(type)) return [...acc, type];
+      return acc;
+    }, []);
+
+    filters.forEach((filter) => {
+      const thisFilter = screen.getByRole('button', {
+        name: filter,
+      });
+      expect(thisFilter).toBeInTheDocument();
+    });
+  });
 });

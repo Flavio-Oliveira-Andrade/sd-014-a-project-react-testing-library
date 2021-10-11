@@ -12,9 +12,9 @@ class PokemonDetails extends React.Component {
       <section>
         <h2>{`Game Locations of ${name}`}</h2>
         <div className="pokemon-habitat">
-          {foundAt.map(({ location, map }) => (
+          {foundAt.map(({ location, map}) => (
             <div key={location}>
-              <img src={`${map}`} alt={`${name} location`} />
+              <img src={`${map}`} alt={`${name} location`} data-testid={`map ${[location]}`} />
               <p><em>{location}</em></p>
             </div>
           ))}
@@ -50,11 +50,12 @@ class PokemonDetails extends React.Component {
 
     return (
       <form className="favorite-form">
-        <label htmlFor="favorite">
+        <label htmlFor="favorite" data-testid="favorite-check">
           {`Pokémon favoritado?`}
           <input
             type="checkbox"
             id="favorite"
+            data-testid="fav-box"
             checked={isFavorite}
             onChange={
               ({ target: { checked } }) => onUpdateFavoritePokemons(pokemonId, checked)

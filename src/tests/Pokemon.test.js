@@ -62,7 +62,7 @@ describe('Testa o componente Pokemon', () => {
     expect(linkDetails).toHaveAttribute('href', `/pokemons/${id}`);
 
     userEvent.click(linkDetails);
-    expect(window.location.href).toBe('http://localhost/pokemons/25');
+    expect(window.location.href).toBe(`http://localhost/pokemons/${id}`);
   });
 
   it('Testa se existe um ícone de estrela nos Pokémons favoritados', () => {

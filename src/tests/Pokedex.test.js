@@ -5,21 +5,29 @@ import renderWithRouter from '../services/renderWithRouter';
 import Pokedex from '../components/Pokedex';
 import pokemons from '../data';
 
+const renderWithProps = () => {
+  const isFavoriteObj = {};
+  pokemons.forEach(({ id }) => {
+    isFavoriteObj[id] = false;
+  });
+  return renderWithRouter(<Pokedex
+    pokemons={ pokemons }
+    isPokemonFavoriteById={ isFavoriteObj }
+  />);
+};
+
 describe('Tests the Pokedex component', () => {
   it('should render a heading with the appropriate text', () => {
-    const isFavoriteObj = {};
-    pokemons.forEach(({ id }) => {
-      isFavoriteObj[id] = false;
-    });
-    renderWithRouter(<Pokedex
-      pokemons={ pokemons }
-      isPokemonFavoriteById={ isFavoriteObj }
-    />);
+    renderWithProps();
 
     const pokedexHeading = screen.getByRole('heading', {
       name: /encountered pokémons/i,
       level: 2,
     });
     expect(pokedexHeading).toBeInTheDocument();
+  });
+
+  it('should render the next pokemon when the button is clicked', () => {
+    
   });
 });

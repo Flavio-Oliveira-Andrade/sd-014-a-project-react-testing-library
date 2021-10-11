@@ -8,11 +8,11 @@ import pokemons from '../data';
 describe('Testa se é renderizado um card com as informações de determinado pokémon',
   () => {
     test('O nome correto do Pokémon deve ser mostrado na tela', () => {
-      renderWithRouter(<App />);
+      renderWithRouter(<Pokemon pokemon={ pokemons[0] } isFavorite />);
 
       const pokemonName = screen.getByTestId('pokemon-name');
 
-      expect(pokemonName).toBeInTheDocument();
+      expect(pokemonName).toHaveTextContent('Pikachu');
     });
 
     test('O tipo correto do pokémon deve ser mostrado na tela', () => {
@@ -21,6 +21,17 @@ describe('Testa se é renderizado um card com as informações de determinado po
       const pokemonType = screen.getByTestId('pokemon-type');
 
       expect(pokemonType).toHaveTextContent('Electric');
+    });
+
+    test('O peso médio do pokémon deve ser exibido com um texto no formato '
+    + '"Average weight: <value> <measurementUnit>"; onde "<value>" e '
+    + '"<measurementUnit>" são, respectivamente, o peso médio do pokémon e sua unidade '
+    + 'de medida', () => {
+      renderWithRouter(<Pokemon pokemon={ pokemons[0] } isFavorite />);
+
+      const pokemonMeasurements = screen.getByTestId('pokemon-weight');
+
+      expect(pokemonMeasurements).toHaveTextContent('Average weight: 6.0 kg');
     });
 
     test('A imagem do Pokémon deve ser exibida. Ela deve conter um atributo "src" com a '
@@ -52,7 +63,7 @@ describe('Testa se existe um ícone de estrela nos Pokémons favoritados', () =>
   + '"/star-icon.svg"', () => {
     renderWithRouter(<Pokemon pokemon={ pokemons[0] } isFavorite />);
 
-    const favoriteIcon = screen.getByAltText(/is marked as favorite/);
+    const favoriteIcon = screen.getByAltText('Pikachu is marked as favorite');
 
     expect(favoriteIcon).toHaveAttribute('src', '/star-icon.svg');
   });

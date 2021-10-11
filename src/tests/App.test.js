@@ -3,7 +3,7 @@ import { screen, fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
-describe('Componente App', () => {
+describe('Testa o componente App', () => {
   it('Teste se há um conjunto de nav links', () => {
     renderWithRouter(<App />);
     const homeLink = screen.getByRole('link', { name: 'Home' });
@@ -43,6 +43,8 @@ describe('Componente App', () => {
   it('Teste se a aplicação é redirecionada para a página NotFound', () => {
     const { history } = renderWithRouter(<App />);
     history.push('/inexistente/');
+    // history.push passamos como argumento algum link que não
+    // existe dentro de nossa aplicação
     const NotFound = screen.getByText(/Page requested not found/i);
     expect(NotFound).toBeInTheDocument();
   });

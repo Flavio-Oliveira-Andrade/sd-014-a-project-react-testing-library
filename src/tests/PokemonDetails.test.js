@@ -51,5 +51,10 @@ describe('Tests the PokemonDetails component', () => {
       level: 2,
     });
     expect(locationHeading).toBeInTheDocument();
+
+    detailPokemon.foundAt.forEach(({ location }) => {
+      const thisLocation = screen.getByText(location);
+      expect(thisLocation).toBeInTheDocument();
+    });
   });
 });

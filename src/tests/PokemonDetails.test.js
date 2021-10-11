@@ -65,6 +65,7 @@ describe('Tests the PokemonDetails component', () => {
 
     maps.forEach((map) => {
       expect(map).toHaveAttribute('src', foundAt[maps.indexOf(map)].map);
+      expect(map).toHaveAttribute('alt', `${detailPokemon.name} location`);
     });
   });
 });

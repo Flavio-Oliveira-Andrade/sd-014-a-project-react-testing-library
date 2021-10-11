@@ -47,5 +47,8 @@ describe('Pokedex.js test', () => {
     renderWithRouter(<App />);
     const buttonAll = screen.getByRole('button', { name: /all/i });
     expect(buttonAll).toBeInTheDocument();
+    fireEvent.click(buttonAll);
+    const initialPkmn = screen.getByTestId('pokemon-name');
+    expect(initialPkmn).toHaveTextContent('Pikachu');
   });
 });

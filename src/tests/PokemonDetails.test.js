@@ -45,7 +45,7 @@ describe('Tests the PokemonDetails component', () => {
 
   it('should render a location section with maps', () => {
     renderWithDetails();
-    
+
     const { foundAt } = detailPokemon;
     const locationHeading = screen.getByRole('heading', {
       name: `Game Locations of ${detailPokemon.name}`,

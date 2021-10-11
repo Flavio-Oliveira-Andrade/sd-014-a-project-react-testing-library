@@ -50,6 +50,9 @@ describe('Tests the Pokedex component', () => {
 
   it('should render a filter button for each pokemon type', () => {
     renderWithProps();
+    const filterBtns = screen.getAllByTestId('pokemon-type-button');
+
+    expect(filterBtns.length).toBe(filters.length);
 
     filters.forEach((filter) => {
       const thisFilter = screen.getByRole('button', {

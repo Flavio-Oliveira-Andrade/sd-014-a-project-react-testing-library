@@ -76,5 +76,6 @@ describe('Tests the PokemonDetails component', () => {
       name: 'Pokémon favoritado?',
     });
     expect(checkbox).toBeInTheDocument();
+    expect(checkbox).not.toHaveAttribute('selected');
   });
 });

@@ -88,4 +88,28 @@ describe('Tests the Pokedex component', () => {
       });
     });
   });
+
+  it('should render a reset filter', () => {
+    renderWithProps();
+
+    const allFilter = screen.getByRole('button', {
+      name: /all/i,
+    });
+
+    userEvent.click(allFilter);
+    const allPokemons = [];
+    const nextPokemon = screen.getByRole('button', {
+      name: /próximo pokémon/i,
+    });
+
+    pokemons.forEach(({ name }) => {
+      const thisPokemon = screen.getByTestId('pokemon-name');
+      expect(thisPokemon).toBeInTheDocument();
+      expect(thisPokemon.innerHTML).toBe(name);
+      allPokemons.push(name);
+      userEvent.click(nextPokemon);
+    });
+
+    expect(allPokemons.length).toBe(pokemons.length);
+  });
 });

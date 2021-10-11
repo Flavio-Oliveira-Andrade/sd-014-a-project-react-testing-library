@@ -45,14 +45,15 @@ describe('Tests the PokemonDetails component', () => {
 
   it('should render a location section with maps', () => {
     renderWithDetails();
-
+    
+    const { foundAt } = detailPokemon;
     const locationHeading = screen.getByRole('heading', {
       name: `Game Locations of ${detailPokemon.name}`,
       level: 2,
     });
     expect(locationHeading).toBeInTheDocument();
 
-    detailPokemon.foundAt.forEach(({ location }) => {
+    foundAt.forEach(({ location }) => {
       const thisLocation = screen.getByText(location);
       expect(thisLocation).toBeInTheDocument();
     });
@@ -60,6 +61,10 @@ describe('Tests the PokemonDetails component', () => {
     const maps = screen.getAllByRole('img', {
       name: /location$/i,
     });
-    expect(maps.length).toBe(detailPokemon.foundAt.length);
+    expect(maps.length).toBe(foundAt.length);
+
+    maps.forEach((map) => {
+      expect(map).toHaveAttribute('src', foundAt[maps.indexOf(map)].map);
+    });
   });
 });

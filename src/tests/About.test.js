@@ -19,7 +19,7 @@ describe('Teste o componente <About.js />', () => {
     paragraph.forEach((p) => expect(p).toBeInTheDocument());
   });
   test('Existe a imagem de uma Pokédex na página', () => {
-    const pokemonImg = screen.getAllByText('Pokédex');
+    const pokemonImg = screen.getByAltText('Pokédex');
     expect(pokemonImg).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
   });
 });

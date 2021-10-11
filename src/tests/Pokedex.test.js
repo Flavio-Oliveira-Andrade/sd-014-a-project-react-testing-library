@@ -48,7 +48,7 @@ describe('Pokedex.js test', () => {
     const buttonAll = screen.getByRole('button', { name: /all/i });
     expect(buttonAll).toBeInTheDocument();
     fireEvent.click(buttonAll);
-    const initialPkmn = screen.getByTestId('pokemon-name');
-    expect(initialPkmn).toHaveTextContent('Pikachu');
+    const initialPkmn = screen.getByText('Average weight: 6.0 kg');
+    expect(initialPkmn).toBeInTheDocument();
   });
 });

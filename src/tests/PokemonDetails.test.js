@@ -23,11 +23,11 @@ const pokemonInfo = {
   foundAt: [
     {
       location: 'Kanto Viridian Forest',
-      map1: 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png',
+      map: 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png',
     },
     {
       location: 'Kanto Power Plant',
-      map2: 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
+      map: 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
     },
   ],
   summary: 'This intelligent Pokémon roasts hard berries with electricity'
@@ -46,11 +46,14 @@ describe('Testa o componente <PokemonDetails.js />', () => {
     expect(pokemonName).toBeVisible();
     expect(moreDetailsBtn).not.toBeInTheDocument();
 
-    const h2 = screen.getByRole('heading', { name: 'Summary' }, { level: 2 });
+    const h2 = screen.getByRole('heading', { name: 'Summary', level: 2 });
     expect(h2).toBeInTheDocument();
 
-    const sumario = screen.getByText(`${summary}`);
+    const sumario = screen.getByRole('heading', { level: 2,
+      name: /summary/i });
+    const detailsTxt = screen.getByText(`${summary}`);
     expect(sumario).toBeInTheDocument();
+    expect(detailsTxt).toBeInTheDocument();
   });
 
   it('Testa se existem os mapas contendo as localizações do pokémon', () => {
@@ -58,7 +61,7 @@ describe('Testa o componente <PokemonDetails.js />', () => {
     userEvent.click(moreDetailsBtn);
 
     const h2 = screen.getByRole(
-      'heading', { name: `Game Locations of ${name}` }, { level: 2 },
+      'heading', { name: `Game Locations of ${name}`, level: 2 },
     );
     expect(h2).toBeInTheDocument();
 
@@ -71,8 +74,8 @@ describe('Testa o componente <PokemonDetails.js />', () => {
     expect(mapsHeading1).toBeInTheDocument();
     expect(mapsHeading2).toBeInTheDocument();
 
-    expect(maps[0].src).toBe(`${foundAt[0].map1}`);
-    expect(maps[1].src).toBe(`${foundAt[1].map2}`);
+    expect(maps[0].src).toBe(`${foundAt[0].map}`);
+    expect(maps[1].src).toBe(`${foundAt[1].map}`);
 
     expect(maps[0]).toHaveAttribute('alt', `${name} location`);
     expect(maps[1]).toHaveAttribute('alt', `${name} location`);

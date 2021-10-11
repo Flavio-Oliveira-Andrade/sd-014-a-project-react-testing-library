@@ -22,18 +22,11 @@ describe('Tests the Pokemon Component', () => {
     expect(type).toBeInTheDocument();
     expect(type).toHaveTextContent(testPokemon.type);
 
-    // const averageWeight = screen.getByTestId('pokemon-weight');
-    // expect(averageWeight).toBeInTheDocument();
-
-    // const { value, measurementUnit } = testPokemon.averageWeight;
-    // expect(value.length).not.toBe(0);
-    // expect(measurementUnit.length).not.toBe(0);
-    // expect(averageWeight)
-    //   .toHaveTextContent = `Average weight: ${value} ${measurementUnit}`;
-
     const { value, measurementUnit } = testPokemon.averageWeight;
     const averageWeight = screen.getByText(`Average weight: ${value} ${measurementUnit}`);
     expect(averageWeight).toBeInTheDocument();
+    expect(averageWeight)
+      .toHaveAttribute('data-testid', 'pokemon-weight');
 
     const image = screen.getByRole('img', {
       name: `${testPokemon.name} sprite`,

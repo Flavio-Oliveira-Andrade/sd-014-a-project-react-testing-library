@@ -1,6 +1,6 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
-// import userEvent from '@testing-library/user-event';
+import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../services/renderWithRouter';
 import Pokedex from '../components/Pokedex';
 import pokemons from '../data';
@@ -30,12 +30,16 @@ describe('Tests the Pokedex component', () => {
   it('should render the next pokemon when the button is clicked', () => {
     renderWithProps();
 
-    const thisPokemon = screen.getByText(pokemons[0].name);
-    expect(thisPokemon).toBeInTheDocument();
-
     const nextPokemon = screen.getByRole('button', {
       name: /próximo pokémon/i,
     });
     expect(nextPokemon).toBeInTheDocument();
+
+    pokemons.forEach(({ name }) => {
+      const thisPokemon = screen.getByText(name);
+      expect(thisPokemon).toBeInTheDocument();
+      userEvent.click(nextPokemon);
+      expect(thisPokemon.innerHTML).not.toBe(name);
+    });
   });
 });

@@ -7,13 +7,13 @@ import pokemons from '../data';
 
 describe('Tests the Pokemon Component', () => {
   const testPokemon = pokemons[0];
-  const renderTestPokemon = () => renderWithRouter(<Pokemon
-    isFavorite={ false }
+  const renderTestPokemon = (bool) => renderWithRouter(<Pokemon
+    isFavorite={ bool }
     pokemon={ testPokemon }
   />);
 
   it('should render a card with pokemon info', () => {
-    renderTestPokemon();
+    renderTestPokemon(false);
     const name = screen.getByTestId('pokemon-name');
     expect(name).toBeInTheDocument();
     expect(name).toHaveTextContent(testPokemon.name);
@@ -36,7 +36,7 @@ describe('Tests the Pokemon Component', () => {
   });
 
   it('renders a link to details page', () => {
-    const { history } = renderTestPokemon();
+    const { history } = renderTestPokemon(false);
 
     const detailsLink = screen.getByRole('link', {
       name: /more details/i,
@@ -46,5 +46,15 @@ describe('Tests the Pokemon Component', () => {
 
     userEvent.click(detailsLink);
     expect(history.location.pathname).toBe(`/pokemons/${testPokemon.id}`);
+  });
+
+  it('renders a star icon if the pokemon is favorite', () => {
+    renderTestPokemon(true);
+
+    const starIcon = screen.getByRole('img', {
+      name: `${testPokemon.name} is marked as favorite`,
+    });
+    expect(starIcon).toBeInTheDocument();
+    expect(starIcon).toHaveAttribute('src', '/star-icon.svg');
   });
 });

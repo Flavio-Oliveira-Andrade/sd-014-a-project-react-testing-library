@@ -26,5 +26,16 @@ describe('Tests the PokemonDetails component', () => {
       level: 2,
     });
     expect(detailsTitle).toBeInTheDocument();
+
+    const detailsLink = screen.queryByRole('link', {
+      name: /more details/i,
+    });
+    expect(detailsLink).not.toBeInTheDocument();
+
+    const summary = screen.getByRole('heading', {
+      name: /summary/i,
+      level: 2,
+    });
+    expect(summary).toBeInTheDocument();
   });
 });

@@ -26,7 +26,8 @@ describe('Tests the Pokemon Component', () => {
     expect(averageWeight).toBeInTheDocument();
 
     const { value, measurementUnit } = testPokemon.averageWeight;
-    expect(averageWeight).toHaveTextContent = `${value} ${measurementUnit}`;
+    expect(averageWeight)
+      .toHaveTextContent = `Average weight: ${value} ${measurementUnit}`;
 
     const image = screen.getByRole('img', {
       name: `${testPokemon.name} sprite`,

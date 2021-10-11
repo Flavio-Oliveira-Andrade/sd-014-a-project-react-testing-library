@@ -16,6 +16,11 @@ const renderWithProps = () => {
   />);
 };
 
+const filters = pokemons.reduce((acc, { type }) => {
+  if (!acc.includes(type)) return [...acc, type];
+  return acc;
+}, []);
+
 describe('Tests the Pokedex component', () => {
   it('should render a heading with the appropriate text', () => {
     renderWithProps();
@@ -46,16 +51,38 @@ describe('Tests the Pokedex component', () => {
   it('should render a filter button for each pokemon type', () => {
     renderWithProps();
 
-    const filters = pokemons.reduce((acc, { type }) => {
-      if (acc.includes(type)) return [...acc, type];
-      return acc;
-    }, []);
-
     filters.forEach((filter) => {
       const thisFilter = screen.getByRole('button', {
         name: filter,
       });
       expect(thisFilter).toBeInTheDocument();
+    });
+  });
+
+  filters.forEach((filter) => {
+    it(`should render only ${filter} type when filter button is clicked`, () => {
+      renderWithProps();
+      const thisPokemons = pokemons.filter(({ type }) => type === filter);
+      const nextPokemon = screen.getByRole('button', {
+        name: /próximo pokémon/i,
+      });
+
+      const all = screen.getByRole('button', {
+        name: /all/i,
+      });
+      expect(all).toBeInTheDocument();
+
+      const thisFilter = screen.getByRole('button', {
+        name: filter,
+      });
+      userEvent.click(thisFilter);
+      thisPokemons.forEach(() => {
+        userEvent.click(nextPokemon);
+
+        const pokemonType = screen.getByTestId('pokemon-type');
+        expect(pokemonType).toBeInTheDocument();
+        expect(pokemonType.innerHTML).toBe(filter);
+      });
     });
   });
 });

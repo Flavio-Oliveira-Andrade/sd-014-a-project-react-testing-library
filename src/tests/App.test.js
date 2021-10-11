@@ -4,7 +4,7 @@ import { screen } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from '../services/renderWithRouter';
 
-describe('1- Testes App.js', () => {
+describe('1- Teste App.js', () => {
   test('Teste se Home, About e Favorite Pokémons renderizam na tela', () => {
     renderWithRouter(<App />);
 

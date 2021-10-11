@@ -8,11 +8,11 @@ describe('NotFound component test', () => {
   test('should contain a heading with the text "Page requested not found 😭"', () => {
     renderWithRouter(<NotFound />);
 
-    const pageNotFound = screen.getByRole('heading', {
+    const notFoundHeading = screen.getByRole('heading', {
       name: /page requested not found/i,
-      value: 2,
+      level: 2,
     });
-    expect(pageNotFound).toBeInTheDocument();
+    expect(notFoundHeading).toBeInTheDocument();
   });
 
   test('should render a specific image URL', () => {
@@ -20,11 +20,11 @@ describe('NotFound component test', () => {
 
     const URL = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif';
 
-    const image = screen.getByRole('img', {
+    const notFoundImage = screen.getByRole('img', {
       name: /pikachu crying/i,
     });
-    expect(image).toBeInTheDocument();
+    expect(notFoundImage).toBeInTheDocument();
     // https://react-test.dev/#tohaveattribute
-    expect(image).toHaveAttribute('src', URL);
+    expect(notFoundImage).toHaveAttribute('src', URL);
   });
 });

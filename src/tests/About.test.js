@@ -8,11 +8,11 @@ describe('About component test', () => {
   test('should the page have a heading with a text "About Pokédex"', () => {
     renderWithRouter(<About />);
 
-    const heading = screen.getByRole('heading', {
+    const aboutHeading = screen.getByRole('heading', {
       name: 'About Pokédex',
       level: 2,
     });
-    expect(heading).toBeInTheDocument();
+    expect(aboutHeading).toBeInTheDocument();
   });
 
   test('should the page have two paragraphs with a text about the pokédex', () => {

@@ -74,10 +74,10 @@ describe('App component test', () => {
     const { history } = renderWithRouter(<App />);
     history.push('/unknown-page');
 
-    const notFound = screen.getByRole('heading', {
-      level: 2,
+    const notFoundHeading = screen.getByRole('heading', {
       name: /page requested not found/i,
+      level: 2,
     });
-    expect(notFound).toBeInTheDocument();
+    expect(notFoundHeading).toBeInTheDocument();
   });
 });

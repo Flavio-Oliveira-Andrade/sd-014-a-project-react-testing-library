@@ -47,5 +47,4 @@ describe('Testes do componente <App /> - Requisito 1', () => {
     history.push('nao-existe');
     expect(screen.getByText('Page requested not found')).toBeInTheDocument();
   });
-
 });

@@ -62,29 +62,30 @@ describe('Testa o componente <PokemonDetails.js />', () => {
     );
     expect(h2).toBeInTheDocument();
 
+    const maps = screen.getAllByAltText(/pikachu location/i);
+    expect(maps).toHaveLength(2);
+
     const mapsHeading1 = screen.getByText(/Viridian Forest/i);
-    expect(mapsHeading1).toBeInTheDocument();
     const mapsHeading2 = screen.getByText(/Power Plant/i);
+
+    expect(mapsHeading1).toBeInTheDocument();
     expect(mapsHeading2).toBeInTheDocument();
 
-    const map1 = screen.getByTestId('map Kanto Viridian Forest');
-    const map2 = screen.getByTestId('map Kanto Power Plant');
+    expect(maps[0].src).toBe(`${foundAt[0].map1}`);
+    expect(maps[1].src).toBe(`${foundAt[1].map2}`);
 
-    expect(map1).toBeInTheDocument();
-    expect(map1.src).toBe(`${foundAt[0].map1}`);
+    expect(maps[0]).toHaveAttribute('alt', `${name} location`);
+    expect(maps[1]).toHaveAttribute('alt', `${name} location`);
 
-    expect(map2).toBeInTheDocument();
-    expect(map2.src).toBe(`${foundAt[1].map2}`);
-
-    expect(map1).toHaveAttribute('alt', `${name} location`);
-    expect(map2).toHaveAttribute('alt', `${name} location`);
+    expect(maps[0]).toBeInTheDocument();
+    expect(maps[1]).toBeInTheDocument();
   });
 
   it('Testa se o usuário pode favoritar um pokémon pela página de detalhes.', () => {
     const moreDetailsBtn = screen.getByText(/more details/i);
     userEvent.click(moreDetailsBtn);
 
-    const checkbox = screen.getByTestId('fav-box');
+    const checkbox = screen.getByRole('checkbox', { name: 'Pokémon favoritado?' });
     expect(checkbox).toBeInTheDocument();
 
     userEvent.click(checkbox);

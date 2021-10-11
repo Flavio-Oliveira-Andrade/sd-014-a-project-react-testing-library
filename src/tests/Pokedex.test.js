@@ -27,7 +27,5 @@ describe('Tests the Pokedex component', () => {
     expect(pokedexHeading).toBeInTheDocument();
   });
 
-  it('should render the next pokemon when the button is clicked', () => {
-    
-  });
+  it('should render the next pokemon when the button is clicked', () => {});
 });

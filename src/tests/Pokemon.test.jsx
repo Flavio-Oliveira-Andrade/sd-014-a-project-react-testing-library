@@ -33,10 +33,12 @@ describe('Componente Pokemon.js', () => {
     const PKMType = screen.getByText(type);
     const PKMWight = screen.getByText(`Average weight: ${value} ${measurementUnit}`);
     const PKMImg = screen.queryByAltText(`${name} sprite`);
+    const PKMName = screen.getByText(name);
 
     expect(PKMWight).toBeInTheDocument();
     expect(PKMType).toBeInTheDocument();
     expect(PKMImg.src).toBe(image);
+    expect(PKMName).toBeInTheDocument();
   });
 
   test('testa link do card', () => {

@@ -27,5 +27,15 @@ describe('Tests the Pokedex component', () => {
     expect(pokedexHeading).toBeInTheDocument();
   });
 
-  it('should render the next pokemon when the button is clicked', () => {});
+  it('should render the next pokemon when the button is clicked', () => {
+    renderWithProps();
+
+    const thisPokemon = screen.getByText(pokemons[0].name);
+    expect(thisPokemon).toBeInTheDocument();
+
+    const nextPokemon = screen.getByRole('button', {
+      name: /próximo pokémon/i,
+    });
+    expect(nextPokemon).toBeInTheDocument();
+  });
 });

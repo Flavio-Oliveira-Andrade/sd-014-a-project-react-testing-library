@@ -7,9 +7,10 @@ import pokemons from '../data';
 
 describe('Tests the PokemonDetails component', () => {
   const detailPokemon = pokemons[0];
-  const { id } = detailPokemon;
+  let { id } = detailPokemon;
   const renderWithDetails = () => {
     const isFavoriteObj = { [`${id}`]: false };
+    id += '';
     return renderWithRouter(<PokemonDetails
       pokemons={ pokemons }
       isPokemonFavoriteById={ isFavoriteObj }

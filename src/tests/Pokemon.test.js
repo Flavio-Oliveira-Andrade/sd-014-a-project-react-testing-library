@@ -26,8 +26,8 @@ describe('Tests the Pokemon Component', () => {
     expect(averageWeight).toBeInTheDocument();
 
     const { value, measurementUnit } = testPokemon.averageWeight;
-    expect(value).not.toBeNull();
-    expect(measurementUnit).not.toBeNull();
+    expect(value.length).not.toBe(0);
+    expect(measurementUnit.length).not.toBe(0);
     expect(averageWeight)
       .toHaveTextContent = `Average weight: ${value} ${measurementUnit}`;
 

@@ -6,6 +6,7 @@ import App from '../App';
 
 describe('Teste o componente <Pokedex.js />', () => {
   beforeEach(() => renderWithRouter(<App />));
+  const POKEMON_NAME = 'pokemon-name';
   test('Teste se página contém um heading h2 com o texto Encountered pokémons', () => {
     const h2 = screen.getByRole('heading', {
       name: /Encountered pokémons/,
@@ -20,17 +21,13 @@ describe('Teste o componente <Pokedex.js />', () => {
     });
     expect(btnNextPkm).toBeInTheDocument();
 
-    const pokemon = screen.getAllByTestId('pokemon-name');
+    userEvent.click(btnNextPkm);
 
-    userEvent.click(btnNextPkm);
-    expect(pokemon).toHaveTextContent('Charmander');
-    userEvent.click(btnNextPkm);
-    expect(pokemon).toHaveTextContent('Caterpie');
-    userEvent.click(btnNextPkm);
-    expect(pokemon).toHaveTextContent('Ekans');
+    const nxtPokemon = screen.getByText('Charmander');
+    expect(nxtPokemon).toBeInTheDocument();
   });
   test('Teste se é mostrado apenas um Pokémon por vez.', () => {
-    const pkmName = screen.getAllByTestId('pokemon-name');
+    const pkmName = screen.getAllByTestId(POKEMON_NAME);
     expect(pkmName.length).toBe(1);
   });
   test('Teste se a Pokédex tem os botões de filtro.', () => {
@@ -59,7 +56,7 @@ describe('Teste o componente <Pokedex.js />', () => {
     });
     expect(btnAll).toBeInTheDocument();
 
-    const pkmnShow = screen.getByTestId('pokemon-name');
+    const pkmnShow = screen.getByTestId(POKEMON_NAME);
     expect(pkmnShow).toHaveTextContent('Pikachu');
     const btnNext = screen.getByTestId('next-pokemon');
     userEvent.click(btnNext);

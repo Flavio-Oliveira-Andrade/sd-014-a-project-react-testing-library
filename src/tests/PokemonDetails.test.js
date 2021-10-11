@@ -52,9 +52,14 @@ describe('Tests the PokemonDetails component', () => {
     });
     expect(locationHeading).toBeInTheDocument();
 
-    detailPokemon.foundAt.forEach(({ location }) => {
+    detailPokemon.foundAt.forEach(({ location, map }) => {
       const thisLocation = screen.getByText(location);
       expect(thisLocation).toBeInTheDocument();
     });
+
+    const maps = screen.getAllByRole('img', {
+      name: /location$/i,
+    });
+    expect(maps.length).toBe(detailPokemon.foundAt.length);
   });
 });

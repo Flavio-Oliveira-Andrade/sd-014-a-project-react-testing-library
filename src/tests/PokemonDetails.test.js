@@ -18,6 +18,7 @@ describe('Tests the PokemonDetails component', () => {
       onUpdateFavoritePokemons={ () => null }
     />);
   };
+
   it('should render detailed info about the Pokemon', () => {
     renderWithDetails();
 
@@ -40,5 +41,15 @@ describe('Tests the PokemonDetails component', () => {
 
     const summaryP = screen.getByText(detailPokemon.summary);
     expect(summaryP).toBeInTheDocument();
+  });
+
+  it('should render a location section with maps', () => {
+    renderWithDetails();
+
+    const locationHeading = screen.getByRole('heading', {
+      name: `Game Locations of ${detailPokemon.name}`,
+      level: 2,
+    });
+    expect(locationHeading).toBeInTheDocument();
   });
 });

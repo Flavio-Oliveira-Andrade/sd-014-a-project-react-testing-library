@@ -4,10 +4,10 @@ import renderWithRouter from '../renderWithRouter';
 import NotFound from '../components/NotFound';
 
 describe('Teste o componente <NotFound.js />', () => {
-  renderWithRouter(<NotFound />);
-  test('este se página contém um heading h2 com o texto Page requested not found', () => {
+  beforeEach(() => renderWithRouter(<NotFound />));
+  test('Teste se página contém um heading h2 com o txt Page requested not found', () => {
     const h2 = screen.getByRole('heading', {
-      name: /Page requested not foun/i,
+      name: /Page requested not found/,
       level: 2,
     });
     expect(h2).toBeInTheDocument();

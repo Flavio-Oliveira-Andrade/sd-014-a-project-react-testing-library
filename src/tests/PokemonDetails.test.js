@@ -68,4 +68,13 @@ describe('Tests the PokemonDetails component', () => {
       expect(map).toHaveAttribute('alt', `${detailPokemon.name} location`);
     });
   });
+
+  it('should render a checkbox to add the Pokemon to favorites', () => {
+    renderWithDetails();
+
+    const checkbox = screen.getByRole('checkbox', {
+      name: 'Pokémon favoritado?',
+    });
+    expect(checkbox).toBeInTheDocument();
+  });
 });

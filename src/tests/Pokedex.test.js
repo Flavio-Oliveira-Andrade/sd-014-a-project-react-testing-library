@@ -3,10 +3,24 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from '../App';
+import Pokedex from '../components/Pokedex';
+import pokemons from '../data';
 
 const ButtonNext = 'next-pokemon';
 
-describe.skip('5. Teste o componente `<Pokedex.js />`', () => {
+const isPokemonFavoriteById = {
+  25: false,
+  4: false,
+  10: false,
+  23: false,
+  65: false,
+  151: false,
+  78: false,
+  143: false,
+  148: false,
+};
+
+describe('5. Teste o componente `<Pokedex.js />`', () => {
   it('Teste se página contém um heading `h2` com o texto `Encountered pokémons`.', () => {
     render(
       <Router>
@@ -109,15 +123,28 @@ describe.skip('5. Teste o componente `<Pokedex.js />`', () => {
     expect(screen.getByText('All')).toBeInTheDocument();
   });
 
-  it('Teste se a Pokédex contém um botão para resetar o filtro', () => {
+  test('Teste se a Pokédex tem os botões de filtro', () => {
     render(
       <Router>
-        <App />
+        <Pokedex
+          pokemons={ pokemons }
+          isPokemonFavoriteById={ isPokemonFavoriteById }
+        />
       </Router>,
     );
+    userEvent.click(screen.getByRole('button', {
+      name: /All/i }));
+    expect(screen.getByRole('button', { name: /All/i })).toHaveTextContent('All');
+    expect(screen.getByRole('button', { name: /All/i })).toBeVisible();
 
-    userEvent.click(screen.getByText('All'));
-    expect(screen.getByAltText('Pikachu sprite'))
-      .toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
+    userEvent.click(screen.getByRole('button', { name: /Electric/i }));
+    expect(screen.getAllByTestId('pokemon-type-button')[0]).toHaveTextContent('Electric');
+
+    expect(screen.getByRole('button', { name: /Electric/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Electric/i }))
+      .toHaveTextContent('Electric');
+
+    userEvent.click(screen.getByRole('button', { name: /Próximo pokémon/i }));
+    expect(screen.getByTestId('pokemon-type').innerHTML).toBe('Electric');
   });
 });

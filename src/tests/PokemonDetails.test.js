@@ -37,5 +37,8 @@ describe('Tests the PokemonDetails component', () => {
       level: 2,
     });
     expect(summary).toBeInTheDocument();
+
+    const summaryP = screen.getByText(detailPokemon.summary);
+    expect(summaryP).toBeInTheDocument();
   });
 });

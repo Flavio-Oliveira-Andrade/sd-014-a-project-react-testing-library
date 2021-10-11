@@ -13,7 +13,6 @@ describe('App component test', () => {
     const homeLink = screen.getByRole('link', {
       name: /home/i,
     });
-
     expect(homeLink).toBeInTheDocument();
   });
 
@@ -23,7 +22,6 @@ describe('App component test', () => {
     const homeLink = screen.getByRole('link', {
       name: /home/i,
     });
-
     userEvent.click(homeLink);
     expect(history.location.pathname).toBe('/');
   });
@@ -35,7 +33,6 @@ describe('App component test', () => {
     const aboutLink = screen.getByRole('link', {
       name: /about/i,
     });
-
     expect(aboutLink).toBeInTheDocument();
   });
 
@@ -45,7 +42,6 @@ describe('App component test', () => {
     const aboutLink = screen.getByRole('link', {
       name: /about/i,
     });
-
     userEvent.click(aboutLink);
     expect(history.location.pathname).toBe('/about');
   });
@@ -57,7 +53,6 @@ describe('App component test', () => {
     const favoriteLink = screen.getByRole('link', {
       name: /favorite pokémons/i,
     });
-
     expect(favoriteLink).toBeInTheDocument();
   });
 
@@ -68,7 +63,6 @@ describe('App component test', () => {
     const favoriteLink = screen.getByRole('link', {
       name: /favorite pokémons/i,
     });
-
     userEvent.click(favoriteLink);
     expect(history.location.pathname).toBe('/favorites');
   });
@@ -84,7 +78,6 @@ describe('App component test', () => {
       level: 2,
       name: /page requested not found/i,
     });
-
     expect(notFound).toBeInTheDocument();
   });
 });

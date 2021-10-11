@@ -10,8 +10,8 @@ describe('FavoritePokemons component test', () => {
   + 'if theres no favorite pokemon', () => {
     renderWithRouter(<FavoritePokemons />);
 
-    const notFound = screen.getByText(/no favorite pokemon/i);
-    expect(notFound).toBeInTheDocument();
+    const favNotFound = screen.getByText(/no favorite pokemon/i);
+    expect(favNotFound).toBeInTheDocument();
   });
 
   test('should render all favorite pokemons', () => {

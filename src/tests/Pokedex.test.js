@@ -32,8 +32,20 @@ describe('Pokedex.js test', () => {
   });
   test('Teste se a Pokédex tem os botões de filtro.', () => {
     renderWithRouter(<App />);
+    const filterButtons = screen.getAllByTestId('pokemon-type-button');
+    const buttonsLength = 7;
+    expect(filterButtons[0].innerHTML).toBe('Electric');
+    expect(filterButtons[1].innerHTML).toBe('Fire');
+    expect(filterButtons[2].innerHTML).toBe('Bug');
+    expect(filterButtons[3].innerHTML).toBe('Poison');
+    expect(filterButtons[4].innerHTML).toBe('Psychic');
+    expect(filterButtons[5].innerHTML).toBe('Normal');
+    expect(filterButtons[6].innerHTML).toBe('Dragon');
+    expect(filterButtons.length).toBe(buttonsLength);
   });
   test('Teste se a Pokédex contém um botão para resetar o filtro', () => {
     renderWithRouter(<App />);
+    const buttonAll = screen.getByRole('button', { name: /all/i });
+    expect(buttonAll).toBeInTheDocument();
   });
 });

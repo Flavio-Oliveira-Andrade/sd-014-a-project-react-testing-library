@@ -1,5 +1,5 @@
 import React from 'react';
-// import { screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 // import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../services/renderWithRouter';
 import PokemonDetails from '../components/PokemonDetails';
@@ -20,5 +20,11 @@ describe('Tests the PokemonDetails component', () => {
   };
   it('should render detailed info about the Pokemon', () => {
     renderWithDetails();
+
+    const detailsTitle = screen.getByRole('heading', {
+      name: `${detailPokemon.name} Details`,
+      level: 2,
+    });
+    expect(detailsTitle).toBeInTheDocument();
   });
 });

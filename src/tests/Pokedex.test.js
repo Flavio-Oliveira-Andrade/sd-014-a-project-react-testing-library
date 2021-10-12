@@ -8,7 +8,7 @@ import pokemons from '../data';
 
 describe('Pokedex component test', () => {
   const POKE_TYPES = ['Electric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon'];
-  const POKE_TESTID = 'pokemon-name';
+  const POKE_NAME_TESTID = 'pokemon-name';
 
   test('should contain a heading with the text "Encountered pokémons"', () => {
     renderWithRouter(<App />);
@@ -29,7 +29,7 @@ describe('Pokedex component test', () => {
     });
 
     pokemons.forEach((pokemon) => {
-      const newPokemon = screen.getByTestId(POKE_TESTID);
+      const newPokemon = screen.getByTestId(POKE_NAME_TESTID);
 
       expect(newPokemon).toHaveTextContent(pokemon.name);
       userEvent.click(nextButton);
@@ -39,7 +39,7 @@ describe('Pokedex component test', () => {
   test('should show only one pokemon at time', () => {
     renderWithRouter(<App />);
 
-    const pokemon = screen.getAllByTestId(POKE_TESTID);
+    const pokemon = screen.getAllByTestId(POKE_NAME_TESTID);
     expect(pokemon).toHaveLength(1);
   });
 
@@ -79,7 +79,7 @@ describe('Pokedex component test', () => {
     expect(resetButton).toBeInTheDocument();
     userEvent.click(resetButton);
 
-    const displayedPokemon = screen.getByTestId(POKE_TESTID);
+    const displayedPokemon = screen.getByTestId(POKE_NAME_TESTID);
     expect(displayedPokemon).toBeInTheDocument();
     expect(displayedPokemon).toHaveTextContent(pokemons[0].name);
   });

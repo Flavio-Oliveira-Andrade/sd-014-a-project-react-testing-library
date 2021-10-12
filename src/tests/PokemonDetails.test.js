@@ -1,75 +1,88 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { cleanup, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import pokemons from '../data';
-import App from '../App';
-import { PokemonDetails } from '../components';
 import RenderWithRouter from './RenderWithRouter';
+import App from '../App';
+import pokemons from '../data';
 
-const id = { params: { id: '25' } };
-const favoriteStatus = { 25: true };
+describe('Test PokemonDetails component', () => {
+  it('shows detailed information of selected Pokémon', () => {
+    pokemons.forEach(({ id, name, summary }) => {
+      const { history } = RenderWithRouter(<App />);
 
-describe('Testa o se o componente Pokemon Details renderiza', () => {
-  it('Verifica se as informações detalhadas dos pokemon são mostradas na tela', () => {
-    RenderWithRouter(
-      <PokemonDetails // PokemonDetails needs to recieve these props to work.
-        match={ id }
-        pokemons={ pokemons }
-        isPokemonFavoriteById={ favoriteStatus }
-      />,
-    );
-    const heading = screen.getByRole('heading', {
-      level: 2,
-      name: /pikachu details/i,
+      history.push(`/pokemons/${id}`);
+
+      const pokemonDetails = screen.getByRole('heading', {
+        name: `${name} Details`,
+      });
+      const detailsLink = screen.queryByRole('link', { name: 'More details' });
+      const pokemonSummary = screen.getByRole('heading', {
+        level: 2,
+        name: 'Summary',
+      });
+      const pokemonSummaryParagraph = screen.getByText(summary);
+
+      expect(pokemonDetails).toBeInTheDocument();
+      expect(pokemonSummary).toBeInTheDocument();
+      expect(pokemonSummaryParagraph).toBeInTheDocument();
+      expect(detailsLink).not.toBeInTheDocument();
+
+      cleanup();
     });
-    expect(heading).toBeInTheDocument();
-
-    const summary = screen.getByRole('heading', {
-      level: 2,
-      name: /summary/i,
-    });
-    expect(summary).toBeInTheDocument();
-    const text = 'This intelligent Pokémon roasts hard berries with '
-      + 'electricity to make them tender enough to eat.';
-    const paragraph = screen.getByText(text);
-    expect(paragraph).toBeInTheDocument();
   });
 
-  it('Verifica se exite uma seção com mapas de ontem o pokemon é encontrado', () => {
-    renderWithRouter(
-      <PokemonDetails
-        match={ id }
-        pokemons={ pokemons }
-        isPokemonFavoriteById={ favoriteStatus }
-      />,
-    );
-    const heading = screen.getByRole('heading', {
-      level: 2,
-      name: /game locations of pikachu/i,
-    });
-    expect(heading).toBeInTheDocument();
+  it('should be a section with maps containing the Pokémons locations', () => {
+    pokemons.forEach(({ id, name, foundAt }) => {
+      const { history } = RenderWithRouter(<App />);
 
-    const img = screen.getAllByAltText('Pikachu location');
-    expect(img).toHaveLength(2);
-    expect(img[0].src).toBe(pokemons[0].foundAt[0].map);
-    expect(img[0].alt).toBe(`${pokemons[0].name} location`);
+      history.push(`/pokemons/${id}`);
+
+      const gameLocationsText = screen.getByRole('heading', {
+        level: 2,
+        name: `Game Locations of ${name}`,
+      });
+      expect(gameLocationsText).toBeInTheDocument();
+
+      const locationsImages = screen.getAllByRole('img', {
+        name: `${name} location`,
+      });
+      expect(locationsImages).toHaveLength(foundAt.length);
+
+      foundAt.forEach(({ location, map }) => {
+        const locationName = screen.getByText(location);
+        expect(locationName).toBeInTheDocument();
+
+        const locationImage = locationsImages.find(({ src }) => src === map);
+
+        expect(locationImage).toBeInTheDocument();
+        expect(locationImage).toHaveAttribute('alt', `${name} location`);
+      });
+
+      cleanup();
+    });
   });
 
-  it('Verifica se é possível favoritar a partir da pagina details', () => {
-    renderWithRouter(<App />);
+  it('should be possible to favorite a Pokémon through the details page', () => {
+    pokemons.forEach(({ id }) => {
+      const { history } = renderWithRouter(<App />);
 
-    const details = screen.getByRole('link', {
-      name: /details/i,
-    });
-    expect(details).toBeInTheDocument();
-    userEvent.click(details);
-    const favoriteButton = screen.getByLabelText('Pokémon favoritado?');
-    expect(favoriteButton).toBeInTheDocument();
-    userEvent.click(favoriteButton);
+      history.push(`/pokemons/${id}`);
 
-    const starImg = screen.getByRole('img', {
-      name: /is marked as favorite/i,
+      const favoriteCheckbox = screen.getByRole('checkbox');
+      expect(favoriteCheckbox).toBeInTheDocument();
+
+      userEvent.click(favoriteCheckbox);
+      expect(favoriteCheckbox).toBeChecked();
+
+      userEvent.click(favoriteCheckbox);
+      expect(favoriteCheckbox).not.toBeChecked();
+
+      const favoriteCheckboxLabel = screen.getByLabelText(
+        'Pokémon favoritado?',
+      );
+      expect(favoriteCheckboxLabel).toBeInTheDocument();
+
+      cleanup();
     });
-    expect(starImg).toHaveAttribute('src', '/star-icon.svg');
   });
 });

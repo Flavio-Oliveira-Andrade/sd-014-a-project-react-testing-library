@@ -30,8 +30,8 @@ const pokemonInfo = {
       map: 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
     },
   ],
-  summary: 'This intelligent Pokémon roasts hard berries with electricity'
-  + ' to make them tender enough to eat.',
+  summary: 'This intelligent Pokémon roasts hard berries with electricity to'
+  + ' make them tender enough to eat.',
 };
 
 const { name, summary, foundAt } = pokemonInfo;
@@ -39,11 +39,11 @@ const { name, summary, foundAt } = pokemonInfo;
 describe('Testa o componente <PokemonDetails.js />', () => {
   beforeEach(() => renderWithRouter(<App />));
   it('Testa se as informações detalhadas do Pokémon selecionado são mostradas.', () => {
-    const moreDetailsBtn = screen.getByText(/more details/i);
+    const moreDetailsBtn = screen.getByRole('link', { name: /more details/i });
     userEvent.click(moreDetailsBtn);
 
     const pokemonName = screen.getByText(`${name} Details`);
-    expect(pokemonName).toBeVisible();
+    expect(pokemonName).toBeInTheDocument();
     expect(moreDetailsBtn).not.toBeInTheDocument();
 
     const h2 = screen.getByRole('heading', { name: 'Summary', level: 2 });
@@ -67,12 +67,6 @@ describe('Testa o componente <PokemonDetails.js />', () => {
 
     const maps = screen.getAllByAltText(/pikachu location/i);
     expect(maps).toHaveLength(2);
-
-    const mapsHeading1 = screen.getByText(/Viridian Forest/i);
-    const mapsHeading2 = screen.getByText(/Power Plant/i);
-
-    expect(mapsHeading1).toBeInTheDocument();
-    expect(mapsHeading2).toBeInTheDocument();
 
     expect(maps[0].src).toBe(`${foundAt[0].map}`);
     expect(maps[1].src).toBe(`${foundAt[1].map}`);

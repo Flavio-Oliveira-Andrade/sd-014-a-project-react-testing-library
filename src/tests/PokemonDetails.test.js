@@ -4,7 +4,7 @@ import App from '../App';
 import renderWithRouter from './utils/renderWithRouter';
 import pokemons from '../data';
 
-const moreDetails = 'More details'; 
+const moreDetails = 'More details';
 
 describe('Testes do componente <PokemonDetails />', () => {
   test('Se as informações detalhadas do Pokémon'

@@ -64,7 +64,7 @@ describe('Test PokemonDetails component', () => {
 
   it('should be possible to favorite a Pokémon through the details page', () => {
     pokemons.forEach(({ id }) => {
-      const { history } = renderWithRouter(<App />);
+      const { history } = RenderWithRouter(<App />);
 
       history.push(`/pokemons/${id}`);
 

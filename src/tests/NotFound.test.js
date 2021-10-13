@@ -7,7 +7,7 @@ describe('4. Teste o componente `<NotFound.js />`', () => {
     + 'Page requested not found', () => {
     render(<NotFound />);
     expect(screen.getByRole('heading', {
-      name: 'Page requested not found',
+      name: /Page requested not found/i,
       level: 2,
     }))
       .toBeInTheDocument();

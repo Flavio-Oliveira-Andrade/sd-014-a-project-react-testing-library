@@ -2,6 +2,7 @@ import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
+
 import App from '../App';
 
 const MoreDetails = 'More details';
@@ -64,19 +65,17 @@ describe('6. Teste o componente `<Pokemon.js />`', () => {
     expect(screen.getByText('Pikachu Details')).toBeInTheDocument();
   });
 
-  // it.skip('Teste também se a URL exibida no navegador muda para'
-  // + '`/pokemon/<id>`, onde `<id>` é o id do Pokémon cujos'
-  // + 'detalhes se deseja ver;', () => {
-  //   render(
-  //     <Router>
-  //       <Pokemon />
-  //     </Router>,
-  //   );
+  it.skip('Teste também se a URL exibida no navegador muda para'
+  + '`/pokemon/<id>`, onde `<id>` é o id do Pokémon cujos'
+  + 'detalhes se deseja ver;', () => {
+    render(
+      <Router>
+        <App />
+      </Router>,
+    );
 
-  //   userEvent.click(screen.getAllByText('More Details'));
-
-  //   expect().toBe('/pokemons/25');
-  // });
+    expect(screen.getByText('/pokemon/25')).tobe();
+  });
 
   it('Teste se existe um ícone de estrela nos Pokémons favoritados', () => {
     render(

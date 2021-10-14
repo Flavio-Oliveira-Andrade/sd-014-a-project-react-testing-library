@@ -26,7 +26,7 @@ describe('Verifica o componente <Pokedex.js />', () => {
 
   it('Verifica se é mostrado apenas um Pokémon por vez.', () => {
     renderWithRouter(<App />);
-    const nextBtn = screen.getByTestId('next-pokemon');
+    const nextBtn = screen.getByRole('button', { name: 'Próximo pokémon' });
     userEvent.click(nextBtn);
     const pokemonsLength = screen.getAllByTestId('pokemon-name');
     expect(pokemonsLength).toHaveLength(1);

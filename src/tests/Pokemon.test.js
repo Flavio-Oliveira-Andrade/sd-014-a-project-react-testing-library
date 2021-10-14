@@ -21,8 +21,11 @@ describe('6. Teste o componente `<Pokemon.js />`', () => {
     expect(screen.getByTestId('pokemon-type')).toBeInTheDocument();
     expect(screen.getByTestId('pokemon-type')).toHaveTextContent('Electric');
 
-    expect(screen.getByTestId(('pokemon-weight')
-      .valueOf('Average weight: 6.0 kg'))).toBeInTheDocument();
+    // expect(screen.getByTestId(('pokemon-weight')
+    //   .valueOf('Average weight: 6.0 kg'))).toBeInTheDocument();
+
+    expect(screen.getByTestId('pokemon-weight'))
+      .toHaveTextContent('Average weight: 6.0 kg');
   });
 
   it('- A imagem do Pokémon deve ser exibida. Ela deve'
@@ -74,7 +77,8 @@ describe('6. Teste o componente `<Pokemon.js />`', () => {
       </Router>,
     );
 
-    expect(screen.getByText('/pokemon/25')).tobe();
+    expect(screen.getByText(/* Falta implementar */))
+      .toBe('/pokemon/25');
   });
 
   it('Teste se existe um ícone de estrela nos Pokémons favoritados', () => {

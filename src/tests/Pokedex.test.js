@@ -12,7 +12,7 @@ describe('', () => {
       name: 'Encountered pokémons',
       level: 2,
     });
-    expect(pokEncontrados).toBeInTheDocument();
+    expect(pokEncontrados.innerHTML).toBe('Encountered pokémons');
   });
 
   test('testando proximo pokemon', () => {

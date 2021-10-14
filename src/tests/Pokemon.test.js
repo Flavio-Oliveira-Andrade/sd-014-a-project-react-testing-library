@@ -68,19 +68,6 @@ describe('6. Teste o componente `<Pokemon.js />`', () => {
     expect(screen.getByText('Pikachu Details')).toBeInTheDocument();
   });
 
-  it.skip('Teste também se a URL exibida no navegador muda para'
-  + '`/pokemon/<id>`, onde `<id>` é o id do Pokémon cujos'
-  + 'detalhes se deseja ver;', () => {
-    render(
-      <Router>
-        <App />
-      </Router>,
-    );
-
-    expect(screen.getByText(/* Falta implementar */))
-      .toBe('/pokemon/25');
-  });
-
   it('Teste se existe um ícone de estrela nos Pokémons favoritados', () => {
     render(
       <Router>
@@ -93,5 +80,19 @@ describe('6. Teste o componente `<Pokemon.js />`', () => {
       .toHaveAttribute('src', '/star-icon.svg');
 
     expect(screen.getByAltText('Pikachu is marked as favorite')).toBeInTheDocument();
+  });
+
+  it('Teste também se a URL exibida no navegador muda para'
+  + '`/pokemon/<id>`, onde `<id>` é o id do Pokémon cujos'
+  + 'detalhes se deseja ver;', () => {
+    render(
+      <Router>
+        <App />
+      </Router>,
+    );
+
+    userEvent.click(screen.getByRole('link', { name: 'Home' }));
+    expect(screen.getByRole('link', { name: MoreDetails }))
+      .toHaveAttribute('href', '/pokemons/25');
   });
 });

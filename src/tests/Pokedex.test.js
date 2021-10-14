@@ -1,42 +1,64 @@
-// import React from 'react';
-// import { screen } from '@testing-library/react';
-// import userEvent from '@testing-library/user-event';
-// import Pokedex from '../components/Pokedex';
-// import RenderWithRouter from '../util/RenderWithRouter';
-// import mock from './mock/mockpok';
+import React from 'react';
+import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import RenderWithRouter from '../util/RenderWithRouter';
+import App from '../App';
 
-// test('cabeçalho h2', () => {
-//   RenderWithRouter(<Pokedex { ...mock } />);
-//   const tituloH2 = screen.getByRole('heading', {
-//     name: /Encountered pokémons/i,
-//     level: 2,
-//   });
+test('h2 com o texto "encountered pokemons"', () => {
+  RenderWithRouter(<App />);
 
-//   expect(tituloH2).toBeInTheDocument();
-// });
+  const pokEncontrados = screen.getByRole('heading', {
+    name: 'Encountered pokémons',
+    level: 2,
+  });
+  expect(pokEncontrados).toBeInTheDocument();
+});
 
-// test('teste proximo pokemon', () => {
-//   RenderWithRouter(<Pokedex { ...mock } />);
-//   const botãoProximoPokemon = screen.getByRole('button', {
-//     name: /próximo po/i,
-//   });
-//   expect(botãoProximoPokemon).toBeInTheDocument();
+test('testando proximo pokemon', () => {
+  RenderWithRouter(<App />);
+  const buttonProximoPokemon = screen.getByTestId('next-pokemon');
+  userEvent.click(buttonProximoPokemon);
 
-//   const idNomePOk = 'pokemon-name';
+  const verificandoPokemon = screen.getByTestId('pokemon-name').innerHTML;
+  expect(verificandoPokemon).toBe('Charmander');
+  expect(buttonProximoPokemon).toBeInTheDocument();
+});
 
-//   const testandoNome = screen.getByTestId(idNomePOk).innerHTML;
-//   expect(testandoNome).toBe(mock.pokemons[0].name);
+test('renderizando um pokemon por vez', () => {
+  RenderWithRouter(<App />);
+  const pokemonRef = screen.getAllByTestId('pokemon-name');
+  expect(pokemonRef).toHaveLength(1);
+});
 
-//   userEvent.click(botãoProximoPokemon);
-//   const testandoNome2 = screen.getByTestId(idNomePOk).innerHTML;
-//   expect(testandoNome2).toBe(mock.pokemons[1].name);
+test('teste se aparece os pokemons com seu respectivo tipo', () => {
+  RenderWithRouter(<App />);
+  const buttonTypebutton = screen.getAllByTestId('pokemon-type-button');
+  expect(buttonTypebutton[0].innerHTML).toBe('Electric');
 
-//   userEvent.click(botãoProximoPokemon);
-//   const testandoNome3 = screen.getByTestId(idNomePOk).innerHTML;
-//   expect(testandoNome3).toBe(mock.pokemons[2].name);
-// });
+  userEvent.click(buttonTypebutton[1]);
+  expect(buttonTypebutton[1].innerHTML).toBe('Fire');
 
-// test('testando tipo', () => {
+  userEvent.click(buttonTypebutton[2]);
+  expect(buttonTypebutton[2].innerHTML).toBe('Bug');
 
-// });
-test('', () => {});
+  userEvent.click(buttonTypebutton[3]);
+  expect(buttonTypebutton[3].innerHTML).toBe('Poison');
+
+  userEvent.click(buttonTypebutton[4]);
+  expect(buttonTypebutton[4].innerHTML).toBe('Psychic');
+
+  userEvent.click(buttonTypebutton[5]);
+  expect(buttonTypebutton[5].innerHTML).toBe('Normal');
+
+  userEvent.click(buttonTypebutton[6]);
+  expect(buttonTypebutton[6].innerHTML).toBe('Dragon');
+});
+
+test('testando se existe o botão "All"', () => {
+  RenderWithRouter(<App />);
+  const buttonAll = screen.getByRole('button', {
+    name: /all/i,
+  });
+  userEvent.click(buttonAll);
+  expect(buttonAll.innerHTML).toBe('All');
+});

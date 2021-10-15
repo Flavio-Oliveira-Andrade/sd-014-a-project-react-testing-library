@@ -11,4 +11,3 @@ describe('Testando a página \'Favorite Pokémons\'', () => {
     expect(noFavoritesFound).toBeInTheDocument();
   });
 });
-

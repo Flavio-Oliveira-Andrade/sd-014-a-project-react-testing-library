@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
-describe('Testando o componente Pokemon.js.', () => {
+describe('Testando o Card Pokémon', () => {
   test('Se o Card renderiza informações do Pokemon', () => {
     renderWithRouter(<App />);
     const pokemonName = screen.getByTestId('pokemon-name');

@@ -20,5 +20,4 @@ describe('Testando a página \'About\'', () => {
     const imgTest = screen.getByRole('img');
     expect(imgTest).toHaveAttribute('src', imgSource);
   });
-
 });

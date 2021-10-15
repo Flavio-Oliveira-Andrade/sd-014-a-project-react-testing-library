@@ -9,13 +9,16 @@ describe('Testando a página \'About\'', () => {
     const numParagraphs = screen.getAllByText(/pokémons/i);
     expect(numParagraphs.length).toBe(2);
   });
+
   test('Se o texto \'About Pokédex\' foi renderizado na página', () => {
     const aboutHeading = screen.getByRole('heading', { name: 'About Pokédex' });
     expect(aboutHeading).toBeInTheDocument();
   });
+
   test('Se a imagem da Pokédex foi renderizada na página', () => {
     const imgSource = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
     const imgTest = screen.getByRole('img');
     expect(imgTest).toHaveAttribute('src', imgSource);
   });
+
 });

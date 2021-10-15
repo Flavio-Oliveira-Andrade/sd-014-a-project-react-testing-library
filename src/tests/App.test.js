@@ -4,27 +4,30 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
-describre('Verificando se as rotas estão navegando para os locais corretos', () => {
+describe('Verificando se as rotas estão navegando para os locais corretos', () => {
   test('Página - HOME', () => {
     const { history } = renderWithRouter(<App />);
-    const links = screen.getAllByRole('link');
-    userEvent.click(links[0]);
-    const { location: { pathName } } = history;
-    expect(pathName).toBe('/');
+    const homeLink = screen.getByRole('link', { name: /Home/i });
+    expect(homeLink).toBeDefined();
+    userEvent.click(homeLink);
+    const { pathname } = history.location;
+    expect(pathname).toBe('/');
   });
   test('Página - About', () => {
     const { history } = renderWithRouter(<App />);
-    const links = screen.getAllByRole('link');
-    userEvent.click(links[1]);
-    const { location: { pathName } } = history;
-    expect(pathName).toBe('/about');
+    const aboutLink = screen.getByRole('link', { name: /About/i });
+    expect(aboutLink).toBeDefined();
+    userEvent.click(aboutLink);
+    const { pathname } = history.location;
+    expect(pathname).toBe('/about');
   });
   test('Página - Favorite Pokémons', () => {
     const { history } = renderWithRouter(<App />);
-    const links = screen.getAllByRole('link');
-    userEvent.click(links[2]);
-    const { location: { pathName } } = history;
-    expect(pathName).toBe('/favorites');
+    const favoriteLink = screen.getByRole('link', { name: /Favorite Pokémons/i });
+    expect(favoriteLink).toBeDefined();
+    userEvent.click(favoriteLink);
+    const { pathname } = history.location;
+    expect(pathname).toBe('/favorites');
   });
   test('Página - Not Found, no caso de ser fornecida uma URL desconhecida', () => {
     const { history } = renderWithRouter(<App />);
@@ -33,7 +36,6 @@ describre('Verificando se as rotas estão navegando para os locais corretos', ()
     expect(notFound).toBeInTheDocument();
   });
 });
-
 describe('Verificando se os Links possuem os nomes corretos', () => {
   beforeEach(() => renderWithRouter(<App />));
   test('Se o primeiro link da página é \'Home\'', () => {

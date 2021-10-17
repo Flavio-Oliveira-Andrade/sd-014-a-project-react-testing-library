@@ -1,7 +1,7 @@
 import React from 'react';
 import { screen, fireEvent } from '@testing-library/react';
-import renderWithRouter from '../renderWithRouter';
 import App from '../App';
+import renderWithRouter from '../renderWithRouter';
 
 describe('Requisito 1', () => {
   it('O primeiro link possui o texto \'Home\'', () => {

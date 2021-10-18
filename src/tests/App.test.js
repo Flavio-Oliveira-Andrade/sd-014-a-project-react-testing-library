@@ -1,4 +1,4 @@
-import { screen, userEvent } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
 import renderPath from './utilities/renderPath';
 
@@ -32,7 +32,6 @@ describe('Testa se todos o links tem os nomes corretos', () => {
 });
 
 describe('Testa se os links renderizam os componentes corretos', () => {
-
   test('Testa se ao clicar no link "Home" o componente Home é renderizado', () => {
     renderPath('/');
 

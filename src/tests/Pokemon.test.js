@@ -64,7 +64,7 @@ describe('Testa se aplicação é renderizada para o componente Pokemon', () => 
     userEvent.click(checkboxLabelPokemonFavoritado);
     const imagemEstrela = screen.getByRole('img',
       {
-        name: 'Pikachu is marked as favorite',
+        name: /Pikachu is marked as favorite/i,
       });
     expect(imagemEstrela).toHaveAttribute('src', '/star-icon.svg');
   });

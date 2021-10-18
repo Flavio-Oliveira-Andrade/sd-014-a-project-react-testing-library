@@ -2,7 +2,7 @@ import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../render/renderWithRouter';
-import Pokemons from '../data';
+import pokemons from '../data';
 import App from '../App';
 
 describe('Testa se aplicação é renderizada para o componente Pokedex', () => {
@@ -28,7 +28,7 @@ describe('Testa se aplicação é renderizada para o componente Pokedex', () => 
 
   test('Se existe um botão para capturar cada tipo de Pokémon', () => {
     renderWithRouter(<App />);
-    Pokemons.forEach((pokemon) => {
+    pokemons.forEach((pokemon) => {
       const buttonTypePokemon = screen.getByRole('button',
         {
           name: pokemon.type,

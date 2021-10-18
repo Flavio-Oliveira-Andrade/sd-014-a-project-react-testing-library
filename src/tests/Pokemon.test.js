@@ -19,9 +19,9 @@ describe('Testa se aplicação é renderizada para o componente Pokemon', () => 
     });
   });
 
-  test(`Se a imagem do Pokémon deve ser exibida. Ela deve conter um atributo src com a URL
-  da imagem e um atributo alt com o texto <name> sprite, onde <name> é o nome do
-  pokémon.`, () => {
+  test('Se a imagem do Pokémon deve ser exibida. Ela deve conter um atributo src com a'
+  + 'URL da imagem e um atributo alt com o texto <name> sprite, onde <name> é o nome do'
+  + 'pokémon.', () => {
     renderWithRouter(<App />);
     pokemons.forEach((pokemon) => {
       const imagemPokemon = screen.getByRole('img',
@@ -38,9 +38,9 @@ describe('Testa se aplicação é renderizada para o componente Pokemon', () => 
     });
   });
 
-  test(`Se o card do Pokémon indicado na Pokédex contém um link de navegação para exibir
-  detalhes deste Pokémon. O link deve possuir a URL /pokemons/<id>, onde <id>
-  é o id do Pokemon exibido.`, () => {
+  test('Se o card do Pokémon indicado na Pokédex contém um link de navegação para exibir'
+  + 'detalhes deste Pokémon. O link deve possuir a URL /pokemons/<id>, onde <id>'
+  + 'é o id do Pokemon exibido.', () => {
     renderWithRouter(<App />);
     pokemons.forEach((pokemon) => {
       const linkTextMoreDetails = screen.getByRole('link',

@@ -57,6 +57,20 @@ describe('Testa se aplicação é renderizada para o componente Pokemon', () => 
     });
   });
 
+  test('Se é renderizado um card com as informações de determinado pokémon.', () => {
+    renderWithRouter(<App />);
+    const nomePokemon = screen.getByTestId('pokemon-name');
+    const tipoPokemon = screen.getByTestId('pokemon-type');
+    const pesoPokemon = screen.getByTestId('pokemon-weight');
+    const imagemPokemonSprite = screen.getByAltText('Pikachu sprite');
+    expect(nomePokemon).toHaveTextContent('Pikachu');
+    expect(tipoPokemon).toHaveTextContent('Electric');
+    expect(pesoPokemon).toHaveTextContent('Average weight: 6.0 kg');
+    expect(imagemPokemonSprite).toBeInTheDocument();
+    expect(imagemPokemonSprite).toHaveAttribute('src',
+      'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
+  });
+
   test('Se existe um icone de estrela nos Pokémons favoritados.', () => {
     const { history } = renderWithRouter(<App />);
     history.push('pokemons/25');
@@ -64,7 +78,7 @@ describe('Testa se aplicação é renderizada para o componente Pokemon', () => 
     userEvent.click(checkboxLabelPokemonFavoritado);
     const imagemEstrela = screen.getByRole('img',
       {
-        name: /Pikachu is marked as favorite/i,
+        name: 'Pikachu is marked as favorite',
       });
     expect(imagemEstrela).toHaveAttribute('src', '/star-icon.svg');
   });

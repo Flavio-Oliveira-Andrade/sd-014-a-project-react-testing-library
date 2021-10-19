@@ -39,12 +39,12 @@ describe('Testa o componente Pokedex.js', () => {
   it('testa se a Pokédex tem os botões de filtro', () => {
     renderWithRouter(<App />);
 
-    const buttonsList = [...new Set(pokemons.reduce((types, { type }) => [...types, type], []))];
+    const btn = [...new Set(pokemons.reduce((types, { type }) => [...types, type], []))];
 
     const allButtons = screen.getAllByTestId(/pokemon-type-button/i);
-    expect(allButtons).toHaveLength(buttonsList.length);
+    expect(allButtons).toHaveLength(btn.length);
 
-    buttonsList.forEach((button) => {
+    btn.forEach((button) => {
       const filterButton = screen.getByRole('button', { name: new RegExp(button, 'i') });
       // RegExp é um classe que representa uma regex
       expect(filterButton).toBeInTheDocument();

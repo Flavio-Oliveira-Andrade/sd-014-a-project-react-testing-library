@@ -3,6 +3,7 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import RenderWithRouter from '../util/RenderWithRouter';
 import App from '../App';
+import pokemons from '../data';
 
 describe('', () => {
   test('h2 com o texto "encountered pokemons"', () => {
@@ -18,11 +19,20 @@ describe('', () => {
   test('testando proximo pokemon', () => {
     RenderWithRouter(<App />);
     const buttonProximoPokemon = screen.getByTestId('next-pokemon');
+    const nomeDoPrimeroPok = screen.getByText(`${pokemons[0].name}`);
+    expect(nomeDoPrimeroPok).toBeInTheDocument();
+
+    const proximoPokemon = screen.getByText('Próximo pokémon');
+    expect(proximoPokemon).toBeInTheDocument();
+
     userEvent.click(buttonProximoPokemon);
 
     const verificandoPokemon = screen.getByTestId('pokemon-name').innerHTML;
-    expect(verificandoPokemon).toBe('Charmander');
+    expect(verificandoPokemon).toBe(`${pokemons[1].name}`);
     expect(buttonProximoPokemon).toBeInTheDocument();
+
+    const proximoPokemon2 = screen.getByText('Próximo pokémon');
+    expect(proximoPokemon2).toBeInTheDocument();
   });
 
   test('renderizando um pokemon por vez', () => {

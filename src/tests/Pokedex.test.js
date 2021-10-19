@@ -6,7 +6,7 @@ import App from '../App';
 
 const seven = 7;
 
-describe('Testes do requisito 5', () => {
+describe('Requisito 5', () => {
   it('A página contém um heading h2 com o texto Encountered pokémons', () => {
     renderWithRouter(<App />);
     expect(
@@ -21,11 +21,6 @@ describe('Testes do requisito 5', () => {
     const pokemon = screen.getByTestId('pokemon-name');
     fireEvent.click(button);
     expect(pokemon.innerHTML).toBe('Charmander');
-  });
-
-  it('É mostrado apenas um Pokémon por vez', () => {
-    renderWithRouter(<App />);
-    expect(screen.getAllByTestId('pokemon-name')).toHaveLength(1);
   });
 
   it('A Pokédex tem os botões de filtro', () => {

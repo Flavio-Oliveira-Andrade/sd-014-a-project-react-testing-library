@@ -24,7 +24,6 @@ describe('Testa o componente About.js', () => {
     renderWithRouter(<About />);
 
     const pokedexImage = screen.getByAltText('Pokédex');
-    expect(pokedexImage.src).toContain(srcImg);
     expect(pokedexImage).toHaveAttribute('src', srcImg);
   });
 });

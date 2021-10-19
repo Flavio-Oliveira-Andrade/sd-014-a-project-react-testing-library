@@ -46,7 +46,7 @@ describe('Testa o componente Pokemon.js', () => {
   it('testa se a URL exibida no navegador muda para /pokemon/<id>;', () => {
     renderWithRouter(<Pokemon pokemon={ pokemons[0] } isFavorite={ false } />);
 
-    const pokeLink = screen.getByRole('link', { name: /More details/i });
+    const pokeLink = screen.getByText(/More details/i);
     userEvent.click(pokeLink);
     expect(window.location.pathname).toBe(`/pokemons/${pokemons[0].id}`);
   });
@@ -57,7 +57,7 @@ describe('Testa o componente Pokemon.js', () => {
     const pokeImg = screen.getByRole('img', {
       name: `${pokemons[0].name} is marked as favorite` });
     expect(pokeImg).toHaveAttribute('alt', `${pokemons[0].name} is marked as favorite`);
-    expect(pokeImg).toHaveAttribute('src', /\/star-icon.svg/i);
+    expect(pokeImg).toHaveAttribute('src', '/star-icon.svg');
     expect(pokeImg).toBeInTheDocument();
   });
 });

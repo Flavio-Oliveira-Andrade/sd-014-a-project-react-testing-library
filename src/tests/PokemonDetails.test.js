@@ -4,15 +4,19 @@ import userEvent from '@testing-library/user-event';
 import RenderWithRouter from '../util/RenderWithRouter';
 import App from '../App';
 import pokemons from '../data';
-import { PokemonDetails } from '../components';
+
+const moreDetalis = 'More details';
+const clickMoreDetails = () => {
+  RenderWithRouter(<App />);
+  const linkDetalhes = screen.getByRole('link', {
+    name: moreDetalis,
+  });
+  userEvent.click(linkDetalhes);
+};
 
 describe('fazendo testes no Pokemon details', () => {
   test('fazendo testes dos detalhes sobre o pokemon', () => {
-    RenderWithRouter(<App />);
-    const linkDetalhes = screen.getByRole('link', {
-      name: 'More details',
-    });
-    userEvent.click(linkDetalhes);
+    clickMoreDetails();
 
     const nomePok = screen.getByRole('heading', {
       name: `${pokemons[0].name} Details`,
@@ -34,14 +38,6 @@ describe('fazendo testes no Pokemon details', () => {
 
     const checkDeFavoritos = screen.getByText('Pokémon favoritado?');
     expect(checkDeFavoritos).toBeInTheDocument();
-  });
-
-  test('testando a imagem do picachu', () => {
-    RenderWithRouter(<App />);
-    const linkDetalhes3 = screen.getByRole('link', {
-      name: 'More details',
-    });
-    userEvent.click(linkDetalhes3);
 
     const imgPikachu = screen.getAllByRole('img')[0];
     expect(imgPikachu).toHaveAttribute('src', `${pokemons[0].image}`);
@@ -49,11 +45,7 @@ describe('fazendo testes no Pokemon details', () => {
   });
 
   test('testando os mapas ', () => {
-    RenderWithRouter(<App />);
-    const linkDetalhes3 = screen.getByRole('link', {
-      name: 'More details',
-    });
-    userEvent.click(linkDetalhes3);
+    clickMoreDetails();
 
     const mapaDaLocalização = screen.getAllByRole('img')[1];
     expect(mapaDaLocalização).toHaveAttribute('src', `${pokemons[0].foundAt[0].map}`);

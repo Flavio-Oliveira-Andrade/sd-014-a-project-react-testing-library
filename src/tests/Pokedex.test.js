@@ -20,7 +20,39 @@ describe('Testa se a pokedex funciona corretamente', () => {
 
     userEvent.click(botaoProxPokemon);
 
-    expect(pokemonAtual.innerHTML).not.toMatch('Pikachu');
+    expect(pokemonAtual.innerHTML).toMatch('Charmander');
+
+    userEvent.click(botaoProxPokemon);
+
+    expect(pokemonAtual.innerHTML).toMatch('Caterpie');
+
+    userEvent.click(botaoProxPokemon);
+
+    expect(pokemonAtual.innerHTML).toMatch('Ekans');
+
+    userEvent.click(botaoProxPokemon);
+
+    expect(pokemonAtual.innerHTML).toMatch('Alakazam');
+
+    userEvent.click(botaoProxPokemon);
+
+    expect(pokemonAtual.innerHTML).toMatch('Mew');
+
+    userEvent.click(botaoProxPokemon);
+
+    expect(pokemonAtual.innerHTML).toMatch('Rapidash');
+
+    userEvent.click(botaoProxPokemon);
+
+    expect(pokemonAtual.innerHTML).toMatch('Snorlax');
+
+    userEvent.click(botaoProxPokemon);
+
+    expect(pokemonAtual.innerHTML).toMatch('Dragonair');
+
+    userEvent.click(botaoProxPokemon);
+
+    expect(pokemonAtual.innerHTML).toMatch('Pikachu');
   });
 
   test('Testa se é exibido apenas um pokemon por vez', () => {

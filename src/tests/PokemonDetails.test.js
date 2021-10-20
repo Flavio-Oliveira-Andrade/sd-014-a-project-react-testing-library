@@ -4,7 +4,6 @@ import pokemons from '../data';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
-const dragonairDetails = '/pokemons/148';
 const moreDetails = 'More details';
 
 describe('Requisito 7', () => {

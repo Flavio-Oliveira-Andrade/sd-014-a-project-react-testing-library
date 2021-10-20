@@ -16,7 +16,7 @@ describe('Testa se a pokedex funciona corretamente', () => {
     renderPath('/');
 
     const pokemonAtual = screen.getByText('Pikachu');
-    const botaoProxPokemon = screen.getByTestId('next-pokemon');
+    const botaoProxPokemon = screen.getByText('Próximo pokémon');
 
     userEvent.click(botaoProxPokemon);
 

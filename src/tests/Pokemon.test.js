@@ -2,11 +2,11 @@ import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Pokemon from '../components/Pokemon';
-import data from '../data';
+import pokemons from '../data';
 import renderWithRouter from '../renderWithRouter';
 
 const POKEMON_ID = 65;
-const alakazamInfo = data.find((pokemon) => pokemon.id === POKEMON_ID);
+const alakazamInfo = pokemons.find((pokemon) => pokemon.id === POKEMON_ID);
 
 describe('Verifica o componente Pokemon', () => {
   it('Verifica se é renderizado um card com as informações '

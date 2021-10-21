@@ -17,7 +17,6 @@ describe('Teste o componente <Pokemon.js />', () => {
       expect(pokemonType).toHaveTextContent('Electric');
       expect(pokemonWigth).toHaveTextContent('Average weight: 6.0 kg');
     });
-  
   test('Teste se o card do Pokémon indicado na Pokédex contém um link de navegação',
     () => {
       const { history } = renderWithRouter(<App />);

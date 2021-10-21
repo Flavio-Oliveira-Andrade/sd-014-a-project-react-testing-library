@@ -3,7 +3,6 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../utils/RenderWithRoute';
 
-import App from '../App';
 import { Pokedex } from '../components';
 import pokemons from '../data';
 
@@ -46,10 +45,12 @@ describe('Pokedex.js test', () => {
     const buttonNextPoke = screen.getByRole('button', {
       name: /próximo pokémon/i,
     });
+    const allbtn = screen.getByRole('button', { name: /all/i });
 
     userEvent.click(buttonNextPoke);
     expect(pokemon.innerHTML).toBe('Charmander');
     expect(pokemon).toBeInTheDocument();
+    expect(allbtn).toBeInTheDocument();
   });
 
   test('O primeiro Pokémon da lista deve ser mostrado ao clicar no botão,'
@@ -76,5 +77,54 @@ describe('Pokedex.js test', () => {
     />);
     const typeBtn = screen.getAllByTestId('pokemon-type-button');
     expect(typeBtn).toHaveLength(PokemonTypeOff);
+  });
+
+  test('correto funcionamento dos botões de filtro.', () => {
+    renderWithRouter(<Pokedex
+      pokemons={ pokemons }
+      isPokemonFavoriteById={ favoritesID }
+    />);
+    const typePsychicBtn = screen.getByRole('button', {
+      name: /psychic/i,
+    });
+    userEvent.click(typePsychicBtn);
+    const alakazamPoke = screen.getByText(/alakazam/i);
+    const psychicTypeOff = screen.getByText(/psychic/i, { selector: 'p' });
+    const allbtn = screen.getByRole('button', { name: /all/i });
+
+    expect(alakazamPoke).toBeInTheDocument();
+    expect(psychicTypeOff).toBeInTheDocument();
+    expect(allbtn).toBeInTheDocument();
+
+    const buttonNextPoke = screen.getByRole('button', {
+      name: /próximo pokémon/i,
+    });
+    userEvent.click(buttonNextPoke);
+
+    const mewPoke = screen.getByText(/mew/i);
+    expect(mewPoke).toBeInTheDocument();
+    expect(allbtn).toBeInTheDocument();
+
+    const typePoisonBtn = screen.getByRole('button', {
+      name: /poison/i,
+    });
+    userEvent.click(typePoisonBtn);
+
+    const poisonTypeOff = screen.getByText(/poison/i, { selector: 'p' });
+    expect(poisonTypeOff).toBeInTheDocument();
+  });
+  test('Se o botão All resetea os filtros', () => {
+    renderWithRouter(<Pokedex
+      pokemons={ pokemons }
+      isPokemonFavoriteById={ favoritesID }
+    />);
+    const allbtn = screen.getByRole('button', { name: /all/i });
+    const typeBtn = screen.getAllByTestId('pokemon-type-button');
+    const initialType = screen.getByText(/electric/i, { selector: 'p' });
+
+    userEvent.click(typeBtn[1]);
+    userEvent.click(allbtn);
+
+    expect(initialType).toBeInTheDocument();
   });
 });

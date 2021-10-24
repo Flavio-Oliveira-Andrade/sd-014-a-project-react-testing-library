@@ -4,6 +4,7 @@ export const DETAILS_PAGE = 'More details';
 export const POKE_TYPES = ['Eletric', 'Fire', 'Bug',
   'Poison', 'Psychic', 'Normal', 'Dragon'];
 export const FAVORITE_POKE = 'Pokémon favoritado?';
+export const FAVORITES_TOTAL = 3;
 export const NAME_INFO = 'pokemon-name';
 export const TYPE_INFO = 'pokemon-type';
 export const WEIGHT_INFO = 'pokemon-weight';

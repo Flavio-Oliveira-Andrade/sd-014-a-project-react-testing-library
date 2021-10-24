@@ -11,22 +11,18 @@ describe('Tests the About component', () => {
   });
 
   it('should render the Pokédex <h2>', () => {
-    const heading = screen.getByRole('heading', {
+    expect(screen.getByRole('heading', {
       name: /about pokédex/i,
       level: 2,
-    });
-    expect(heading).toBeInTheDocument();
+    })).toBeInTheDocument();
   });
 
   it('should render <p> w/ Pokédex info', () => {
-    const paragraph1 = screen.getByText(/This application simulates a Pokédex/i);
-    const paragraph2 = screen.getByText(/One can filter Pokémons by type/i);
-    expect(paragraph1).toBeInTheDocument();
-    expect(paragraph2).toBeInTheDocument();
+    expect(screen.getByText(/This application simulates a Pokédex/i)).toBeInTheDocument();
+    expect(screen.getByText(/One can filter Pokémons by type/i)).toBeInTheDocument();
   });
 
   it('should render the Pokédex <img>', () => {
-    const image = screen.getByRole('img');
-    expect(image.src).toContain('https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
+    expect(screen.getByRole('img').src).toContain('https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
   });
 });

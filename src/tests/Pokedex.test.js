@@ -67,5 +67,13 @@ describe('Verifica o componente <Pokedex />', () => {
       expect(showingPokemonName.innerHTML).toBe(firePokemon.name);
       userEvent.click(nextBtn);
     });
+
+    // - Teste se a Pokédex contém um botão para resetar o filtro
+    const allBtn = screen.getByRole('button', { name: 'All' });
+    userEvent.click(allBtn);
+    pokemonsNames.forEach((pokemon) => {
+      expect(showingPokemonName.innerHTML).toBe(pokemon);
+      userEvent.click(nextBtn);
+    });
   });
 });

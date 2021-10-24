@@ -8,7 +8,6 @@ import Pokedex from '../components/Pokedex';
 import pokemons from '../data';
 
 describe('Verifica o componente <Pokedex />', () => {
-  // Should I use a BeforeEach?
   const pokemonsNames = pokemons.map((pokemon) => pokemon.name);
   const BtnTypes = ['Electric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon'];
   const pokemonNameTestId = 'pokemon-name';

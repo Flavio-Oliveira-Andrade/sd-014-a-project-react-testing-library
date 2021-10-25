@@ -19,7 +19,7 @@ describe('Teste o componente <About.js />.', () => {
     expect(secondParagraph).toBeInTheDocument();
   });
 
-  test('Se a imagem da Pokédex foi renderizada na página', () => {
+  test('se a página contém a seguinte imagem de uma Pokédex', () => {
     const imgLink = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
     const imgTest = screen.getByRole('img');
     expect(imgTest).toHaveAttribute('src', imgLink);

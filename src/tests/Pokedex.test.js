@@ -36,4 +36,13 @@ describe('Teste o componente <Pokedex.js />', () => {
       expect(button).toHaveTextContent(types[index])
     ));
   });
+
+  test('se a Pokédex possui um botão para resetar o filtro', () => {
+    const resetButtom = screen.getByRole('button', { name: 'All' });
+    expect(resetButtom).toBeInTheDocument();
+    expect(resetButtom).toHaveTextContent('All');
+    userEvent.click(resetButtom);
+    const defaultPoke = screen.getByText('Pikachu');
+    expect(defaultPoke).toBeInTheDocument();
+  });
 });

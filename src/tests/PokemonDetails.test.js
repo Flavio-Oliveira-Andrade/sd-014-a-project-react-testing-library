@@ -16,8 +16,8 @@ beforeEach(() => {
 
 describe('Tests if the detailed Pokémon information is shown on the screen', () => {
   it('should contain a <name> text, name being the pokemon name', () => {
-    const pokeName = screen.getAllByText(/charmander/i);
-    expect(pokeName.length).toBeGreaterThan(0);
+    const pokeName = screen.getByText('Charmander Details');
+    expect(pokeName).toBeInTheDocument();
   });
   it('shoul NOT exist the nav link for details of the selected Pokémon', () => {
     const links = screen.getAllByRole('link');

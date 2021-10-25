@@ -1,19 +1,18 @@
 import React from 'react';
 import { screen, fireEvent } from '@testing-library/react';
 import renderWithRouter from './utilitary/renderWithRouter';
-import FavoritePokemons from '../components';
 import App from '../App';
 import { FAVORITE_POKE, NEXT_POKE, HOME_PAGE,
   DETAILS_PAGE, FAVORITE_PAGE, FAVORITES_TOTAL } from './utilitary/antiMagicError';
 
 describe('Tests FavoritePokemons component', () => {
-  beforeEach(() => { renderWithRouter(<App />); });
-
   it('should render "No Favorite Pokémon" message', () => {
-    const { history } = renderWithRouter(<FavoritePokemons />);
+    const { history } = renderWithRouter(<App />);
     history.push('/favorites');
-    expect(screen.getByText('No favorite pokemon found')).toBeInTheDocument();
+    expect(screen.getByText(/No favorite pokemon found/i)).toBeInTheDocument();
   });
+
+  beforeEach(() => { renderWithRouter(<App />); });
 
   it('should render favorites Pokémon cards', () => {
     fireEvent.click(screen.getByText('Pikachu'));

@@ -24,28 +24,33 @@ describe('Testando se os redirecionamentos de páginas estão corretos', () => {
   test('vai p/ pág inicial, na URL / ao clicar no Home da barra de nav', () => {
     const { history } = renderWithRouter(<App />);
     const home = screen.getByRole('link', { name: /home/i });
+    expect(home).toBeDefined();
     userEvent.click(home);
-    const { location } = history.location;
-    expect(location).toBe('/');
+    const { pathname } = history.location;
+    expect(pathname).toBe('/');
   });
   test('vai p/ /about, ao clicar no link About da barra de navegação', () => {
     const { history } = renderWithRouter(<App />);
     const about = screen.getByRole('link', { name: /about/i });
+    expect(about).toBeDefined();
     userEvent.click(about);
-    const { location } = history.location;
-    expect(location).toBe('/about');
+    const { pathname } = history.location;
+    expect(pathname).toBe('/about');
   });
   test('vai para /favorites, ao clicar no link Favorite Pokémons', () => {
     const { history } = renderWithRouter(<App />);
     const favoritePokes = screen.getByRole('link', { name: /favorite pokémons/i });
+    expect(favoritePokes).toBeDefined();
     userEvent.click(favoritePokes);
-    const { location } = history.location;
-    expect(location).toBe('/favorites');
+    const { pathname } = history.location;
+    expect(pathname).toBe('/favorites');
   });
   test('vai para a página Not Found ao entrar em uma URL desconhecida', () => {
     const { history } = renderWithRouter(<App />);
     history.push('/xablau');
-    const error404 = screen.getByText('Page requested not found');
+    const error404 = screen.getByRole('heading', {
+      name: /page requested not found/i,
+    });
     expect(error404).toBeInTheDocument();
   });
 });

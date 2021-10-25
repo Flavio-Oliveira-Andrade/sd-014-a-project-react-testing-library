@@ -52,6 +52,7 @@ describe('Verifica o componente <Pokemon.js />', () => {
     userEvent.click(favorite);
 
     const star = screen.getByAltText(`${pokemons[0].name} is marked as favorite`);
+    expect(star.src).toContain('/star-icon.svg');
     expect(star).toBeInTheDocument();
   });
 });

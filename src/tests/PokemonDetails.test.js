@@ -11,7 +11,6 @@ describe('Teste o componente <PokemonDetails.js />', () => {
     userEvent.click(moreDetails);
     const pokeDetails = screen.getByText(/Pikachu Details/);
     expect(pokeDetails).toBeInTheDocument();
-    expect(moreDetails).toBeNull();
     const heading = screen.getByRole('heading', { name: 'Summary', level: 2 });
     expect(heading).toBeInTheDocument();
     const summary = screen.getByText(/this intelligent Pokémon roasts hard berries wit/i);
@@ -31,7 +30,7 @@ describe('Teste o componente <PokemonDetails.js />', () => {
     expect(firstImg).toBeInTheDocument();
     const secondImg = screen.getByText('Kanto Power Plant');
     expect(secondImg).toBeInTheDocument();
-    const bothLocations = screen.getAllByRole('img', { name: 'both location' });
+    const bothLocations = screen.getAllByRole('img', { name: 'Pikachu location' });
     expect(bothLocations[0]).toHaveProperty('src', 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png');
     expect(bothLocations[1]).toHaveProperty('src', 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png');
   });
@@ -44,8 +43,10 @@ describe('Teste o componente <PokemonDetails.js />', () => {
     userEvent.click(favoriteMark);
     const favoritedStar = screen.getByAltText(/pikachu is marked as favorite/i);
     expect(favoritedStar).toBeInTheDocument();
+
     userEvent.click(favoriteMark);
-    expect(favoritedStar).toBeNull();
+    expect(favoriteMark).not.toBeChecked();
+
     const favoriteLabel = screen.getByLabelText('Pokémon favoritado?');
     expect(favoriteLabel).toBeInTheDocument();
   });

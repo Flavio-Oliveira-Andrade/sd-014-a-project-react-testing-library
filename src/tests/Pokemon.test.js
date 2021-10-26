@@ -8,7 +8,7 @@ import pokemon from '../data';
 
 const favoritesID = {
   25: true,
-  0: true,
+  0: false,
 };
 
 describe('testando componente Pokemon', () => {
@@ -28,6 +28,7 @@ describe('testando componente Pokemon', () => {
     />);
     const pokeType = screen.getByTestId('pokemon-type');
     expect(pokeType).toBeInTheDocument();
+    expect(pokeType.textContent).toBe(pokemon[0].type);
   });
   test('O peso médio do pokémon deve ser exibido com um texto ', () => {
     renderWithRouter(<Pokemon
@@ -45,6 +46,8 @@ describe('testando componente Pokemon', () => {
     />);
     const pokeIMG = screen.getByRole('img', { name: `${pokemon[0].name} sprite` });
     expect(pokeIMG).toBeInTheDocument();
+    expect(pokeIMG).toHaveAttribute('alt', `${pokemon[0].name} sprite`);
+    expect(pokeIMG).toHaveAttribute('src', pokemon[0].image);
   });
   test('Se o card do Pokémon indicado na Pokédex contém um link ', () => {
     const { history } = renderWithRouter(<Pokemon
@@ -56,15 +59,16 @@ describe('testando componente Pokemon', () => {
     userEvent.click(pokeLink);
     expect(history.location.pathname).toBe(`/pokemons/${pokemon[0].id}`);
   });
-  test('Favoritado deve ter uma imagem com o atributo' 
+  test('Favoritado deve ter uma imagem com o atributo'
   + 'src contendo o caminho /star-icon.svg ', () => {
     renderWithRouter(<Pokemon
       pokemon={ pokemon[0] }
-      isPokemonFavoriteById={ favoritesID[pokemon[0].id] }
+      isFavorite={ favoritesID[pokemon[0].id] }
     />);
 
-    const pokeStar = screen.getByRole('img', { name: `${pokemon[0].name} is marked as favorite` });
-    expect(pokeStar).toHaveAtribute('src', '/star-icon.svg');
-    // expect(pokeStar).toBeInTheDocument();
+    const pokeStar = screen
+      .getByRole('img', { name: /is marked as favorite/i });
+    expect(pokeStar).toHaveAttribute('src', '/star-icon.svg');
+    expect(pokeStar).toHaveAttribute('alt', `${pokemon[0].name} is marked as favorite`);
   });
 });

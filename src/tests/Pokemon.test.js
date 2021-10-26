@@ -10,7 +10,7 @@ const favoritesID = {
   25: true,
   0: false,
 };
-
+// Assitido pelo crack Doug04
 describe('testando componente Pokemon', () => {
   test('O nome correto do Pokémon deve ser mostrado na tela', () => {
     renderWithRouter(<Pokemon
@@ -49,6 +49,7 @@ describe('testando componente Pokemon', () => {
     expect(pokeIMG).toHaveAttribute('alt', `${pokemon[0].name} sprite`);
     expect(pokeIMG).toHaveAttribute('src', pokemon[0].image);
   });
+  // concluido com assitencia de Renatta, na monitoria matinal grupal.
   test('Se o card do Pokémon indicado na Pokédex contém um link ', () => {
     const { history } = renderWithRouter(<Pokemon
       pokemon={ pokemon[0] }

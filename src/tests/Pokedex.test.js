@@ -58,15 +58,15 @@ describe('Testa o componente Pokedex.js', () => {
         expect(pokemonBugBtn).toBeInTheDocument();
       });
     });
-});
 
-test('Testa se a Pokédex contém um botão para resetar o filtro',
-  () => {
-    renderWithRouter(<App />);
-    const resetBtn = screen.getByRole('button', {
-      name: /all/i,
+  test('Testa se a Pokédex contém um botão para resetar o filtro',
+    () => {
+      renderWithRouter(<App />);
+      const resetBtn = screen.getByRole('button', {
+        name: /all/i,
+      });
+      userEvent.click(resetBtn);
+      const namePokemon = screen.getByText(pokemons[0].name);
+      expect(namePokemon).toBeInTheDocument();
     });
-    userEvent.click(resetBtn);
-    const namePokemon = screen.getByText(pokemons[0].name);
-    expect(namePokemon).toBeInTheDocument();
-  });
+});
